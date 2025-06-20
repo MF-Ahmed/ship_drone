@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf version='1.9'>
+  <model name='crazy2fly'>
+    <pose>0 0 0 0 0 0</pose>
+    <self_collide>false</self_collide>
+    <static>false</static>
+
+    <!-- Include base frame -->
+    <include merge='true'>
+      <uri>model://crazy2fly_base</uri>
+    </include>
+
+    <!-- Odometry plugin to fake MOCAP -->
+    <plugin name='gz::sim::systems::OdometryPublisher'
+            filename='gz-sim-odometry-publisher-system'>
+      <odom_publish_frequency>100</odom_publish_frequency>
+      <dimensions>3</dimensions>
+      <odom_frame>mocap</odom_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <xyz_offset>0.0 0.0 0.0</xyz_offset>
+      <rpy_offset>0.0 0.0 0.0</rpy_offset>
+    </plugin>
+
+    <!-- Pose publiser plugin -->
+    <!--
+    <plugin
+      filename="gz-sim-pose-publisher-system"
+      name="gz::sim::systems::PosePublisher">
+      <publish_link_pose>true</publish_link_pose>
+      <use_pose_vector_msg>true</use_pose_vector_msg>
+      <static_publisher>true</static_publisher>
+      <static_update_frequency>1</static_update_frequency>
+    </plugin>
+    -->
+    
+    <!-- Joint state publisher plugin -->
+    <!--
+    <plugin
+      filename="gz-sim-joint-state-publisher-system"
+      name="gz::sim::systems::JointStatePublisher">
+    </plugin>
+    -->
+
+    <!-- Add additional models (links, joints, sensors...) -->
+    <!--
+    <include merge='true'>
+      <uri>model://bluefox_mlc200</uri>
+      <pose>0.05 0.05 0.0 -1.5708 0.0 -0.7854</pose>
+    </include>
+
+    <joint name="bluefox_mlc200_camera_joint1" type="fixed">
+      <parent>base_link</parent>
+      <child>bluefox_mlc200/base_link</child>
+      <pose relative_to="base_link">0.05 0.05 0.0 -1.5708 0.0 -0.7854</pose>
+    </joint>
+    -->
+  </model>
+</sdf>

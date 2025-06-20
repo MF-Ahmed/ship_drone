@@ -1,0 +1,17 @@
+crazyflie_ekf_node:
+  ros__parameters:
+    ref_lat: 48.04630
+    ref_lon: -4.97632
+    ref_alt: 0.0
+    process_noise: 0.01
+    gps_noise: 2.0
+    base_frame: crazyflie/base_footprint
+    gps_noise_xy: 10.0
+    gps_noise_z: 10.0
+
+    process_noise_v: 0.02         # for vx, vy, vz
+    process_noise_bias_x: 1e-3    # for bax
+    process_noise_bias_y: 1e-3   # for bay
+
+
+

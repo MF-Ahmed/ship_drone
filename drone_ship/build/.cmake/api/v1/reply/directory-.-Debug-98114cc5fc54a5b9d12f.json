@@ -1,0 +1,692 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install",
+			"ament_environment_hooks",
+			"ament_index_register_resource",
+			"ament_cmake_environment_generate_package_run_dependencies_marker",
+			"include",
+			"ament_execute_extensions",
+			"ament_package",
+			"ament_cmake_environment_generate_parent_prefix_path_marker",
+			"ament_generate_package_environment",
+			"ament_index_register_package",
+			"_ament_package"
+		],
+		"files" : 
+		[
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/ament_environment_hooks.cmake",
+			"CMakeLists.txt",
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/index/ament_index_register_resource.cmake",
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/environment/ament_cmake_environment_package_hook.cmake",
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/core/ament_execute_extensions.cmake",
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/core/ament_package.cmake",
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/ament_cmake_environment_hooks_package_hook.cmake",
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/ament_generate_package_environment.cmake",
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/index/ament_index_register_package.cmake",
+			"/opt/ros/jazzy/share/ament_cmake_core/cmake/index/ament_cmake_index_package_hook.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 79,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 70,
+				"parent" : 1
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 92,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 104,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 109,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 114,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 143,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 159,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 166,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 1,
+				"line" : 173,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 181,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 5,
+				"line" : 66,
+				"parent" : 11
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 48,
+				"parent" : 12
+			},
+			{
+				"file" : 3,
+				"parent" : 13
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 47,
+				"parent" : 14
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 29,
+				"parent" : 15
+			},
+			{
+				"command" : 0,
+				"file" : 2,
+				"line" : 105,
+				"parent" : 16
+			},
+			{
+				"command" : 7,
+				"file" : 3,
+				"line" : 48,
+				"parent" : 14
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 43,
+				"parent" : 18
+			},
+			{
+				"command" : 0,
+				"file" : 2,
+				"line" : 105,
+				"parent" : 19
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 48,
+				"parent" : 12
+			},
+			{
+				"file" : 6,
+				"parent" : 21
+			},
+			{
+				"command" : 1,
+				"file" : 6,
+				"line" : 20,
+				"parent" : 22
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 70,
+				"parent" : 23
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 87,
+				"parent" : 23
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 70,
+				"parent" : 23
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 87,
+				"parent" : 23
+			},
+			{
+				"command" : 8,
+				"file" : 6,
+				"line" : 26,
+				"parent" : 22
+			},
+			{
+				"command" : 0,
+				"file" : 7,
+				"line" : 91,
+				"parent" : 28
+			},
+			{
+				"command" : 0,
+				"file" : 7,
+				"line" : 91,
+				"parent" : 28
+			},
+			{
+				"command" : 0,
+				"file" : 7,
+				"line" : 91,
+				"parent" : 28
+			},
+			{
+				"command" : 0,
+				"file" : 7,
+				"line" : 107,
+				"parent" : 28
+			},
+			{
+				"command" : 0,
+				"file" : 7,
+				"line" : 120,
+				"parent" : 28
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 48,
+				"parent" : 12
+			},
+			{
+				"file" : 9,
+				"parent" : 34
+			},
+			{
+				"command" : 9,
+				"file" : 9,
+				"line" : 16,
+				"parent" : 35
+			},
+			{
+				"command" : 2,
+				"file" : 8,
+				"line" : 29,
+				"parent" : 36
+			},
+			{
+				"command" : 0,
+				"file" : 2,
+				"line" : 105,
+				"parent" : 37
+			},
+			{
+				"command" : 10,
+				"file" : 5,
+				"line" : 68,
+				"parent" : 11
+			},
+			{
+				"command" : 0,
+				"file" : 5,
+				"line" : 150,
+				"parent" : 39
+			},
+			{
+				"command" : 0,
+				"file" : 5,
+				"line" : 157,
+				"parent" : 39
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz/environment",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_environment_hooks/resource_paths.dsv"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libWaves.so"
+			],
+			"targetId" : "Waves::@6890427a1f51a3e7e1df",
+			"targetIndex" : 7,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "Waves::@6890427a1f51a3e7e1df",
+				"index" : 7
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libScoringPlugin.so"
+			],
+			"targetId" : "ScoringPlugin::@6890427a1f51a3e7e1df",
+			"targetIndex" : 2,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "ScoringPlugin::@6890427a1f51a3e7e1df",
+				"index" : 2
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 5,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz",
+			"paths" : 
+			[
+				"rviz"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 6,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz/models",
+			"paths" : 
+			[
+				{
+					"from" : "models",
+					"to" : "."
+				}
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libPublisherPlugin.so"
+			],
+			"targetId" : "PublisherPlugin::@6890427a1f51a3e7e1df",
+			"targetIndex" : 1,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "PublisherPlugin::@6890427a1f51a3e7e1df",
+				"index" : 1
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libAcousticPingerPlugin.so"
+			],
+			"targetId" : "AcousticPingerPlugin::@6890427a1f51a3e7e1df",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "AcousticPingerPlugin::@6890427a1f51a3e7e1df",
+				"index" : 0
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libSimpleHydrodynamics.so"
+			],
+			"targetId" : "SimpleHydrodynamics::@6890427a1f51a3e7e1df",
+			"targetIndex" : 3,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "SimpleHydrodynamics::@6890427a1f51a3e7e1df",
+				"index" : 3
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libSurface.so"
+			],
+			"targetId" : "Surface::@6890427a1f51a3e7e1df",
+			"targetIndex" : 4,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "Surface::@6890427a1f51a3e7e1df",
+				"index" : 4
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libUSVWind.so"
+			],
+			"targetId" : "USVWind::@6890427a1f51a3e7e1df",
+			"targetIndex" : 5,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "USVWind::@6890427a1f51a3e7e1df",
+				"index" : 5
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libWaveVisual.so"
+			],
+			"targetId" : "WaveVisual::@6890427a1f51a3e7e1df",
+			"targetIndex" : 6,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 7,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "WaveVisual::@6890427a1f51a3e7e1df",
+				"index" : 6
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Unspecified",
+			"destination" : "lib",
+			"paths" : 
+			[
+				"libWindturbinesInspectionScoringPlugin.so"
+			],
+			"targetId" : "WindturbinesInspectionScoringPlugin::@6890427a1f51a3e7e1df",
+			"targetIndex" : 8,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 8,
+			"component" : "Unspecified",
+			"cxxModuleBmiTarget" : 
+			{
+				"id" : "WindturbinesInspectionScoringPlugin::@6890427a1f51a3e7e1df",
+				"index" : 8
+			},
+			"destination" : "lib",
+			"type" : "cxxModuleBmi"
+		},
+		{
+			"backtrace" : 9,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz",
+			"paths" : 
+			[
+				"launch",
+				"models",
+				"worlds",
+				"scripts"
+			],
+			"type" : "directory"
+		},
+		{
+			"backtrace" : 10,
+			"component" : "Unspecified",
+			"destination" : "lib/aquabot_gz",
+			"paths" : 
+			[
+				"scripts/crazyflie_odom_tf.py",
+				"scripts/aquabot_odom_tf.py",
+				"scripts/fake_odom.py"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 17,
+			"component" : "Unspecified",
+			"destination" : "share/ament_index/resource_index/package_run_dependencies",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/aquabot_gz"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 20,
+			"component" : "Unspecified",
+			"destination" : "share/ament_index/resource_index/parent_prefix_path",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/aquabot_gz"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 24,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz/environment",
+			"paths" : 
+			[
+				"/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/environment/ament_prefix_path.sh"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 25,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz/environment",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_environment_hooks/ament_prefix_path.dsv"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 26,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz/environment",
+			"paths" : 
+			[
+				"/opt/ros/jazzy/share/ament_cmake_core/cmake/environment_hooks/environment/path.sh"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 27,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz/environment",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_environment_hooks/path.dsv"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 29,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_environment_hooks/local_setup.bash"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 30,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_environment_hooks/local_setup.sh"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 31,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_environment_hooks/local_setup.zsh"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 32,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_environment_hooks/local_setup.dsv"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 33,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_environment_hooks/package.dsv"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 38,
+			"component" : "Unspecified",
+			"destination" : "share/ament_index/resource_index/packages",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_index/share/ament_index/resource_index/packages/aquabot_gz"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 40,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz/cmake",
+			"paths" : 
+			[
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_core/aquabot_gzConfig.cmake",
+				"/home/user/data/ros2_ws/src/drone_ship/build/ament_cmake_core/aquabot_gzConfig-version.cmake"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 41,
+			"component" : "Unspecified",
+			"destination" : "share/aquabot_gz",
+			"paths" : 
+			[
+				"package.xml"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	}
+}

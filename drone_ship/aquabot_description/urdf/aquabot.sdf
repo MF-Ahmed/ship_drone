@@ -1,0 +1,834 @@
+<sdf version='1.11'>
+  <model name='aquabot'>
+    <link name='aquabot/base_link'>
+      <inertial>
+        <pose>0 0 0.045787965616045839 0 0 0</pose>
+        <mass>1047</mass>
+        <inertia>
+          <ixx>186.36108326170009</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>441.49011659503338</iyy>
+          <iyz>0</iyz>
+          <izz>466.69096666666672</izz>
+        </inertia>
+      </inertial>
+      <collision name='aquabot/base_link_fixed_joint_lump__main_float_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/blue_boat.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name='aquabot/base_link_fixed_joint_lump__rear_collision_1'>
+        <pose>-3.5 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.050000000000000003 1.5 1</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='aquabot/base_link_fixed_joint_lump__left_battery_collision_collision_2'>
+        <pose>0 0.63 1.02 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.59999999999999998 0.40000000000000002 0.31</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='aquabot/base_link_fixed_joint_lump__right_battery_collision_collision_3'>
+        <pose>0 -0.63 1.02 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.59999999999999998 0.40000000000000002 0.31</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='aquabot/base_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/blue_boat.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='aquabot/base_link_fixed_joint_lump__aquabot/left_battery_link_visual_1'>
+        <pose>0 -0.40000000000000002 0.41999999999999998 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/battery.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='aquabot/base_link_fixed_joint_lump__aquabot/right_battery_link_visual_2'>
+        <pose>0 -1.6599999999999999 0.41999999999999998 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/battery.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name='contact_sensor' type='contact'>
+        <contact>
+          <collision>aquabot/base_link_fixed_joint_lump__main_float_collision</collision>
+          <collision>aquabot/base_link_fixed_joint_lump__rear_collision_1</collision>
+          <topic>/vrx/contacts</topic>
+        </contact>
+        <always_on>true</always_on>
+        <update_rate>5</update_rate>
+      </sensor>
+    </link>
+    <joint name='aquabot/base_to_main_camera_post_joint' type='revolute'>
+      <pose relative_to='aquabot/base_link'>1.45 0 1.6347499999999999 0 0 0</pose>
+      <parent>aquabot/base_link</parent>
+      <child>aquabot/main_camera_post_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <effort>5</effort>
+          <velocity>5</velocity>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>1</damping>
+          <friction>1</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aquabot/main_camera_post_link'>
+      <pose relative_to='aquabot/base_to_main_camera_post_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.017842097437676559 0 0.14214204292015661 0 0 0</pose>
+        <mass>1.00885</mass>
+        <inertia>
+          <ixx>0.054362829567963143</ixx>
+          <ixy>-2.4178008513310628e-21</ixy>
+          <ixz>-0.0039349350066401698</ixz>
+          <iyy>0.055039579449746363</iyy>
+          <iyz>-9.2810679070400654e-22</iyz>
+          <izz>0.0007425334697832315</izz>
+        </inertia>
+      </inertial>
+      <collision name='aquabot/main_camera_post_link_fixed_joint_lump__main_camera_post_collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.67649999999999999</length>
+            <radius>0.0076</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='aquabot/main_camera_post_link_fixed_joint_lump__main_camera_post_arm_collision_collision_1'>
+        <pose>0.029999999999999999 0 0.33825000000000011 -1.2042771838760871 5.5511151231257827e-17 -1.570796326794897</pose>
+        <geometry>
+          <cylinder>
+            <length>0.065000000000000002</length>
+            <radius>0.0080000000000000002</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='aquabot/main_camera_post_link_fixed_joint_lump__main_camera_lens_collision_collision_2'>
+        <pose>0.067931504565651418 0 0.36368119663054221 3.1415926535897931 1.4835298641951791 3.1415926535897931</pose>
+        <geometry>
+          <cylinder>
+            <length>0.042000000000000003</length>
+            <radius>0.014999999999999999</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='aquabot/main_camera_post_link_fixed_joint_lump__main_camera_box_collision_collision_3'>
+        <pose>0.029578008689119219 0 0.36703669272632711 0 0.087266462599716502 0</pose>
+        <geometry>
+          <box>
+            <size>0.035999999999999997 0.029999999999999999 0.029999999999999999</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='aquabot/main_camera_post_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.67649999999999999</length>
+            <radius>0.0076</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 0 0 1</diffuse>
+          <ambient>0 0 0 1</ambient>
+        </material>
+      </visual>
+      <visual name='aquabot/main_camera_post_link_fixed_joint_lump__main_camera_post_arm_visual_visual_1'>
+        <pose>-0.0080000000000000002 0 0.33524999999999999 -1.0471975511965981 5.5511151231257827e-17 -1.570796326794897</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/sensor_post_arm.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <visual name='aquabot/main_camera_post_link_fixed_joint_lump__aquabot/main_camera_link_visual_2'>
+        <pose>0.017125574962972401 0 0.36812613951067269 0.087266462599716474 6.9388939039072284e-18 1.570796326794897</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/mono_camera.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name='main_camera_sensor' type='camera'>
+        <update_rate>10</update_rate>
+        <camera name='main_camera_camera'>
+          <horizontal_fov>1.3962634</horizontal_fov>
+          <image>
+            <width>720</width>
+            <height>576</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.050000000000000003</near>
+            <far>400</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <mean>0</mean>
+            <stddev>0.0070000000000000001</stddev>
+          </noise>
+        </camera>
+        <pose>0.050000000000000003 0 0.36525000000000002 0 0.087266500000000025 0</pose>
+      </sensor>
+    </link>
+    <joint name='aquabot/gps_joint' type='revolute'>
+      <pose relative_to='aquabot/base_link'>0 0 1.3 0 0 0</pose>
+      <parent>aquabot/base_link</parent>
+      <child>aquabot/gps_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>1000</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aquabot/gps_link'>
+      <pose relative_to='aquabot/gps_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.0064580000000000002</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0064580000000000002</iyy>
+          <iyz>0</iyz>
+          <izz>0.01125</izz>
+        </inertia>
+      </inertial>
+      <collision name='aquabot/gps_link_fixed_joint_lump__gps_collision_base_collision'>
+        <pose>0 0 0.025000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.050000000000000003</length>
+            <radius>0.014999999999999999</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name='aquabot/gps_link_fixed_joint_lump__gps_collision_antenna_collision_1'>
+        <pose>0 0 0.11 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.10000000000000001</length>
+            <radius>0.14999999999999999</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='aquabot/gps_link_fixed_joint_lump__gps_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/gps.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <sensor name='navsat' type='navsat'>
+        <always_on>true</always_on>
+        <update_rate>20</update_rate>
+        <gps/>
+      </sensor>
+    </link>
+    <joint name='aquabot/imu_joint' type='revolute'>
+      <pose relative_to='aquabot/base_link'>1 0 1.6200000000000001 0 0 0</pose>
+      <parent>aquabot/base_link</parent>
+      <child>aquabot/imu_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>1000</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aquabot/imu_link'>
+      <pose relative_to='aquabot/imu_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>5.4199999999999998e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.1039999999999998e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.6040000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='aquabot/imu_link_fixed_joint_lump__imu_collision_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.050000000000000003 0.025000000000000001 0.0050000000000000001</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='aquabot/imu_link_fixed_joint_lump__imu_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.050000000000000003 0.025000000000000001 0.0050000000000000001</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+      <sensor name='imu_sensor' type='imu'>
+        <update_rate>100</update_rate>
+        <imu>
+          <angular_velocity>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0089999999999999993</stddev>
+                <bias_mean>0.00075000000000000002</bias_mean>
+                <bias_stddev>0.0050000000000000001</bias_stddev>
+                <dynamic_bias_stddev>2.0000000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>400</dynamic_bias_correlation_time>
+                <precision>0.00025000000000000001</precision>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0089999999999999993</stddev>
+                <bias_mean>0.00075000000000000002</bias_mean>
+                <bias_stddev>0.0050000000000000001</bias_stddev>
+                <dynamic_bias_stddev>2.0000000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>400</dynamic_bias_correlation_time>
+                <precision>0.00025000000000000001</precision>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.0089999999999999993</stddev>
+                <bias_mean>0.00075000000000000002</bias_mean>
+                <bias_stddev>0.0050000000000000001</bias_stddev>
+                <dynamic_bias_stddev>2.0000000000000002e-05</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>400</dynamic_bias_correlation_time>
+                <precision>0.00025000000000000001</precision>
+              </noise>
+            </z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.021000000000000001</stddev>
+                <bias_mean>0.050000000000000003</bias_mean>
+                <bias_stddev>0.0074999999999999997</bias_stddev>
+                <dynamic_bias_stddev>0.00037500000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>175</dynamic_bias_correlation_time>
+                <precision>0.0050000000000000001</precision>
+              </noise>
+            </x>
+            <y>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.021000000000000001</stddev>
+                <bias_mean>0.050000000000000003</bias_mean>
+                <bias_stddev>0.0074999999999999997</bias_stddev>
+                <dynamic_bias_stddev>0.00037500000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>175</dynamic_bias_correlation_time>
+                <precision>0.0050000000000000001</precision>
+              </noise>
+            </y>
+            <z>
+              <noise type='gaussian'>
+                <mean>0</mean>
+                <stddev>0.021000000000000001</stddev>
+                <bias_mean>0.050000000000000003</bias_mean>
+                <bias_stddev>0.0074999999999999997</bias_stddev>
+                <dynamic_bias_stddev>0.00037500000000000001</dynamic_bias_stddev>
+                <dynamic_bias_correlation_time>175</dynamic_bias_correlation_time>
+                <precision>0.0050000000000000001</precision>
+              </noise>
+            </z>
+          </linear_acceleration>
+          <orientation_reference_frame>
+            <localization>ENU</localization>
+          </orientation_reference_frame>
+        </imu>
+      </sensor>
+    </link>
+    <joint name='aquabot/left_chassis_engine_joint' type='revolute'>
+      <pose relative_to='aquabot/base_link'>-3 0.59999999999999998 0.31823699999999999 0 0 0</pose>
+      <parent>aquabot/base_link</parent>
+      <child>aquabot/left_engine_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.78539816339000001</lower>
+          <upper>0.78539816339000001</upper>
+          <effort>10</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics>
+          <damping>10</damping>
+          <friction>5</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aquabot/left_engine_link'>
+      <pose relative_to='aquabot/left_chassis_engine_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>15</mass>
+        <inertia>
+          <ixx>0.88924499999999995</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.91112499999999996</iyy>
+          <iyz>0</iyz>
+          <izz>0.078125</izz>
+        </inertia>
+      </inertial>
+      <collision name='aquabot/left_engine_link_fixed_joint_lump__left_engine_vertical_axis_collision_collision'>
+        <pose>-0.16 0 -0.23999999999999999 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.20000000000000001 0.14999999999999999 0.82999999999999996</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='aquabot/left_engine_link_fixed_joint_lump__left_engine_rear_end_collision_collision_1'>
+        <pose>-0.34000000000000002 0 0.12 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.12 0.14999999999999999 0.12</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='aquabot/left_engine_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/engine.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='aquabot/left_engine_propeller_joint' type='revolute'>
+      <pose relative_to='aquabot/left_engine_link'>-0.27815600000000001 0 -0.50937100000000002 0 0 0</pose>
+      <parent>aquabot/left_engine_link</parent>
+      <child>aquabot/left_propeller_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>0.050000000000000003</damping>
+          <friction>0.050000000000000003</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aquabot/left_propeller_link'>
+      <pose relative_to='aquabot/left_engine_propeller_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.0085450000000000005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0085450000000000005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0144</izz>
+        </inertia>
+      </inertial>
+      <collision name='aquabot/left_propeller_link_fixed_joint_lump__left_propeller_collision_collision'>
+        <pose>-0.080000000000000002 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.17999999999999999</length>
+            <radius>0.23999999999999999</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='aquabot/left_propeller_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/propeller.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='aquabot/receiver_pinger_joint' type='revolute'>
+      <pose relative_to='aquabot/base_link'>0 0 0 0 0 0</pose>
+      <parent>aquabot/base_link</parent>
+      <child>aquabot/receiver</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>1000</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aquabot/receiver'>
+      <pose relative_to='aquabot/receiver_pinger_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.10000000000000001</mass>
+        <inertia>
+          <ixx>5.4199999999999998e-06</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>2.1039999999999998e-05</iyy>
+          <iyz>0</iyz>
+          <izz>2.6040000000000001e-05</izz>
+        </inertia>
+      </inertial>
+      <visual name='aquabot/receiver_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='aquabot/right_chassis_engine_joint' type='revolute'>
+      <pose relative_to='aquabot/base_link'>-3 -0.59999999999999998 0.31823699999999999 0 0 0</pose>
+      <parent>aquabot/base_link</parent>
+      <child>aquabot/right_engine_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.78539816339000001</lower>
+          <upper>0.78539816339000001</upper>
+          <effort>10</effort>
+          <velocity>10</velocity>
+        </limit>
+        <dynamics>
+          <damping>10</damping>
+          <friction>5</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aquabot/right_engine_link'>
+      <pose relative_to='aquabot/right_chassis_engine_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>15</mass>
+        <inertia>
+          <ixx>0.88924499999999995</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.91112499999999996</iyy>
+          <iyz>0</iyz>
+          <izz>0.078125</izz>
+        </inertia>
+      </inertial>
+      <collision name='aquabot/right_engine_link_fixed_joint_lump__right_engine_vertical_axis_collision_collision'>
+        <pose>-0.16 0 -0.23999999999999999 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.20000000000000001 0.14999999999999999 0.82999999999999996</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name='aquabot/right_engine_link_fixed_joint_lump__right_engine_rear_end_collision_collision_1'>
+        <pose>-0.34000000000000002 0 0.12 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.12 0.14999999999999999 0.12</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='aquabot/right_engine_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/engine.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='aquabot/right_engine_propeller_joint' type='revolute'>
+      <pose relative_to='aquabot/right_engine_link'>-0.27815600000000001 0 -0.50937100000000002 0 0 0</pose>
+      <parent>aquabot/right_engine_link</parent>
+      <child>aquabot/right_propeller_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>
+          <lower>-inf</lower>
+          <upper>inf</upper>
+        </limit>
+        <dynamics>
+          <damping>0.050000000000000003</damping>
+          <friction>0.050000000000000003</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='aquabot/right_propeller_link'>
+      <pose relative_to='aquabot/right_engine_propeller_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.5</mass>
+        <inertia>
+          <ixx>0.0085450000000000005</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0085450000000000005</iyy>
+          <iyz>0</iyz>
+          <izz>0.0144</izz>
+        </inertia>
+      </inertial>
+      <collision name='aquabot/right_propeller_link_fixed_joint_lump__right_propeller_collision_collision'>
+        <pose>-0.080000000000000002 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.17999999999999999</length>
+            <radius>0.23999999999999999</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='aquabot/right_propeller_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://aquabot_description/mesh/vrx/propeller.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <enable_wind>true</enable_wind>
+    <plugin name='ignition::gazebo::systems::Thruster' filename='ignition-gazebo-thruster-system'>
+      <joint_name>aquabot/left_engine_propeller_joint</joint_name>
+      <thrust_coefficient>0.004422</thrust_coefficient>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.2</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <max_thrust_cmd>5000.0</max_thrust_cmd>
+      <namespace>aquabot</namespace>
+      <topic>thrusters/left/thrust</topic>
+      <name>left</name>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::JointPositionController' filename='ignition-gazebo-joint-position-controller-system'>
+      <joint_name>aquabot/left_chassis_engine_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <topic>aquabot/thrusters/left/pos</topic>
+      <name>left</name>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::Thruster' filename='ignition-gazebo-thruster-system'>
+      <joint_name>aquabot/right_engine_propeller_joint</joint_name>
+      <thrust_coefficient>0.004422</thrust_coefficient>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.2</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <max_thrust_cmd>5000.0</max_thrust_cmd>
+      <namespace>aquabot</namespace>
+      <topic>thrusters/right/thrust</topic>
+      <name>right</name>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::JointPositionController' filename='ignition-gazebo-joint-position-controller-system'>
+      <joint_name>aquabot/right_chassis_engine_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <topic>aquabot/thrusters/right/pos</topic>
+      <name>right</name>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::JointPositionController' filename='ignition-gazebo-joint-position-controller-system'>
+      <joint_name>aquabot/base_to_main_camera_post_joint</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <topic>aquabot/thrusters/main_camera_sensor/pos</topic>
+      <name>main_camera_sensor</name>
+    </plugin>
+    <plugin name='vrx::Surface' filename='libSurface.so'>
+      <link_name>aquabot/base_link</link_name>
+      <hull_length>6.0</hull_length>
+      <hull_radius>0.36</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>1.4 1.03 0</point>
+        <point>-1.4 1.03 0</point>
+      </points>
+      <wavefield>
+        <topic>/vrx/wavefield/parameters</topic>
+      </wavefield>
+    </plugin>
+    <plugin name='vrx::Surface' filename='libSurface.so'>
+      <link_name>aquabot/base_link</link_name>
+      <hull_length>6.0</hull_length>
+      <hull_radius>0.36</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>1.4 -1.03 0</point>
+        <point>-1.4 -1.03 0</point>
+      </points>
+      <wavefield>
+        <topic>/vrx/wavefield/parameters</topic>
+      </wavefield>
+    </plugin>
+    <plugin name='vrx::SimpleHydrodynamics' filename='libSimpleHydrodynamics.so'>
+      <link_name>aquabot/base_link</link_name>
+      <xDotU>0.0</xDotU>
+      <yDotV>0.0</yDotV>
+      <nDotR>0.0</nDotR>
+      <xU>182.0</xU>
+      <xUU>224.0</xUU>
+      <yV>183.0</yV>
+      <yVV>149.0</yVV>
+      <zW>1000.0</zW>
+      <kP>550.0</kP>
+      <kPP>734.0</kPP>
+      <mQ>1349.0</mQ>
+      <mQQ>1102.0</mQQ>
+      <nR>1199.0</nR>
+      <nRR>979.0</nRR>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::DetachableJoint' filename='ignition-gazebo-detachable-joint-system'>
+      <parent_link>aquabot/base_link</parent_link>
+      <child_model>platform</child_model>
+      <child_link>dummy_upper</child_link>
+      <topic>/vrx/release</topic>
+      <suppress_child_warning>true</suppress_child_warning>
+    </plugin>
+    <plugin name='ignition::gazebo::systems::PosePublisher' filename='libignition-gazebo-pose-publisher-system.so'>
+      <publish_link_pose>false</publish_link_pose>
+      <publish_sensor_pose>true</publish_sensor_pose>
+      <publish_collision_pose>true</publish_collision_pose>
+      <publish_visual_pose>false</publish_visual_pose>
+      <publish_nested_model_pose>false</publish_nested_model_pose>
+      <publish_model_pose>false</publish_model_pose>
+      <use_pose_vector_msg>true</use_pose_vector_msg>
+      <static_publisher>false</static_publisher>
+      <static_update_frequency>1</static_update_frequency>
+    </plugin>
+    <plugin name="joint_state_publisher" filename="libignition-gazebo-joint-state-publisher-system.so">
+      <publish_frequency>30</publish_frequency>
+    </plugin>
+    <plugin name='vrx::AcousticPingerPlugin' filename='libAcousticPingerPlugin.so'>
+      <position>1.0 0 -1.0</position>
+      <topic>/aquabot/sensors/acoustics/receiver</topic>
+      <set_position_topic>/pinger/set_pinger_position</set_position_topic>
+      <frame_id>pinger</frame_id>
+      <range_noise>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>3.0</stddev>
+        </noise>
+      </range_noise>
+      <bearing_noise>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </bearing_noise>
+      <elevation_noise>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </elevation_noise>
+    </plugin>
+    <frame name='aquabot/left_chasis_battery_joint' attached_to='aquabot/base_link'>
+      <pose>0 0.63 0.87 0 0 0</pose>
+    </frame>
+    <frame name='aquabot/left_battery_link' attached_to='aquabot/left_chasis_battery_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='aquabot/right_chasis_battery_joint' attached_to='aquabot/base_link'>
+      <pose>0 -0.63 0.87 0 0 0</pose>
+    </frame>
+    <frame name='aquabot/right_battery_link' attached_to='aquabot/right_chasis_battery_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='aquabot/main_camera_to_main_camera_link_optical_joint' attached_to='aquabot/main_camera_link'>
+      <pose>0 0 0 -1.5707963267948959 -5.5511151231257827e-17 -1.5707963267948959</pose>
+    </frame>
+    <frame name='aquabot/main_camera_link_optical' attached_to='aquabot/main_camera_to_main_camera_link_optical_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='aquabot/main_camera_post_arm_to_main_camera_joint' attached_to='aquabot/main_camera_post_arm_link'>
+      <pose>0.02 0 0.027 0 0.087266462599716516 0</pose>
+    </frame>
+    <frame name='aquabot/main_camera_link' attached_to='aquabot/main_camera_post_arm_to_main_camera_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+    <frame name='aquabot/main_camera_post_to_main_camera_post_arm_joint' attached_to='aquabot/main_camera_post_link'>
+      <pose>0.029999999999999999 0 0.33825000000000011 0 0 0</pose>
+    </frame>
+    <frame name='aquabot/main_camera_post_arm_link' attached_to='aquabot/main_camera_post_to_main_camera_post_arm_joint'>
+      <pose>0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>
