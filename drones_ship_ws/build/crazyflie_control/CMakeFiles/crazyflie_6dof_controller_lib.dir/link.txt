@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcrazyflie_6dof_controller_lib.a CMakeFiles/crazyflie_6dof_controller_lib.dir/src/crazyflie_6dof_controller.cpp.o
-/usr/bin/ranlib libcrazyflie_6dof_controller_lib.a

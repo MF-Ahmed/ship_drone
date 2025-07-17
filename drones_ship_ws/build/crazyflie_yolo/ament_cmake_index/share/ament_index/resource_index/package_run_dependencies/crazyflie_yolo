@@ -1,1 +1,0 @@
-rclcpp;sensor_msgs;std_msgs;geometry_msgs;vision_msgs;cv_bridge;image_transport;visualization_msgs;tf2;tf2_ros;tf2_geometry_msgs;eigen3_cmake_module;rosidl_default_runtime;python3-numpy;python3-opencv;ultralytics;launch;launch_ros;ament_lint_auto;ament_lint_common

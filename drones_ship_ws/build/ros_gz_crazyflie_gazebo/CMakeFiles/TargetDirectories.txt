@@ -1,9 +1,0 @@
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/uninstall.dir
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/ros_gz_crazyflie_gazebo_uninstall.dir
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/test.dir
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/edit_cache.dir
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/rebuild_cache.dir
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/list_install_components.dir
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/install.dir
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/install/local.dir
-/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo/CMakeFiles/install/strip.dir
