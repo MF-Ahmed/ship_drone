@@ -1,0 +1,25 @@
+[ 33%] Built target crazyflie_control_node
+[ 66%] Built target crazyflie_6dof_controller_lib
+[100%] Built target crazyflie_6dof_controller_node
+-- Install configuration: ""
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/lib/crazyflie_control/crazyflie_control_node
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/config
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/config/waypoints.yaml
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/launch
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/launch/crazyflie_control.launch.py
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/lib/crazyflie_control/crazyflie_6dof_controller_node
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/package_run_dependencies/crazyflie_control
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/parent_prefix_path/crazyflie_control
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/ament_prefix_path.sh
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/path.sh
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/path.dsv
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.bash
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.sh
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.zsh
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.dsv
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/package.dsv
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/packages/crazyflie_control
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/cmake/crazyflie_controlConfig.cmake
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/cmake/crazyflie_controlConfig-version.cmake
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/package.xml

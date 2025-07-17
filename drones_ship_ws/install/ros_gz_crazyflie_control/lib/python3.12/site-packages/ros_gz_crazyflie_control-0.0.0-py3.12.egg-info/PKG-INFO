@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: ros_gz_crazyflie_control
+Version: 0.0.0
+Summary: Simple control scripts for the Crazyflie
+Maintainer: Kimberly McGuire
+Maintainer-email: kimberly@bitcraze.io
+License: MIT
+Requires-Dist: setuptools
+Dynamic: license
+Dynamic: maintainer
+Dynamic: maintainer-email
+Dynamic: requires-dist
+Dynamic: summary

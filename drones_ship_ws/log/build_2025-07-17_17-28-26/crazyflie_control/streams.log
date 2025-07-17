@@ -1,0 +1,29 @@
+[0.058s] Invoking command in '/home/user/data/drones_ship_ws/build/crazyflie_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/crazyflie_control -- -j20 -l20
+[0.159s] [ 33%] Built target crazyflie_6dof_controller_lib
+[0.162s] [ 66%] Built target crazyflie_control_node
+[0.192s] [100%] Built target crazyflie_6dof_controller_node
+[0.293s] Invoked command in '/home/user/data/drones_ship_ws/build/crazyflie_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/crazyflie_control -- -j20 -l20
+[0.293s] Invoking command in '/home/user/data/drones_ship_ws/build/crazyflie_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/crazyflie_control
+[0.308s] -- Install configuration: ""
+[0.308s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/lib/crazyflie_control/crazyflie_control_node
+[0.308s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/config
+[0.308s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/config/waypoints.yaml
+[0.308s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/launch
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/launch/crazyflie_control.launch.py
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/lib/crazyflie_control/crazyflie_6dof_controller_node
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/package_run_dependencies/crazyflie_control
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/parent_prefix_path/crazyflie_control
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/ament_prefix_path.sh
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/ament_prefix_path.dsv
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/path.sh
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/path.dsv
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.bash
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.sh
+[0.309s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.zsh
+[0.310s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.dsv
+[0.310s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/package.dsv
+[0.310s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/packages/crazyflie_control
+[0.310s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/cmake/crazyflie_controlConfig.cmake
+[0.310s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/cmake/crazyflie_controlConfig-version.cmake
+[0.310s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/package.xml
+[0.409s] Invoked command in '/home/user/data/drones_ship_ws/build/crazyflie_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/crazyflie_control

@@ -1,0 +1,7 @@
+[01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/multi_obstacle_tracker.cpp:[m[K In member function ‘[01m[Kvoid MultiObstacleTracker::[01;32m[KpublishTracks[m[K()[m[K’:
+[01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/multi_obstacle_tracker.cpp:225:59:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing std::tuple_element<1, const std::pair<const int, MultiObstacleTracker::ObstacleTrack> >::type = std::__tuple_element_t<1, std::pair<const int, MultiObstacleTracker::ObstacleTrack> >[m[K’ has no member named ‘[01m[Kcov[m[K’
+  225 |                     tracked.covariance[i * 3 + j] = track.[01;31m[Kcov[m[K(i, j);
+      |                                                           [01;31m[K^~~[m[K
+gmake[2]: *** [CMakeFiles/multi_obstacle_tracker_node.dir/build.make:76: CMakeFiles/multi_obstacle_tracker_node.dir/src/multi_obstacle_tracker.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:655: CMakeFiles/multi_obstacle_tracker_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

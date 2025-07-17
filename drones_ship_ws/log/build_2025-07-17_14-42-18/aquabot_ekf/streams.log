@@ -1,0 +1,26 @@
+[0.054s] Invoking command in '/home/user/data/drones_ship_ws/build/aquabot_ekf': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/aquabot_ekf -- -j20 -l20
+[0.133s] [100%] Built target ekf_node
+[0.421s] Invoked command in '/home/user/data/drones_ship_ws/build/aquabot_ekf' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/aquabot_ekf -- -j20 -l20
+[0.422s] Invoking command in '/home/user/data/drones_ship_ws/build/aquabot_ekf': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/aquabot_ekf
+[0.434s] -- Install configuration: ""
+[0.435s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/lib/aquabot_ekf/ekf_node
+[0.436s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/launch
+[0.436s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/launch/ekf_launch.py
+[0.436s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/config
+[0.437s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/config/ekf_params.yaml
+[0.437s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/ament_index/resource_index/package_run_dependencies/aquabot_ekf
+[0.437s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/ament_index/resource_index/parent_prefix_path/aquabot_ekf
+[0.437s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/environment/ament_prefix_path.sh
+[0.437s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/environment/ament_prefix_path.dsv
+[0.437s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/environment/path.sh
+[0.437s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/environment/path.dsv
+[0.437s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/local_setup.bash
+[0.438s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/local_setup.sh
+[0.438s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/local_setup.zsh
+[0.438s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/local_setup.dsv
+[0.438s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/package.dsv
+[0.438s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/ament_index/resource_index/packages/aquabot_ekf
+[0.438s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/cmake/aquabot_ekfConfig.cmake
+[0.438s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/cmake/aquabot_ekfConfig-version.cmake
+[0.438s] -- Up-to-date: /home/user/data/drones_ship_ws/install/aquabot_ekf/share/aquabot_ekf/package.xml
+[0.539s] Invoked command in '/home/user/data/drones_ship_ws/build/aquabot_ekf' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/aquabot_ekf

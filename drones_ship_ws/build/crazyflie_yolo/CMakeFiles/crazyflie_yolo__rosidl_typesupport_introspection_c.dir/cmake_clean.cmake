@@ -1,0 +1,17 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/crazyflie_yolo__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/crazyflie_yolo/msg/detail/tracked_obstacle__type_support.c.o"
+  "CMakeFiles/crazyflie_yolo__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/crazyflie_yolo/msg/detail/tracked_obstacle__type_support.c.o.d"
+  "CMakeFiles/crazyflie_yolo__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/crazyflie_yolo/msg/detail/tracked_obstacle_array__type_support.c.o"
+  "CMakeFiles/crazyflie_yolo__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/crazyflie_yolo/msg/detail/tracked_obstacle_array__type_support.c.o.d"
+  "libcrazyflie_yolo__rosidl_typesupport_introspection_c.pdb"
+  "libcrazyflie_yolo__rosidl_typesupport_introspection_c.so"
+  "rosidl_typesupport_introspection_c/crazyflie_yolo/msg/detail/tracked_obstacle__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/crazyflie_yolo/msg/detail/tracked_obstacle__type_support.c"
+  "rosidl_typesupport_introspection_c/crazyflie_yolo/msg/detail/tracked_obstacle_array__rosidl_typesupport_introspection_c.h"
+  "rosidl_typesupport_introspection_c/crazyflie_yolo/msg/detail/tracked_obstacle_array__type_support.c"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/crazyflie_yolo__rosidl_typesupport_introspection_c.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

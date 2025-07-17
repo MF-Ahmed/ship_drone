@@ -1,0 +1,12 @@
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/uninstall.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/crazyflie_control_uninstall.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/crazyflie_control_node.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/crazyflie_6dof_controller_lib.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/crazyflie_6dof_controller_node.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/test.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/edit_cache.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/rebuild_cache.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/list_install_components.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/install.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/install/local.dir
+/home/user/data/drones_ship_ws/build/crazyflie_control/CMakeFiles/install/strip.dir

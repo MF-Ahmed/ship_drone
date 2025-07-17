@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from crazyflie_yolo/msg/TrackedObstacle.msg
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Point.idl"
+#include "std_msgs/msg/Header.idl"
+
+module crazyflie_yolo {
+  module msg {
+    typedef double double__9[9];
+    @verbatim (language="comment", text=
+      "TrackedObstacle.msg")
+    struct TrackedObstacle {
+      @verbatim (language="comment", text=
+        "For timestamp and frame_id")
+      std_msgs::msg::Header header;
+
+      @verbatim (language="comment", text=
+        "Track ID")
+      int32 id;
+
+      geometry_msgs::msg::Point position;
+
+      @verbatim (language="comment", text=
+        "Flattened 3x3 covariance matrix")
+      double__9 covariance;
+    };
+  };
+};

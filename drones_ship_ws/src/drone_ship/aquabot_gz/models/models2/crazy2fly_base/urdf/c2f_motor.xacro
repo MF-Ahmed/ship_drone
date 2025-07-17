@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find ls2n_drone_description)/models/crazy2fly_base/urdf/inertia.xacro" />
+
+  <xacro:macro name="c2f_motor" params="name radius length mass *origin">
+    <link name="${name}_link">
+      <visual name="${name}_link_visual">
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <!--<cylinder length="${length}" radius="${radius}" />-->
+          <mesh filename="package://ls2n_drone_description/models/crazy2fly_base/meshes/c2f_motor.obj" scale="1 1 1"/>
+        </geometry>
+        <material name="black" />
+      </visual>
+
+      <collision name="${name}_link_collision">
+        <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <geometry>
+          <!--<cylinder length="${length}" radius="${radius}" />-->
+          <mesh filename="package://ls2n_drone_description/models/crazy2fly_base/meshes/c2f_motor.obj" scale="1 1 1"/>
+        </geometry>
+      </collision>
+
+      <xacro:inertial_cylinder mass="${mass}" length="${length}" radius="${radius}">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </xacro:inertial_cylinder>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="frame_link"/>
+      <child link="${name}_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+  </xacro:macro>  
+
+</robot>

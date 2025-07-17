@@ -1,0 +1,26 @@
+[  2%] Built target crazyflie_yolo__rosidl_generator_type_description
+[  6%] Built target stereo_depth_node
+[  6%] Built target ament_cmake_python_copy_crazyflie_yolo
+[ 10%] Built target container_localizer_node
+[ 12%] Built target crazyflie_yolo__cpp
+[ 28%] Built target crazyflie_yolo__rosidl_generator_c
+[ 50%] Built target crazyflie_yolo__rosidl_typesupport_introspection_c
+[ 50%] Built target crazyflie_yolo__rosidl_typesupport_c
+[ 52%] Built target crazyflie_yolo__rosidl_typesupport_fastrtps_cpp
+[ 60%] Built target crazyflie_yolo__rosidl_typesupport_introspection_cpp
+[ 68%] Built target crazyflie_yolo__rosidl_typesupport_fastrtps_c
+[ 76%] Built target crazyflie_yolo__rosidl_typesupport_cpp
+[ 76%] Built target crazyflie_yolo
+[ 78%] [32mBuilding CXX object CMakeFiles/multi_obstacle_tracker_node.dir/src/multi_obstacle_tracker.cpp.o[0m
+[ 80%] Built target crazyflie_yolo__py
+[ 86%] Built target crazyflie_yolo__rosidl_generator_py
+[ 90%] Built target crazyflie_yolo_s__rosidl_typesupport_introspection_c
+[ 94%] Built target crazyflie_yolo_s__rosidl_typesupport_c
+[ 98%] Built target crazyflie_yolo_s__rosidl_typesupport_fastrtps_c
+running egg_info
+writing crazyflie_yolo.egg-info/PKG-INFO
+writing dependency_links to crazyflie_yolo.egg-info/dependency_links.txt
+writing top-level names to crazyflie_yolo.egg-info/top_level.txt
+reading manifest file 'crazyflie_yolo.egg-info/SOURCES.txt'
+writing manifest file 'crazyflie_yolo.egg-info/SOURCES.txt'
+[ 98%] Built target ament_cmake_python_build_crazyflie_yolo_egg

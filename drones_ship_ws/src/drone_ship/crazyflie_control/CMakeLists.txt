@@ -1,0 +1,79 @@
+cmake_minimum_required(VERSION 3.8)
+project(crazyflie_control)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(yaml-cpp REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
+
+
+
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # comment the line when a copyright and license is added to all source files
+  set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # comment the line when this package is in a git repo and when
+  # a copyright and license is added to all source files
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+add_executable(crazyflie_control_node src/crazyflie_control_node.cpp)
+
+
+
+ament_target_dependencies(crazyflie_control_node rclcpp geometry_msgs tf2_geometry_msgs nav_msgs yaml-cpp)
+
+target_link_libraries(crazyflie_control_node yaml-cpp)
+
+install(TARGETS crazyflie_control_node  DESTINATION lib/${PROJECT_NAME})
+
+install(DIRECTORY config launch
+  DESTINATION share/${PROJECT_NAME})
+  
+  
+  
+# Add library for shared code
+add_library(crazyflie_6dof_controller_lib
+  src/crazyflie_6dof_controller.cpp
+)
+ament_target_dependencies(crazyflie_6dof_controller_lib
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  tf2
+  tf2_geometry_msgs
+)
+
+# Create executable
+add_executable(crazyflie_6dof_controller_node
+  src/crazyflie_6dof_controller.cpp
+)
+target_link_libraries(crazyflie_6dof_controller_node
+  crazyflie_6dof_controller_lib
+)
+ament_target_dependencies(crazyflie_6dof_controller_node
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  tf2
+  tf2_geometry_msgs
+)  
+
+install(TARGETS
+  crazyflie_6dof_controller_node
+  DESTINATION lib/${PROJECT_NAME})
+
+
+
+ament_package()

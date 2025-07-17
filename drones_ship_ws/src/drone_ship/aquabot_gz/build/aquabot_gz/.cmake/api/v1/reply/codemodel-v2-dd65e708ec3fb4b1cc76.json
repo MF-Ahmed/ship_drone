@@ -1,0 +1,151 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-0d933776fad3739f4810.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10.2"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "aquabot_gz",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "AcousticPingerPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-AcousticPingerPlugin-d882811c72a613453fe3.json",
+					"name" : "AcousticPingerPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "PublisherPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-PublisherPlugin-23e28b833cb9b848e591.json",
+					"name" : "PublisherPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ScoringPlugin-e0c5af7319ec0655124f.json",
+					"name" : "ScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "SimpleHydrodynamics::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SimpleHydrodynamics-5ae344d7f93d783c6219.json",
+					"name" : "SimpleHydrodynamics",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Surface::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Surface-bde4314f4ebb6b5ba1a2.json",
+					"name" : "Surface",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "USVWind::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-USVWind-fa0d283c18e9ad8abb54.json",
+					"name" : "USVWind",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "WaveVisual::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-WaveVisual-d2926038620bb67d22d9.json",
+					"name" : "WaveVisual",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Waves::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Waves-09fae26c9f7d0a00ce72.json",
+					"name" : "Waves",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "WindturbinesInspectionScoringPlugin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-WindturbinesInspectionScoringPlugin-34204ab511961ed2b23d.json",
+					"name" : "WindturbinesInspectionScoringPlugin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "aquabot_gz_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-aquabot_gz_uninstall-199f71bce367d660c756.json",
+					"name" : "aquabot_gz_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-13062cae3a833484f388.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/user/data/ros2_ws/src/drone_ship/aquabot_gz/build/aquabot_gz",
+		"source" : "/home/user/data/ros2_ws/src/drone_ship/aquabot_gz"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

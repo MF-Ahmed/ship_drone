@@ -1,0 +1,18 @@
+<sdf version="1.7">
+  <world name="empty">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <name>crazyflie</name>
+      <uri>model://crazy_fly</uri>
+      <pose>0 0 0.2 0 0 0</pose>
+    </include>
+  </world>
+</sdf>
+

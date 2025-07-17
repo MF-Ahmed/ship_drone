@@ -1,0 +1,13 @@
+{
+  "package_name": "crazyflie_yolo",
+  "output_dir": "/home/user/data/drones_ship_ws/build/crazyflie_yolo/rosidl_generator_type_description/crazyflie_yolo",
+  "idl_tuples": [
+    "/home/user/data/drones_ship_ws/build/crazyflie_yolo/rosidl_adapter/crazyflie_yolo:msg/TrackedObstacle.idl",
+    "/home/user/data/drones_ship_ws/build/crazyflie_yolo/rosidl_adapter/crazyflie_yolo:msg/TrackedObstacleArray.idl"
+  ],
+  "include_paths": [
+    "std_msgs:/opt/ros/jazzy/share/std_msgs",
+    "builtin_interfaces:/opt/ros/jazzy/share/builtin_interfaces",
+    "geometry_msgs:/opt/ros/jazzy/share/geometry_msgs"
+  ]
+}

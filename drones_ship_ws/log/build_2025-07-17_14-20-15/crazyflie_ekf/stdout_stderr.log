@@ -1,0 +1,30 @@
+[ 33%] Built target gps2enu
+[100%] Built target crazyflie_ekf_node
+-- Install configuration: ""
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/lib/crazyflie_ekf/crazyflie_ekf_node
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/include/
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/include//crazyflie_ekf
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/include//crazyflie_ekf/gps2enu.hpp
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/include//crazyflie_ekf/crazyflie_ekf.hpp
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf//launch
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf//launch/all_drones_ekf.launch.py
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf//launch/drone_ekf.launch.py
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf//launch/crazyflie_ekf.launch.py
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/config
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/config/drone_ekf.yaml
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/config/crazyflie_ekf.yaml
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/ament_index/resource_index/package_run_dependencies/crazyflie_ekf
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/ament_index/resource_index/parent_prefix_path/crazyflie_ekf
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/environment/ament_prefix_path.sh
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/environment/path.sh
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/environment/path.dsv
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/local_setup.bash
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/local_setup.sh
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/local_setup.zsh
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/local_setup.dsv
+-- Installing: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/package.dsv
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/ament_index/resource_index/packages/crazyflie_ekf
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/cmake/crazyflie_ekfConfig.cmake
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/cmake/crazyflie_ekfConfig-version.cmake
+-- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_ekf/share/crazyflie_ekf/package.xml
