@@ -15,10 +15,16 @@
 #include <tf2_ros/transform_listener.h>
 #include <tf2_ros/buffer.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#include <filesystem> 
+
 
 using std::placeholders::_1;
 using std::placeholders::_2;
 using std::placeholders::_3;
+
+
+
+
 
 class StereoObstacleLocalizer : public rclcpp::Node
 {
@@ -29,6 +35,14 @@ public:
       tf_listener_(tf_buffer_)
     {
         using namespace message_filters;
+         // Setup save directory under current working directory        
+        save_dir_ = "/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/images";
+        std::filesystem::create_directories(save_dir_ + "/rgb");
+        std::filesystem::create_directories(save_dir_ + "/disparity");
+
+        // Initialize image saving timer variables
+        last_saved_time_ = this->now();
+      
 
 
         bool use_sim_time = this->get_parameter("use_sim_time").as_bool();
@@ -51,8 +65,6 @@ public:
         } else {
             marker_color_r_ = 1.0; marker_color_g_ = 1.0; marker_color_b_ = 1.0; // White fallback
         }
-
-
 
 
         left_sub_.subscribe(this, "downward_left_camera/image_raw");
@@ -92,19 +104,24 @@ private:
 
     tf2_ros::Buffer tf_buffer_;
     tf2_ros::TransformListener tf_listener_;
+    std::string save_dir_;
+    rclcpp::Time last_saved_time_; // Time of last saved frame
+    rclcpp::Duration save_interval_{rclcpp::Duration::from_seconds(2.5)}; // save images at 5 Sec interval  
+
+
+   
+
+    int frame_counter_ = 0;
 
     cv::Mat K1_, D1_, K2_, D2_;
     cv::Mat R_, T_, R1_, R2_, P1_, P2_, Q_;
     cv::Mat map1x_, map1y_, map2x_, map2y_;
     bool info_ready_ = false;
 
-
     visualization_msgs::msg::MarkerArray marker_array_; // Persistent marker array
 
     std::string namespace_;
     double marker_color_r_, marker_color_g_, marker_color_b_;
-
-
 
 
     void leftInfoCallback(const sensor_msgs::msg::CameraInfo::SharedPtr msg)
@@ -183,7 +200,36 @@ private:
         cv::Mat disparity_raw, disparity;
         sgbm->compute(left_gray, right_gray, disparity_raw);
         disparity_raw.convertTo(disparity, CV_32F, 1.0 / 16.0);
-       
+
+
+    // 💡 In the callback, insert this around the saving block:
+     if ((this->now() - last_saved_time_) >= save_interval_) {
+         // === SAVE ===
+        std::string rgb_filename = save_dir_ + "/rgb/frame_" + std::to_string(frame_counter_) + ".jpg";
+        std::string disp_filename = save_dir_ + "/disparity/frame_" + std::to_string(frame_counter_) + ".png";
+
+        cv::imwrite(rgb_filename, left_rect);
+
+        cv::Mat disp_norm;
+        cv::normalize(disparity, disp_norm, 0, 255, cv::NORM_MINMAX);
+        disp_norm.convertTo(disp_norm, CV_8U);
+        cv::imwrite(disp_filename, disp_norm);
+
+        RCLCPP_INFO(this->get_logger(),
+            "💾 Saved RGB: %s\n💾 Saved Disparity: %s",
+            rgb_filename.c_str(),
+            disp_filename.c_str());
+        
+        frame_counter_++;      
+        ///////////
+        last_saved_time_ = this->now();
+     }
+
+     else {
+        RCLCPP_DEBUG(this->get_logger(), "⏱ Skipping frame — saving interval not yet passed");
+    }
+
+              
 
         cv::Mat points3D;
         cv::reprojectImageTo3D(disparity, points3D, Q_);

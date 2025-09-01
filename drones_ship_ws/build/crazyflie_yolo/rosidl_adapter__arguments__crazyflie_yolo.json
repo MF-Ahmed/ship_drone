@@ -1,0 +1,7 @@
+{
+  "package_name": "crazyflie_yolo",
+  "non_idl_tuples": [
+    "/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo:msg/TrackedObstacle.msg",
+    "/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo:msg/TrackedObstacleArray.msg"
+  ]
+}

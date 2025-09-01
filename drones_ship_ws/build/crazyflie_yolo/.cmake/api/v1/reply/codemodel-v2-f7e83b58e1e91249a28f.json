@@ -1,0 +1,287 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-537b9e0dbba6d88da5ca.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23
+					]
+				},
+				{
+					"build" : "crazyflie_yolo__py",
+					"jsonFile" : "directory-crazyflie_yolo__py-4dac4078ee03412bc783.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "/home/user/data/drones_ship_ws/build/crazyflie_yolo/crazyflie_yolo__py",
+					"targetIndexes" : 
+					[
+						5
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1
+					],
+					"name" : "crazyflie_yolo",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_build_crazyflie_yolo_egg::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_build_crazyflie_yolo_egg-c24978e0bc60aba6c0b8.json",
+					"name" : "ament_cmake_python_build_crazyflie_yolo_egg",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ament_cmake_python_copy_crazyflie_yolo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ament_cmake_python_copy_crazyflie_yolo-aca46304fa391a266c38.json",
+					"name" : "ament_cmake_python_copy_crazyflie_yolo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "container_localizer_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-container_localizer_node-01759b4fcee31330bc98.json",
+					"name" : "container_localizer_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo-d09e9cdea3cef2b63ca2.json",
+					"name" : "crazyflie_yolo",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__cpp-2a962b96e35c282f8f8e.json",
+					"name" : "crazyflie_yolo__cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "crazyflie_yolo__py::@987f99ce24832ab2427e",
+					"jsonFile" : "target-crazyflie_yolo__py-74bcedb8db83bc8c837d.json",
+					"name" : "crazyflie_yolo__py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_generator_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_generator_c-6f717e95abd6e2fea201.json",
+					"name" : "crazyflie_yolo__rosidl_generator_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_generator_py::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_generator_py-ebef5075fdcf89771fbc.json",
+					"name" : "crazyflie_yolo__rosidl_generator_py",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_generator_type_description::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_generator_type_description-c33725800fd7a92036c0.json",
+					"name" : "crazyflie_yolo__rosidl_generator_type_description",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_typesupport_c-b4a4de7ebb8ac5ca0568.json",
+					"name" : "crazyflie_yolo__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_typesupport_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_typesupport_cpp-032f0105ffbc50d72ab5.json",
+					"name" : "crazyflie_yolo__rosidl_typesupport_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_typesupport_fastrtps_c-9ce2acc51501addcf298.json",
+					"name" : "crazyflie_yolo__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_typesupport_fastrtps_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_typesupport_fastrtps_cpp-4c1f32ba93649fac9494.json",
+					"name" : "crazyflie_yolo__rosidl_typesupport_fastrtps_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_typesupport_introspection_c-a32731b9b763a74ccd53.json",
+					"name" : "crazyflie_yolo__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo__rosidl_typesupport_introspection_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo__rosidl_typesupport_introspection_cpp-c92f669abddc22433399.json",
+					"name" : "crazyflie_yolo__rosidl_typesupport_introspection_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo_s__rosidl_typesupport_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo_s__rosidl_typesupport_c-d8aaeb304264fe654494.json",
+					"name" : "crazyflie_yolo_s__rosidl_typesupport_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo_s__rosidl_typesupport_fastrtps_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo_s__rosidl_typesupport_fastrtps_c-778d356c48d1a11d7030.json",
+					"name" : "crazyflie_yolo_s__rosidl_typesupport_fastrtps_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo_s__rosidl_typesupport_introspection_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo_s__rosidl_typesupport_introspection_c-75028f91f9b50caf5023.json",
+					"name" : "crazyflie_yolo_s__rosidl_typesupport_introspection_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crazyflie_yolo_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crazyflie_yolo_uninstall-f1affa5d92d82eaf72b4.json",
+					"name" : "crazyflie_yolo_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "multi_drone_fusion_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-multi_drone_fusion_node-8bd00f66073922bf83b1.json",
+					"name" : "multi_drone_fusion_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "multi_obstacle_tracker_ekf_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-multi_obstacle_tracker_ekf_node-89d90a1b6b2929a5759b.json",
+					"name" : "multi_obstacle_tracker_ekf_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "multi_obstacle_tracker_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-multi_obstacle_tracker_node-92b7099dfd77eafb10fe.json",
+					"name" : "multi_obstacle_tracker_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "stereo_depth_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-stereo_depth_node-27210e45747f98d4e00c.json",
+					"name" : "stereo_depth_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-f3b761b5f8b173e613e7.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/user/data/drones_ship_ws/build/crazyflie_yolo",
+		"source" : "/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

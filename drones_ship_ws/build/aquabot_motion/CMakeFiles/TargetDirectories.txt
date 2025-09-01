@@ -1,0 +1,9 @@
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/uninstall.dir
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/aquabot_motion_uninstall.dir
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/test.dir
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/edit_cache.dir
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/rebuild_cache.dir
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/list_install_components.dir
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/install.dir
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/install/local.dir
+/home/user/data/drones_ship_ws/build/aquabot_motion/CMakeFiles/install/strip.dir

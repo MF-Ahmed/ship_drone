@@ -1,0 +1,10 @@
+path: /content/drive/MyDrive/ColabNodebooks
+train: train.txt
+val: val.txt
+
+names:
+  0: container1
+  1: container2
+  2: container3
+  3: container4
+  4: container5

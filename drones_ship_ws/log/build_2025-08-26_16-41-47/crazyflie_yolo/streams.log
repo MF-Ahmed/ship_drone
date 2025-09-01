@@ -1,0 +1,192 @@
+[0.054s] Invoking command in '/home/user/data/drones_ship_ws/build/crazyflie_yolo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/crazyflie_yolo -- -j20 -l20
+[0.162s] [  1%] Built target crazyflie_yolo__rosidl_generator_type_description
+[0.169s] [  5%] Built target container_localizer_node
+[0.172s] [  7%] [32mBuilding CXX object CMakeFiles/stereo_depth_node.dir/src/stereo_depth_node.cpp.o[0m
+[0.173s] [  7%] Built target ament_cmake_python_copy_crazyflie_yolo
+[0.203s] [ 22%] Built target crazyflie_yolo__rosidl_generator_c
+[0.204s] [ 24%] Built target crazyflie_yolo__cpp
+[0.239s] [ 31%] Built target crazyflie_yolo__rosidl_typesupport_introspection_cpp
+[0.244s] [ 38%] Built target crazyflie_yolo__rosidl_typesupport_fastrtps_cpp
+[0.249s] [ 68%] Built target crazyflie_yolo__rosidl_typesupport_fastrtps_c
+[0.249s] [ 68%] Built target crazyflie_yolo__rosidl_typesupport_c
+[0.249s] [ 68%] Built target crazyflie_yolo__rosidl_typesupport_introspection_c
+[0.249s] [ 68%] Built target crazyflie_yolo__rosidl_typesupport_cpp
+[0.294s] [ 72%] Built target multi_obstacle_tracker_ekf_node
+[0.294s] [ 72%] Built target crazyflie_yolo
+[0.301s] [ 79%] Built target multi_obstacle_tracker_node
+[0.301s] [ 79%] Built target multi_drone_fusion_node
+[0.333s] [ 81%] Built target crazyflie_yolo__py
+[0.382s] [ 87%] Built target crazyflie_yolo__rosidl_generator_py
+[0.392s] running egg_info
+[0.413s] writing crazyflie_yolo.egg-info/PKG-INFO
+[0.413s] writing dependency_links to crazyflie_yolo.egg-info/dependency_links.txt
+[0.413s] writing top-level names to crazyflie_yolo.egg-info/top_level.txt
+[0.415s] [ 90%] Built target crazyflie_yolo_s__rosidl_typesupport_fastrtps_c
+[0.416s] [ 94%] Built target crazyflie_yolo_s__rosidl_typesupport_introspection_c
+[0.423s] [ 98%] Built target crazyflie_yolo_s__rosidl_typesupport_c
+[0.472s] reading manifest file 'crazyflie_yolo.egg-info/SOURCES.txt'
+[0.473s] writing manifest file 'crazyflie_yolo.egg-info/SOURCES.txt'
+[0.499s] [ 98%] Built target ament_cmake_python_build_crazyflie_yolo_egg
+[18.561s] [100%] [32m[1mLinking CXX executable stereo_depth_node[0m
+[19.160s] /usr/bin/ld: warning: libopencv_imgcodecs.so.406, needed by /opt/ros/jazzy/lib/libcv_bridge.so, may conflict with libopencv_imgcodecs.so.408
+[19.161s] /usr/bin/ld: warning: libopencv_imgproc.so.406, needed by /opt/ros/jazzy/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.408
+[19.162s] /usr/bin/ld: warning: libopencv_core.so.406, needed by /opt/ros/jazzy/lib/libcv_bridge.so, may conflict with libopencv_core.so.408
+[19.690s] [100%] Built target stereo_depth_node
+[19.710s] Invoked command in '/home/user/data/drones_ship_ws/build/crazyflie_yolo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/crazyflie_yolo -- -j20 -l20
+[19.711s] Invoking command in '/home/user/data/drones_ship_ws/build/crazyflie_yolo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/crazyflie_yolo
+[19.727s] -- Install configuration: ""
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/ament_index/resource_index/rosidl_interfaces/crazyflie_yolo
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/msg/TrackedObstacle.json
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/msg/TrackedObstacleArray.json
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__functions.c
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__description.c
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__functions.c
+[19.727s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__type_support.c
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__functions.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__description.c
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__struct.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__functions.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__type_support.c
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__type_support.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__type_support.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__struct.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/tracked_obstacle.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/rosidl_generator_c__visibility_control.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/tracked_obstacle_array.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/environment/library_path.sh
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/environment/library_path.dsv
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/libcrazyflie_yolo__rosidl_generator_c.so
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__rosidl_typesupport_fastrtps_c.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__rosidl_typesupport_fastrtps_c.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/libcrazyflie_yolo__rosidl_typesupport_fastrtps_c.so
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__rosidl_typesupport_introspection_c.h
+[19.728s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__type_support.c
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__type_support.c
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__rosidl_typesupport_introspection_c.h
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/libcrazyflie_yolo__rosidl_typesupport_introspection_c.so
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/libcrazyflie_yolo__rosidl_typesupport_c.so
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__builder.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__struct.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__traits.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__type_support.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__type_support.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__builder.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__traits.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__struct.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/rosidl_generator_cpp__visibility_control.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/tracked_obstacle_array.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/tracked_obstacle.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__rosidl_typesupport_fastrtps_cpp.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__rosidl_typesupport_fastrtps_cpp.hpp
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/dds_fastrtps
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[19.729s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/libcrazyflie_yolo__rosidl_typesupport_fastrtps_cpp.so
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__rosidl_typesupport_introspection_cpp.hpp
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__rosidl_typesupport_introspection_cpp.hpp
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle_array__type_support.cpp
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/include/crazyflie_yolo/crazyflie_yolo/msg/detail/tracked_obstacle__type_support.cpp
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/libcrazyflie_yolo__rosidl_typesupport_introspection_cpp.so
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/libcrazyflie_yolo__rosidl_typesupport_cpp.so
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/environment/pythonpath.sh
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/environment/pythonpath.dsv
+[19.730s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo-0.0.1-py3.12.egg-info
+[19.730s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo-0.0.1-py3.12.egg-info/SOURCES.txt
+[19.731s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo-0.0.1-py3.12.egg-info/dependency_links.txt
+[19.731s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo-0.0.1-py3.12.egg-info/top_level.txt
+[19.731s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo-0.0.1-py3.12.egg-info/PKG-INFO
+[19.731s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo
+[19.731s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/msg
+[19.731s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/msg/_tracked_obstacle_array.py
+[19.731s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/msg/_tracked_obstacle_array_s.c
+[19.731s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/msg/_tracked_obstacle.py
+[19.731s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/msg/__init__.py
+[19.731s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/msg/_tracked_obstacle_s.c
+[19.732s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/_crazyflie_yolo_s.ep.rosidl_typesupport_fastrtps_c.c
+[19.732s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/_crazyflie_yolo_s.ep.rosidl_typesupport_c.c
+[19.732s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/_crazyflie_yolo_s.ep.rosidl_typesupport_introspection_c.c
+[19.732s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/__init__.py
+[19.732s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/crazyflie_yolo_s__rosidl_typesupport_introspection_c.so
+[19.732s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/crazyflie_yolo_s__rosidl_typesupport_fastrtps_c.so
+[19.732s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/crazyflie_yolo_s__rosidl_typesupport_c.so
+[19.769s] Listing '/home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo'...
+[19.769s] Listing '/home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/msg'...
+[19.775s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/crazyflie_yolo_s__rosidl_typesupport_fastrtps_c.so
+[19.775s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/crazyflie_yolo_s__rosidl_typesupport_introspection_c.so
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/python3.12/site-packages/crazyflie_yolo/crazyflie_yolo_s__rosidl_typesupport_c.so
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/libcrazyflie_yolo__rosidl_generator_py.so
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/msg/TrackedObstacle.idl
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/msg/TrackedObstacleArray.idl
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/msg/TrackedObstacle.msg
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/msg/TrackedObstacleArray.msg
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/crazyflie_yolo/yolo_detector_node.py
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/crazyflie_yolo/crazyflie_segmentation_yolo_node.py
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/launch
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/launch/crazyflie_stereo_track.launch.py
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/launch/all_drones_yolo_stereo_track.launch.py
+[19.776s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/launch/multi_drone_fusion.launch.py
+[19.776s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/crazyflie_yolo/stereo_depth_node
+[19.788s] -- Set non-toolchain portion of runtime path of "/home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/crazyflie_yolo/stereo_depth_node" to ""
+[19.788s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/crazyflie_yolo/container_localizer_node
+[19.789s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/crazyflie_yolo/multi_obstacle_tracker_node
+[19.789s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/crazyflie_yolo/multi_drone_fusion_node
+[19.789s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/lib/crazyflie_yolo/multi_obstacle_tracker_ekf_node
+[19.789s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/ament_index/resource_index/package_run_dependencies/crazyflie_yolo
+[19.789s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/ament_index/resource_index/parent_prefix_path/crazyflie_yolo
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/environment/ament_prefix_path.sh
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/environment/ament_prefix_path.dsv
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/environment/path.sh
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/environment/path.dsv
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/local_setup.bash
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/local_setup.sh
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/local_setup.zsh
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/local_setup.dsv
+[19.790s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/package.dsv
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/ament_index/resource_index/packages/crazyflie_yolo
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_generator_cExport.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_generator_cExport-noconfig.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_typesupport_fastrtps_cExport.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yolo__rosidl_typesupport_introspection_cExport.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yolo__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yolo__rosidl_typesupport_cExport.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yolo__rosidl_typesupport_cExport-noconfig.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_generator_cppExport.cmake
+[19.790s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_typesupport_fastrtps_cppExport.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yolo__rosidl_typesupport_introspection_cppExport.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yolo__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yolo__rosidl_typesupport_cppExport.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yolo__rosidl_typesupport_cppExport-noconfig.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_generator_pyExport.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/export_crazyflie_yolo__rosidl_generator_pyExport-noconfig.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/rosidl_cmake-extras.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/ament_cmake_export_dependencies-extras.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/ament_cmake_export_include_directories-extras.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/ament_cmake_export_libraries-extras.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/ament_cmake_export_targets-extras.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yoloConfig.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/cmake/crazyflie_yoloConfig-version.cmake
+[19.791s] -- Up-to-date: /home/user/data/drones_ship_ws/install/crazyflie_yolo/share/crazyflie_yolo/package.xml
+[19.793s] Invoked command in '/home/user/data/drones_ship_ws/build/crazyflie_yolo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/crazyflie_yolo

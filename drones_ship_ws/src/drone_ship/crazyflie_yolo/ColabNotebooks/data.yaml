@@ -1,0 +1,8 @@
+path: /content/drive/MyDrive/ColabNotebooks
+train: train/images
+val: val/images
+test: test/images
+
+nc: 5
+names: ['container1', 'container2', 'container3', 'container4', 'container5']
+

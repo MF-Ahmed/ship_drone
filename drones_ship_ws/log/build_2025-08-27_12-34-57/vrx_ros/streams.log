@@ -1,0 +1,26 @@
+[0.058s] Invoking command in '/home/user/data/drones_ship_ws/build/vrx_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/vrx_ros -- -j20 -l20
+[0.146s] [ 50%] Built target optical_frame_publisher
+[0.147s] [100%] Built target pose_tf_broadcaster
+[0.391s] Invoked command in '/home/user/data/drones_ship_ws/build/vrx_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/vrx_ros -- -j20 -l20
+[0.392s] Invoking command in '/home/user/data/drones_ship_ws/build/vrx_ros': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/vrx_ros
+[0.409s] -- Install configuration: ""
+[0.409s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/lib/vrx_ros/optical_frame_publisher
+[0.409s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/lib/vrx_ros/pose_tf_broadcaster
+[0.409s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/launch
+[0.409s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/launch/monitor_sim.py
+[0.409s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/ament_index/resource_index/package_run_dependencies/vrx_ros
+[0.409s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/ament_index/resource_index/parent_prefix_path/vrx_ros
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/environment/ament_prefix_path.sh
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/environment/ament_prefix_path.dsv
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/environment/path.sh
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/environment/path.dsv
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/local_setup.bash
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/local_setup.sh
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/local_setup.zsh
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/local_setup.dsv
+[0.410s] -- Installing: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/package.dsv
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/ament_index/resource_index/packages/vrx_ros
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/cmake/vrx_rosConfig.cmake
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/cmake/vrx_rosConfig-version.cmake
+[0.410s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_ros/share/vrx_ros/package.xml
+[0.486s] Invoked command in '/home/user/data/drones_ship_ws/build/vrx_ros' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/vrx_ros

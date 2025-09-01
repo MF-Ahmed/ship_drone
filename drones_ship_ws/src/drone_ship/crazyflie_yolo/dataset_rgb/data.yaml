@@ -1,0 +1,11 @@
+path: /home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/dataset
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: container1
+  1: container2
+  2: container3
+  3: container4
+  4: container5

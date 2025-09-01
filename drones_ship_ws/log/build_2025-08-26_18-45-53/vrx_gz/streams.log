@@ -1,0 +1,285 @@
+[0.061s] Invoking command in '/home/user/data/drones_ship_ws/build/vrx_gz': CMAKE_PREFIX_PATH=/home/user/data/drones_ship_ws/install/vrx_ros:/home/user/data/drones_ship_ws/install/wamv_gazebo:/home/user/data/drones_ship_ws/install/wamv_description:/home/user/data/drones_ship_ws/install/vrx_gz:/home/user/data/drones_ship_ws/install/aquabot_description:/home/user/data/drones_ship_ws/install/vrx_gazebo:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_bringup:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo:/home/user/data/drones_ship_ws/install/crazyflie_yolo:/home/user/data/drones_ship_ws/install/crazyflie_ekf:/home/user/data/drones_ship_ws/install/crazyflie_control:/home/user/data/drones_ship_ws/install/aquabot_motion:/home/user/data/drones_ship_ws/install/aquabot_gz:/home/user/data/drones_ship_ws/install/aquabot_ekf:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/vrx_gz -- -j20 -l20
+[0.436s] [  4%] Built target ScoringPlugin
+[0.437s] [  8%] Built target Waves
+[0.458s] [  8%] Built target ament_cmake_python_copy_vrx_gz
+[0.516s] [ 12%] Built target LightBuoyPlugin
+[0.520s] [ 18%] Built target WayfindingScoringPlugin
+[0.522s] [ 25%] Built target StationkeepingScoringPlugin
+[0.531s] [ 29%] Built target PublisherPlugin
+[0.533s] [ 35%] Built target AcousticTrackingScoringPlugin
+[0.540s] [ 41%] Built target AcousticPerceptionScoringPlugin
+[0.544s] [ 45%] Built target PlacardPlugin
+[0.547s] [ 54%] Built target ScanDockScoringPlugin
+[0.548s] [ 54%] Built target NavigationScoringPlugin
+[0.553s] [ 58%] Built target WaveVisual
+[0.562s] [ 62%] Built target BallShooterPlugin
+[0.562s] [ 66%] Built target GymkhanaScoringPlugin
+[0.566s] [ 70%] Built target Surface
+[0.569s] [ 79%] Built target PolyhedraBuoyancyDrag
+[0.574s] [ 83%] Built target WildlifeScoringPlugin
+[0.652s] [ 87%] Built target USVWind
+[0.664s] [ 91%] Built target PerceptionScoringPlugin
+[0.757s] [ 95%] Built target SimpleHydrodynamics
+[0.811s] [100%] Built target AcousticPingerPlugin
+[0.843s] running egg_info
+[0.875s] writing vrx_gz.egg-info/PKG-INFO
+[0.875s] writing dependency_links to vrx_gz.egg-info/dependency_links.txt
+[0.876s] writing top-level names to vrx_gz.egg-info/top_level.txt
+[0.971s] reading manifest file 'vrx_gz.egg-info/SOURCES.txt'
+[0.972s] writing manifest file 'vrx_gz.egg-info/SOURCES.txt'
+[1.135s] [100%] Built target ament_cmake_python_build_vrx_gz_egg
+[1.272s] Invoked command in '/home/user/data/drones_ship_ws/build/vrx_gz' returned '0': CMAKE_PREFIX_PATH=/home/user/data/drones_ship_ws/install/vrx_ros:/home/user/data/drones_ship_ws/install/wamv_gazebo:/home/user/data/drones_ship_ws/install/wamv_description:/home/user/data/drones_ship_ws/install/vrx_gz:/home/user/data/drones_ship_ws/install/aquabot_description:/home/user/data/drones_ship_ws/install/vrx_gazebo:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_bringup:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo:/home/user/data/drones_ship_ws/install/crazyflie_yolo:/home/user/data/drones_ship_ws/install/crazyflie_ekf:/home/user/data/drones_ship_ws/install/crazyflie_control:/home/user/data/drones_ship_ws/install/aquabot_motion:/home/user/data/drones_ship_ws/install/aquabot_gz:/home/user/data/drones_ship_ws/install/aquabot_ekf:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/vrx_gz -- -j20 -l20
+[1.276s] Invoking command in '/home/user/data/drones_ship_ws/build/vrx_gz': CMAKE_PREFIX_PATH=/home/user/data/drones_ship_ws/install/vrx_ros:/home/user/data/drones_ship_ws/install/wamv_gazebo:/home/user/data/drones_ship_ws/install/wamv_description:/home/user/data/drones_ship_ws/install/vrx_gz:/home/user/data/drones_ship_ws/install/aquabot_description:/home/user/data/drones_ship_ws/install/vrx_gazebo:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_bringup:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo:/home/user/data/drones_ship_ws/install/crazyflie_yolo:/home/user/data/drones_ship_ws/install/crazyflie_ekf:/home/user/data/drones_ship_ws/install/crazyflie_control:/home/user/data/drones_ship_ws/install/aquabot_motion:/home/user/data/drones_ship_ws/install/aquabot_gz:/home/user/data/drones_ship_ws/install/aquabot_ekf:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/vrx_gz
+[1.348s] -- Install configuration: ""
+[1.348s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/environment/resource_paths.dsv
+[1.348s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/environment/resource_paths.sh
+[1.348s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libWaves.so
+[1.349s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libPolyhedraBuoyancyDrag.so
+[1.349s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libScoringPlugin.so
+[1.349s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libStationkeepingScoringPlugin.so
+[1.349s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libWayfindingScoringPlugin.so
+[1.349s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libAcousticPerceptionScoringPlugin.so
+[1.350s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libAcousticTrackingScoringPlugin.so
+[1.351s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libAcousticPingerPlugin.so
+[1.352s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libBallShooterPlugin.so
+[1.353s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libLightBuoyPlugin.so
+[1.353s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libNavigationScoringPlugin.so
+[1.354s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libGymkhanaScoringPlugin.so
+[1.355s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libPerceptionScoringPlugin.so
+[1.355s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libPlacardPlugin.so
+[1.356s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libPublisherPlugin.so
+[1.356s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libScanDockScoringPlugin.so
+[1.356s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libSimpleHydrodynamics.so
+[1.356s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libSurface.so
+[1.356s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libUSVWind.so
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libWaveVisual.so
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/libWildlifeScoringPlugin.so
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/environment/pythonpath.sh
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/environment/pythonpath.dsv
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz-0.0.0-py3.12.egg-info
+[1.357s] -- Installing: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz-0.0.0-py3.12.egg-info/SOURCES.txt
+[1.357s] -- Installing: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz-0.0.0-py3.12.egg-info/dependency_links.txt
+[1.357s] -- Installing: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz-0.0.0-py3.12.egg-info/top_level.txt
+[1.357s] -- Installing: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz-0.0.0-py3.12.egg-info/PKG-INFO
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz/model.py
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz/launch.py
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz/bridge.py
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz/bridges.py
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz/__init__.py
+[1.357s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz/payload_bridges.py
+[1.454s] Listing '/home/user/data/drones_ship_ws/install/vrx_gz/lib/python3.12/site-packages/vrx_gz'...
+[1.461s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/config
+[1.462s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/config/wamv.yaml
+[1.462s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/config/roboboat.yaml
+[1.462s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/launch
+[1.462s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/launch/spawn.launch.py
+[1.462s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/launch/vrx_environment.launch.py
+[1.463s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/launch/competition.launch.py
+[1.463s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/launch/spawn_config.launch.py
+[1.463s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/launch/usv_joy_teleop.py
+[1.463s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models
+[1.463s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/placard_2022
+[1.464s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/placard_2022/materials
+[1.464s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/placard_2022/materials/textures
+[1.464s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/placard_2022/materials/textures/Placard.png
+[1.464s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/placard_2022/model.sdf
+[1.464s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/placard_2022/meshes
+[1.465s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/placard_2022/meshes/placard_2022.dae
+[1.465s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/placard_2022/model.config
+[1.465s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02
+[1.465s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/materials
+[1.466s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/materials/textures
+[1.466s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/materials/textures/Boat02_Normal.png
+[1.466s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/materials/textures/Boat02_Metallic.png
+[1.466s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/materials/textures/Boat02_Roughness.png
+[1.466s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/materials/textures/Boat02_Albedo.png
+[1.467s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/materials/scripts
+[1.467s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/materials/scripts/model.material
+[1.467s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/model.sdf
+[1.467s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/meshes
+[1.467s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/meshes/roboboat02.dae
+[1.468s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat02/model.config
+[1.468s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_2022_base
+[1.468s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_2022_base/model.sdf
+[1.468s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_2022_base/model.config
+[1.468s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_ybr
+[1.469s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_ybr/model.sdf
+[1.469s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_ybr/model.config
+[1.469s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_gbr
+[1.469s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_gbr/model.sdf
+[1.469s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_gbr/model.config
+[1.469s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/obstacle_course
+[1.470s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/obstacle_course/model.sdf
+[1.470s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/obstacle_course/model.config
+[1.470s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_ygb
+[1.470s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_ygb/model.sdf
+[1.470s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_ygb/model.config
+[1.470s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves
+[1.471s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/materials
+[1.471s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/materials/textures
+[1.471s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/materials/textures/skybox_lowres.dds
+[1.472s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/materials/textures/wave_normals.dds
+[1.472s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/materials/programs
+[1.472s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/materials/programs/GerstnerWaves_fs_330.glsl
+[1.472s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/materials/programs/GerstnerWaves_vs_330.glsl
+[1.472s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/model.sdf
+[1.472s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/meshes
+[1.473s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/meshes/waterlow.dae
+[1.473s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/coast_waves/model.config
+[1.473s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_1
+[1.473s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_1/model.sdf
+[1.473s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_1/model.config
+[1.474s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/symbol_triangle
+[1.474s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/symbol_triangle/mesh
+[1.474s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/symbol_triangle/mesh/triangle.dae
+[1.474s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/symbol_triangle/model.sdf
+[1.475s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/symbol_triangle/model.config
+[1.475s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_2022
+[1.475s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_2022/model.sdf
+[1.475s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_2022/model.config
+[1.475s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/entrance_exit
+[1.476s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/entrance_exit/model.sdf
+[1.476s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/entrance_exit/model.config
+[1.476s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_3
+[1.476s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_3/model.sdf
+[1.476s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_3/model.config
+[1.476s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb
+[1.477s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/mesh
+[1.477s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/mesh/LightTower_Metalness.png
+[1.477s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/mesh/LightTower_Albedo.png
+[1.477s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/mesh/LightTower_Opacity.png
+[1.477s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/mesh/LightTower_Normal.png
+[1.478s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/mesh/robotx_light_buoy.dae
+[1.478s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/mesh/LightTower_Roughness.png
+[1.478s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/model.sdf
+[1.478s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgb/model.config
+[1.478s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_bgr
+[1.478s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_bgr/model.sdf
+[1.478s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_bgr/model.config
+[1.479s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_bgy
+[1.479s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_bgy/model.sdf
+[1.479s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_bgy/model.config
+[1.479s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_0
+[1.479s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_0/model.sdf
+[1.480s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_0/model.config
+[1.480s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_4
+[1.480s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_4/model.sdf
+[1.480s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_4/model.config
+[1.480s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rbg
+[1.481s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rbg/model.sdf
+[1.481s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rbg/model.config
+[1.481s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgy
+[1.481s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgy/model.sdf
+[1.481s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_rgy/model.config
+[1.481s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_course_2023_phase3_2
+[1.482s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_course_2023_phase3_2/model.sdf
+[1.482s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_course_2023_phase3_2/model.config
+[1.482s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4
+[1.482s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4/mesh
+[1.483s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4/mesh/DockCubes_Roughness.png
+[1.483s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4/mesh/DockCubes_Normal.png
+[1.483s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4/mesh/DockCubes_Albedo.png
+[1.483s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4/mesh/DockCubes_Metalness.png
+[1.483s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4/mesh/dock_block_4x4.dae
+[1.484s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4/model.sdf
+[1.484s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/dock_block_4x4/model.config
+[1.484s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/platform
+[1.484s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/platform/model.sdf
+[1.484s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/platform/model.config
+[1.484s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/articulated_platform
+[1.485s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/articulated_platform/model.sdf
+[1.485s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/articulated_platform/model.config
+[1.485s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_5
+[1.485s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_5/model.sdf
+[1.485s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_5/model.config
+[1.485s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_course_2023_phase3_1
+[1.486s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_course_2023_phase3_1/model.sdf
+[1.486s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_course_2023_phase3_1/model.config
+[1.486s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_yrg
+[1.486s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_yrg/model.sdf
+[1.486s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/robotx_light_buoy_yrg/model.config
+[1.487s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox
+[1.487s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox/materials
+[1.487s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox/materials/textures
+[1.488s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox/materials/textures/DryBox_Albedo.png
+[1.489s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox/materials/textures/DryBox_Roughness.png
+[1.490s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox/model.sdf
+[1.491s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox/meshes
+[1.492s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox/meshes/drybox.dae
+[1.492s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat_cpubox/model.config
+[1.492s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_2
+[1.494s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_2/model.sdf
+[1.494s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/short_navigation_course_2/model.config
+[1.494s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/textures
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/textures/Boat01_Albedo.png
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/textures/Boat01_Roughness.png
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/textures/Boat01_Metallic.png
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/textures/Thruster_Albedo.png
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/textures/Thruster_Roughness.png
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/textures/Boat01_Normal.png
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/scripts
+[1.496s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/materials/scripts/model.material
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/model.sdf
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/meshes
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/meshes/housing.dae
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/meshes/mount.dae
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/meshes/prop.dae
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/meshes/roboboat01.dae
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/roboboat01/model.config
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/gymkhana_task.sdf
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/acoustic_perception_task.sdf
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/wayfinding_task.sdf
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/stationkeeping_task.sdf
+[1.497s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/nbpark.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/wildlife_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/navigation_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/acoustic_tracking_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/sydney_regatta.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_wayfinding1_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_scan_dock_deliver1_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_perception2_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_scan_dock_deliver0_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_follow_path1_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_stationkeeping2_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_acoustic_tracking0_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_wildlife0_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_follow_path0_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_acoustic_tracking1_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_acoustic_perception1_task.sdf
+[1.498s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_follow_path2_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_acoustic_perception0_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_wayfinding2_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_stationkeeping1_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_wayfinding0_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_acoustic_perception2_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_perception0_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_wildlife2_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_acoustic_tracking2_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_wildlife1_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_perception1_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_stationkeeping0_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice/practice_2023_scan_dock_deliver2_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/scan_dock_deliver_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/follow_path_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/perception_task.sdf
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/ament_index/resource_index/package_run_dependencies/vrx_gz
+[1.499s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/ament_index/resource_index/parent_prefix_path/vrx_gz
+[1.500s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/environment/ament_prefix_path.sh
+[1.500s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/environment/ament_prefix_path.dsv
+[1.500s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/environment/path.sh
+[1.500s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/environment/path.dsv
+[1.500s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/local_setup.bash
+[1.501s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/local_setup.sh
+[1.501s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/local_setup.zsh
+[1.501s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/local_setup.dsv
+[1.501s] -- Installing: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/package.dsv
+[1.503s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/ament_index/resource_index/packages/vrx_gz
+[1.504s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/cmake/vrx_gzConfig.cmake
+[1.504s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/cmake/vrx_gzConfig-version.cmake
+[1.504s] -- Up-to-date: /home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/package.xml
+[1.514s] Invoked command in '/home/user/data/drones_ship_ws/build/vrx_gz' returned '0': CMAKE_PREFIX_PATH=/home/user/data/drones_ship_ws/install/vrx_ros:/home/user/data/drones_ship_ws/install/wamv_gazebo:/home/user/data/drones_ship_ws/install/wamv_description:/home/user/data/drones_ship_ws/install/vrx_gz:/home/user/data/drones_ship_ws/install/aquabot_description:/home/user/data/drones_ship_ws/install/vrx_gazebo:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_bringup:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo:/home/user/data/drones_ship_ws/install/crazyflie_yolo:/home/user/data/drones_ship_ws/install/crazyflie_ekf:/home/user/data/drones_ship_ws/install/crazyflie_control:/home/user/data/drones_ship_ws/install/aquabot_motion:/home/user/data/drones_ship_ws/install/aquabot_gz:/home/user/data/drones_ship_ws/install/aquabot_ekf:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/vrx_gz

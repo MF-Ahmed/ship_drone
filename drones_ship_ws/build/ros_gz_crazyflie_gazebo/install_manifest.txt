@@ -1,0 +1,16 @@
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/worlds/crazyflie_world.sdf
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ament_index/resource_index/package_run_dependencies/ros_gz_crazyflie_gazebo
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ament_index/resource_index/parent_prefix_path/ros_gz_crazyflie_gazebo
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/environment/ament_prefix_path.sh
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/environment/ament_prefix_path.dsv
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/environment/path.sh
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/environment/path.dsv
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/local_setup.bash
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/local_setup.sh
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/local_setup.zsh
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/local_setup.dsv
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/package.dsv
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ament_index/resource_index/packages/ros_gz_crazyflie_gazebo
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/cmake/ros_gz_crazyflie_gazeboConfig.cmake
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/cmake/ros_gz_crazyflie_gazeboConfig-version.cmake
+/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/package.xml

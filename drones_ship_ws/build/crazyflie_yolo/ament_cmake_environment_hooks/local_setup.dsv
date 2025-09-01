@@ -1,0 +1,4 @@
+source;share/crazyflie_yolo/environment/ament_prefix_path.sh
+source;share/crazyflie_yolo/environment/library_path.sh
+source;share/crazyflie_yolo/environment/path.sh
+source;share/crazyflie_yolo/environment/pythonpath.sh

@@ -1,0 +1,47 @@
+[0.044s] Invoking command in '/home/user/data/drones_ship_ws/build/aquabot_motion': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/user/data/drones_ship_ws/src/drone_ship/aquabot_motion -DCMAKE_INSTALL_PREFIX=/home/user/data/drones_ship_ws/install/aquabot_motion
+[0.162s] -- The C compiler identification is GNU 13.3.0
+[0.257s] -- The CXX compiler identification is GNU 13.3.0
+[0.282s] -- Detecting C compiler ABI info
+[0.389s] -- Detecting C compiler ABI info - done
+[0.403s] -- Check for working C compiler: /usr/lib/ccache/cc - skipped
+[0.403s] -- Detecting C compile features
+[0.403s] -- Detecting C compile features - done
+[0.415s] -- Detecting CXX compiler ABI info
+[0.512s] -- Detecting CXX compiler ABI info - done
+[0.519s] -- Check for working CXX compiler: /usr/lib/ccache/c++ - skipped
+[0.519s] -- Detecting CXX compile features
+[0.520s] -- Detecting CXX compile features - done
+[0.526s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.669s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.999s] -- Configuring done (0.9s)
+[1.003s] -- Generating done (0.0s)
+[1.005s] -- Build files have been written to: /home/user/data/drones_ship_ws/build/aquabot_motion
+[1.013s] Invoked command in '/home/user/data/drones_ship_ws/build/aquabot_motion' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/user/data/drones_ship_ws/src/drone_ship/aquabot_motion -DCMAKE_INSTALL_PREFIX=/home/user/data/drones_ship_ws/install/aquabot_motion
+[1.014s] Invoking command in '/home/user/data/drones_ship_ws/build/aquabot_motion': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/aquabot_motion -- -j20 -l20
+[1.062s] Invoked command in '/home/user/data/drones_ship_ws/build/aquabot_motion' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/aquabot_motion -- -j20 -l20
+[1.075s] Invoking command in '/home/user/data/drones_ship_ws/build/aquabot_motion': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/aquabot_motion
+[1.085s] -- Install configuration: ""
+[1.085s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/lib/aquabot_motion/cmd.py
+[1.085s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/lib/aquabot_motion/planner.py
+[1.086s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/lib/aquabot_motion/astar.py
+[1.086s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/lib/aquabot_motion/bitangents.py
+[1.086s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/lib/aquabot_motion/path_follower.py
+[1.086s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/launch
+[1.087s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/launch/manual_launch.py
+[1.087s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/launch/Twist.yaml
+[1.087s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/ament_index/resource_index/package_run_dependencies/aquabot_motion
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/ament_index/resource_index/parent_prefix_path/aquabot_motion
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/environment/ament_prefix_path.sh
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/environment/ament_prefix_path.dsv
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/environment/path.sh
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/environment/path.dsv
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/local_setup.bash
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/local_setup.sh
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/local_setup.zsh
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/local_setup.dsv
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/package.dsv
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/ament_index/resource_index/packages/aquabot_motion
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/cmake/aquabot_motionConfig.cmake
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/cmake/aquabot_motionConfig-version.cmake
+[1.088s] -- Installing: /home/user/data/drones_ship_ws/install/aquabot_motion/share/aquabot_motion/package.xml
+[1.090s] Invoked command in '/home/user/data/drones_ship_ws/build/aquabot_motion' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/aquabot_motion

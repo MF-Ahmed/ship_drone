@@ -1,0 +1,2 @@
+prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;/home/user/data/drones_ship_ws/install/wamv_gazebo/share/
+prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;/home/user/data/drones_ship_ws/install/wamv_gazebo/share/wamv_gazebo/models

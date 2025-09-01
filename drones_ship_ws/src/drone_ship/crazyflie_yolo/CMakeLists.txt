@@ -149,6 +149,31 @@ ament_target_dependencies(multi_drone_fusion_node
 rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
 target_link_libraries(multi_drone_fusion_node "${cpp_typesupport_target}")
 
+
+
+# === C++ executable: multi_obstacle_tracker_ekf_node ===
+add_executable(multi_obstacle_tracker_ekf_node src/multi_obstacle_tracker_EKF.cpp)
+ament_target_dependencies(multi_obstacle_tracker_ekf_node
+  rclcpp
+  geometry_msgs
+  visualization_msgs
+  Eigen3
+  tf2
+  tf2_ros
+  tf2_geometry_msgs
+)
+
+
+
+rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
+target_link_libraries(multi_obstacle_tracker_ekf_node "${cpp_typesupport_target}")
+
+target_include_directories(multi_obstacle_tracker_ekf_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/rosidl_generator_cpp>
+  $<INSTALL_INTERFACE:include>
+)
+
+
 target_include_directories(multi_drone_fusion_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/rosidl_generator_cpp>
   $<INSTALL_INTERFACE:include>
@@ -159,7 +184,8 @@ install(TARGETS
   stereo_depth_node
   container_localizer_node
   multi_obstacle_tracker_node
-  multi_drone_fusion_node  
+  multi_drone_fusion_node 
+  multi_obstacle_tracker_ekf_node
   DESTINATION lib/${PROJECT_NAME}
 )
 

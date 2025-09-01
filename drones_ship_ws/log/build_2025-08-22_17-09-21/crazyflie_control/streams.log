@@ -1,0 +1,114 @@
+[0.042s] Invoking command in '/home/user/data/drones_ship_ws/build/crazyflie_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control -DCMAKE_INSTALL_PREFIX=/home/user/data/drones_ship_ws/install/crazyflie_control
+[0.158s] -- The C compiler identification is GNU 13.3.0
+[0.239s] -- The CXX compiler identification is GNU 13.3.0
+[0.267s] -- Detecting C compiler ABI info
+[0.379s] -- Detecting C compiler ABI info - done
+[0.390s] -- Check for working C compiler: /usr/lib/ccache/cc - skipped
+[0.390s] -- Detecting C compile features
+[0.390s] -- Detecting C compile features - done
+[0.404s] -- Detecting CXX compiler ABI info
+[0.508s] -- Detecting CXX compiler ABI info - done
+[0.521s] -- Check for working CXX compiler: /usr/lib/ccache/c++ - skipped
+[0.521s] -- Detecting CXX compile features
+[0.521s] -- Detecting CXX compile features - done
+[0.531s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.718s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.903s] -- Found rclcpp: 28.1.11 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.999s] -- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[1.032s] -- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[1.074s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.121s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.309s] -- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[1.321s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[1.480s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[1.515s] -- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") 
+[1.544s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.654s] -- Found geometry_msgs: 5.3.6 (/opt/ros/jazzy/share/geometry_msgs/cmake)
+[1.695s] -- Found nav_msgs: 5.3.6 (/opt/ros/jazzy/share/nav_msgs/cmake)
+[1.749s] -- Found tf2_geometry_msgs: 0.36.14 (/opt/ros/jazzy/share/tf2_geometry_msgs/cmake)
+[1.798s] -- Found eigen3_cmake_module: 0.3.0 (/opt/ros/jazzy/share/eigen3_cmake_module/cmake)
+[1.800s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[1.800s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[2.074s] -- Found ament_lint_auto: 0.17.3 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[2.241s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.242s] -- Configured cppcheck include dirs: 
+[2.242s] -- Configured cppcheck exclude dirs and/or files: 
+[2.243s] -- Added test 'flake8' to check Python code syntax and style conventions
+[2.243s] -- Configured 'flake8' exclude dirs and/or files: 
+[2.245s] -- Added test 'lint_cmake' to check CMake code style
+[2.246s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[2.249s] -- Added test 'uncrustify' to check C / C++ code style
+[2.249s] -- Configured uncrustify additional arguments: 
+[2.251s] -- Added test 'xmllint' to check XML markup files
+[2.254s] -- Configuring done (2.2s)
+[2.282s] -- Generating done (0.0s)
+[2.291s] -- Build files have been written to: /home/user/data/drones_ship_ws/build/crazyflie_control
+[2.303s] Invoked command in '/home/user/data/drones_ship_ws/build/crazyflie_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control -DCMAKE_INSTALL_PREFIX=/home/user/data/drones_ship_ws/install/crazyflie_control
+[2.305s] Invoking command in '/home/user/data/drones_ship_ws/build/crazyflie_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/crazyflie_control -- -j20 -l20
+[2.381s] [ 16%] [32mBuilding CXX object CMakeFiles/crazyflie_control_node.dir/src/crazyflie_control_node.cpp.o[0m
+[2.391s] [ 33%] [32mBuilding CXX object CMakeFiles/crazyflie_6dof_controller_lib.dir/src/crazyflie_6dof_controller.cpp.o[0m
+[10.605s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_6dof_controller.cpp:[m[K In constructor ‘[01m[KCrazyflieAutoMission::[01;32m[KCrazyflieAutoMission[m[K()[m[K’:
+[10.606s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_6dof_controller.cpp:43:27:[m[K [01;35m[Kwarning: [m[K‘[01m[KCrazyflieAutoMission::forward_speed_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[10.606s]    43 |   double vertical_speed_, [01;35m[Kforward_speed_[m[K;
+[10.606s]       |                           [01;35m[K^~~~~~~~~~~~~~[m[K
+[10.606s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_6dof_controller.cpp:35:9:[m[K [01;35m[Kwarning: [m[K  ‘[01m[KCrazyflieAutoMission::Stage CrazyflieAutoMission::stage_[m[K’ [[01;35m[K-Wreorder[m[K]
+[10.606s]    35 |   Stage [01;35m[Kstage_[m[K;
+[10.606s]       |         [01;35m[K^~~~~~[m[K
+[10.606s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_6dof_controller.cpp:11:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[10.606s]    11 |   [01;35m[KCrazyflieAutoMission[m[K()
+[10.606s]       |   [01;35m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[10.632s] [ 50%] [32m[1mLinking CXX static library libcrazyflie_6dof_controller_lib.a[0m
+[10.845s] [ 50%] Built target crazyflie_6dof_controller_lib
+[10.903s] [ 66%] [32mBuilding CXX object CMakeFiles/crazyflie_6dof_controller_node.dir/src/crazyflie_6dof_controller.cpp.o[0m
+[10.921s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_6dof_controller.cpp:[m[K In constructor ‘[01m[KCrazyflieAutoMission::[01;32m[KCrazyflieAutoMission[m[K()[m[K’:
+[10.921s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_6dof_controller.cpp:43:27:[m[K [01;35m[Kwarning: [m[K‘[01m[KCrazyflieAutoMission::forward_speed_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[10.921s]    43 |   double vertical_speed_, [01;35m[Kforward_speed_[m[K;
+[10.921s]       |                           [01;35m[K^~~~~~~~~~~~~~[m[K
+[10.921s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_6dof_controller.cpp:35:9:[m[K [01;35m[Kwarning: [m[K  ‘[01m[KCrazyflieAutoMission::Stage CrazyflieAutoMission::stage_[m[K’ [[01;35m[K-Wreorder[m[K]
+[10.921s]    35 |   Stage [01;35m[Kstage_[m[K;
+[10.921s]       |         [01;35m[K^~~~~~[m[K
+[10.921s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_6dof_controller.cpp:11:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[10.921s]    11 |   [01;35m[KCrazyflieAutoMission[m[K()
+[10.921s]       |   [01;35m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[10.955s] [ 83%] [32m[1mLinking CXX executable crazyflie_6dof_controller_node[0m
+[11.632s] [ 83%] Built target crazyflie_6dof_controller_node
+[13.965s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_control_node.cpp:[m[K In constructor ‘[01m[KCrazyflieForwardNode::[01;32m[KCrazyflieForwardNode[m[K()[m[K’:
+[13.965s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_control_node.cpp:197:10:[m[K [01;35m[Kwarning: [m[K‘[01m[KCrazyflieForwardNode::target_distance_[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[13.965s]   197 |   double [01;35m[Ktarget_distance_[m[K;
+[13.965s]       |          [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[13.966s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_control_node.cpp:38:9:[m[K [01;35m[Kwarning: [m[K  ‘[01m[KCrazyflieForwardNode::Stage CrazyflieForwardNode::stage_[m[K’ [[01;35m[K-Wreorder[m[K]
+[13.966s]    38 |   Stage [01;35m[Kstage_[m[K;
+[13.966s]       |         [01;35m[K^~~~~~[m[K
+[13.966s] [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_control/src/crazyflie_control_node.cpp:13:3:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[13.966s]    13 |   [01;35m[KCrazyflieForwardNode[m[K()
+[13.966s]       |   [01;35m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[13.985s] [100%] [32m[1mLinking CXX executable crazyflie_control_node[0m
+[14.278s] [100%] Built target crazyflie_control_node
+[14.295s] Invoked command in '/home/user/data/drones_ship_ws/build/crazyflie_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/crazyflie_control -- -j20 -l20
+[14.296s] Invoking command in '/home/user/data/drones_ship_ws/build/crazyflie_control': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/crazyflie_control
+[14.308s] -- Install configuration: ""
+[14.309s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/lib/crazyflie_control/crazyflie_control_node
+[14.312s] -- Set non-toolchain portion of runtime path of "/home/user/data/drones_ship_ws/install/crazyflie_control/lib/crazyflie_control/crazyflie_control_node" to ""
+[14.312s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/config
+[14.312s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/config/waypoints.yaml
+[14.312s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/launch
+[14.312s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/launch/all_crazyflie_control.launch.py
+[14.312s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/launch/crazyflie_control.launch.py
+[14.313s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/lib/crazyflie_control/crazyflie_6dof_controller_node
+[14.316s] -- Set non-toolchain portion of runtime path of "/home/user/data/drones_ship_ws/install/crazyflie_control/lib/crazyflie_control/crazyflie_6dof_controller_node" to ""
+[14.316s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/package_run_dependencies/crazyflie_control
+[14.316s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/parent_prefix_path/crazyflie_control
+[14.316s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/ament_prefix_path.sh
+[14.316s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/ament_prefix_path.dsv
+[14.316s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/path.sh
+[14.316s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/environment/path.dsv
+[14.316s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.bash
+[14.317s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.sh
+[14.317s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.zsh
+[14.317s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/local_setup.dsv
+[14.317s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/package.dsv
+[14.317s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/ament_index/resource_index/packages/crazyflie_control
+[14.317s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/cmake/crazyflie_controlConfig.cmake
+[14.317s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/cmake/crazyflie_controlConfig-version.cmake
+[14.317s] -- Installing: /home/user/data/drones_ship_ws/install/crazyflie_control/share/crazyflie_control/package.xml
+[14.319s] Invoked command in '/home/user/data/drones_ship_ws/build/crazyflie_control' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/crazyflie_control

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find ls2n_drone_description)/models/crazy2fly_base/urdf/inertia.xacro" />
+
+  <xacro:macro name="c2f_battery" params="length width height mass *origin">
+    <link name="battery_link">
+      <visual name="battery_link_visual">
+        <origin xyz="0 0 0" rpy="0 0 0"/>>
+        <geometry>
+          <box size="${length} ${width} ${height}"/>
+        </geometry>
+        <material name="yellow" />
+      </visual>
+
+      <collision name="battery_link_collision">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="${length} ${width} ${height}"/>
+        </geometry>
+      </collision>
+
+      <xacro:inertial_box mass="${mass}" x="${length}" y="${width}" z="${height}">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </xacro:inertial_box>
+    </link>
+
+    <joint name="frame_to_battery_joint" type="fixed">
+      <parent link="frame_link"/>
+      <child link="battery_link"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+  </xacro:macro>  
+
+</robot>

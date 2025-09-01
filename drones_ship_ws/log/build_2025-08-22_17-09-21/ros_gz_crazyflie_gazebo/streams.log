@@ -1,0 +1,42 @@
+[0.049s] Invoking command in '/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/user/data/drones_ship_ws/src/drone_ship/ros_gz_crazyflie/ros_gz_crazyflie_gazebo -DCMAKE_INSTALL_PREFIX=/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo
+[0.179s] -- The C compiler identification is GNU 13.3.0
+[0.275s] -- The CXX compiler identification is GNU 13.3.0
+[0.299s] -- Detecting C compiler ABI info
+[0.421s] -- Detecting C compiler ABI info - done
+[0.433s] -- Check for working C compiler: /usr/lib/ccache/cc - skipped
+[0.433s] -- Detecting C compile features
+[0.434s] -- Detecting C compile features - done
+[0.451s] -- Detecting CXX compiler ABI info
+[0.562s] -- Detecting CXX compiler ABI info - done
+[0.568s] -- Check for working CXX compiler: /usr/lib/ccache/c++ - skipped
+[0.569s] -- Detecting CXX compile features
+[0.569s] -- Detecting CXX compile features - done
+[0.575s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.713s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.942s] -- Found ament_lint_auto: 0.17.3 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[1.017s] -- Configuring done (0.9s)
+[1.022s] -- Generating done (0.0s)
+[1.024s] -- Build files have been written to: /home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo
+[1.029s] Invoked command in '/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/user/data/drones_ship_ws/src/drone_ship/ros_gz_crazyflie/ros_gz_crazyflie_gazebo -DCMAKE_INSTALL_PREFIX=/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo
+[1.031s] Invoking command in '/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo -- -j20 -l20
+[1.104s] Invoked command in '/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo -- -j20 -l20
+[1.106s] Invoking command in '/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo
+[1.120s] -- Install configuration: ""
+[1.120s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/worlds
+[1.120s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/worlds/crazyflie_world.sdf
+[1.120s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ament_index/resource_index/package_run_dependencies/ros_gz_crazyflie_gazebo
+[1.121s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ament_index/resource_index/parent_prefix_path/ros_gz_crazyflie_gazebo
+[1.121s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/environment/ament_prefix_path.sh
+[1.121s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/environment/ament_prefix_path.dsv
+[1.121s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/environment/path.sh
+[1.121s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/environment/path.dsv
+[1.122s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/local_setup.bash
+[1.122s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/local_setup.sh
+[1.122s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/local_setup.zsh
+[1.122s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/local_setup.dsv
+[1.122s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/package.dsv
+[1.122s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ament_index/resource_index/packages/ros_gz_crazyflie_gazebo
+[1.123s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/cmake/ros_gz_crazyflie_gazeboConfig.cmake
+[1.123s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/cmake/ros_gz_crazyflie_gazeboConfig-version.cmake
+[1.123s] -- Installing: /home/user/data/drones_ship_ws/install/ros_gz_crazyflie_gazebo/share/ros_gz_crazyflie_gazebo/package.xml
+[1.128s] Invoked command in '/home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/user/data/drones_ship_ws/install/ros_gz_crazyflie_control:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/user/data/drones_ship_ws/build/ros_gz_crazyflie_gazebo

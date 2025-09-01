@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "crazyflie_yolo__py",
+		"source" : "/home/user/data/drones_ship_ws/build/crazyflie_yolo/crazyflie_yolo__py"
+	}
+}

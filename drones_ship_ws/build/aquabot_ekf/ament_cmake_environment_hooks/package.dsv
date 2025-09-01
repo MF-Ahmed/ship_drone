@@ -1,0 +1,4 @@
+source;share/aquabot_ekf/local_setup.bash
+source;share/aquabot_ekf/local_setup.dsv
+source;share/aquabot_ekf/local_setup.sh
+source;share/aquabot_ekf/local_setup.zsh

@@ -1,0 +1,51 @@
+[  1%] Built target crazyflie_yolo__rosidl_generator_type_description
+[  3%] [32mBuilding CXX object CMakeFiles/stereo_depth_node.dir/src/stereo_depth_node.cpp.o[0m
+[  7%] Built target container_localizer_node
+[  7%] Built target ament_cmake_python_copy_crazyflie_yolo
+[  9%] Built target crazyflie_yolo__cpp
+[ 24%] Built target crazyflie_yolo__rosidl_generator_c
+[ 38%] Built target crazyflie_yolo__rosidl_typesupport_introspection_c
+[ 38%] Built target crazyflie_yolo__rosidl_typesupport_cpp
+[ 46%] Built target crazyflie_yolo__rosidl_typesupport_c
+[ 53%] Built target crazyflie_yolo__rosidl_typesupport_fastrtps_cpp
+[ 61%] Built target crazyflie_yolo__rosidl_typesupport_introspection_cpp
+[ 68%] Built target crazyflie_yolo__rosidl_typesupport_fastrtps_c
+[ 72%] Built target multi_drone_fusion_node
+[ 75%] Built target multi_obstacle_tracker_ekf_node
+[ 75%] Built target crazyflie_yolo
+[ 79%] Built target multi_obstacle_tracker_node
+[ 81%] Built target crazyflie_yolo__py
+[ 87%] Built target crazyflie_yolo__rosidl_generator_py
+[ 90%] Built target crazyflie_yolo_s__rosidl_typesupport_fastrtps_c
+[ 94%] Built target crazyflie_yolo_s__rosidl_typesupport_introspection_c
+[ 98%] Built target crazyflie_yolo_s__rosidl_typesupport_c
+running egg_info
+writing crazyflie_yolo.egg-info/PKG-INFO
+writing dependency_links to crazyflie_yolo.egg-info/dependency_links.txt
+writing top-level names to crazyflie_yolo.egg-info/top_level.txt
+reading manifest file 'crazyflie_yolo.egg-info/SOURCES.txt'
+writing manifest file 'crazyflie_yolo.egg-info/SOURCES.txt'
+[ 98%] Built target ament_cmake_python_build_crazyflie_yolo_egg
+[01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/stereo_depth_node.cpp:[m[K In constructor ‘[01m[KStereoObstacleLocalizer::[01;32m[KStereoObstacleLocalizer[m[K()[m[K’:
+[01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/stereo_depth_node.cpp:35:30:[m[K [01;31m[Kerror: [m[K‘[01m[Krclcpp::Duration::[01;32m[KDuration[m[K()[m[K’ is private within this context
+   35 |       tf_listener_(tf_buffer_[01;31m[K)[m[K
+      |                              [01;31m[K^[m[K
+In file included from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/time.hpp:24[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/clock.hpp:24[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/client.hpp:38[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/executor_options.hpp:22[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/executor.hpp:38[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/rclcpp.hpp:172[m[K,
+                 from [01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/stereo_depth_node.cpp:1[m[K:
+[01m[K/opt/ros/jazzy/include/rclcpp/rclcpp/duration.hpp:159:3:[m[K [01;36m[Knote: [m[Kdeclared private here
+  159 |   [01;36m[KDuration[m[K() = default;
+      |   [01;36m[K^~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/stereo_depth_node.dir/build.make:76: CMakeFiles/stereo_depth_node.dir/src/stereo_depth_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:631: CMakeFiles/stereo_depth_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2
