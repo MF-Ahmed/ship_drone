@@ -6,8 +6,9 @@ Panels:
       Expanded:
         - /TF1/Tree1
         - /Aquabot1/Description Topic1
+        - /fused_obsticals_final1/Topic1
       Splitter Ratio: 0.5874125957489014
-    Tree Height: 853
+    Tree Height: 855
 Visualization Manager:
   Class: ""
   Displays:
@@ -141,22 +142,7 @@ Visualization Manager:
                 aquabot/right_propeller_link:
                   {}
           drone1/odom:
-            drone1/base_footprint:
-              drone1/body:
-                drone1/downward_left_camera_link:
-                  {}
-                drone1/downward_right_camera_link:
-                  {}
-                drone1/imu_link:
-                  {}
-                drone1/m1_prop:
-                  {}
-                drone1/m2_prop:
-                  {}
-                drone1/m3_prop:
-                  {}
-                drone1/m4_prop:
-                  {}
+            {}
           drone2/odom:
             {}
           drone3/odom:
@@ -656,7 +642,7 @@ Visualization Manager:
       Enabled: true
       Name: drone1_obs_markers
       Namespaces:
-        drone1_obstacles: true
+        {}
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -665,7 +651,7 @@ Visualization Manager:
         Value: /drone1/obstacle_markers
       Value: true
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: true
+      Enabled: false
       Name: drone2_obs_markers
       Namespaces:
         {}
@@ -675,9 +661,9 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone2/obstacle_markers
-      Value: true
+      Value: false
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: true
+      Enabled: false
       Name: drone3_obs_markers
       Namespaces:
         {}
@@ -687,9 +673,9 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone3/obstacle_markers
-      Value: true
+      Value: false
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: true
+      Enabled: false
       Name: drone1_tackedOBS
       Namespaces:
         {}
@@ -699,9 +685,9 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone1/tracked_obstacle_markers
-      Value: true
+      Value: false
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: true
+      Enabled: false
       Name: drone2_tackedOBS
       Namespaces:
         {}
@@ -711,9 +697,9 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone2/tracked_obstacle_markers
-      Value: true
+      Value: false
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: true
+      Enabled: false
       Name: drone3_tackedOBS
       Namespaces:
         {}
@@ -723,6 +709,86 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone3/tracked_obstacle_markers
+      Value: false
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: fused_obsticals_final
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /fused_tracked_obstacle_markers
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Aquabot_Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /aquabot/trajectory
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz_default_plugins/Path
+      Color: 255; 25; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Global Planner
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /plan
+      Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: obstacles
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /obstacles
       Value: true
   Enabled: true
   Global Options:
@@ -745,36 +811,36 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 31.324920654296875
+      Distance: 200.8587188720703
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 17.618690490722656
-        Y: 1.5317409038543701
-        Z: -0.0020088725723326206
+        X: 148.20953369140625
+        Y: 57.196632385253906
+        Z: -6.7160868644714355
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5647963285446167
+      Pitch: 0.07979759573936462
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz_default_plugins)
-      Yaw: 2.0603649616241455
+      Yaw: 3.4753835201263428
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1011
+  Height: 1013
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000001af00000395fc0200000009fc0000003f00000395000000cc00fffffffa000000010100000002fb0000000c00430061006d0065007200610000000000ffffffff0000000000000000fb000000100044006900730070006c0061007900730100000000000001560000015600fffffffb0000001c00610071007500610062006f0074005f00630061006d006500720061000000015d0000004e0000001700fffffffb0000002400640072006f006e00650033005f00430061006d006500720061005f006c0065006600740000000169000000400000001700fffffffb0000002c006300720061007a00790066006c00690065005f00430061006d006500720061005f0072006900670068007401000001e0000000700000000000000000fb0000002200640072006f006e00650031005f0079006f006c006f005f006d006100670065002000000001b10000009b0000001700fffffffb0000002400640072006f006e00650032005f00430061006d006500720061005f006c00650066007400000001cb000000480000001700fffffffb0000002400640072006f006e00650031005f00430061006d006500720061005f006c00650066007400000001c6000000700000001700fffffffb0000002200640072006f006e00650032005f0079006f006c006f005f006d00610067006500200000000252000000750000001700fffffffb0000002200640072006f006e00650033005f0079006f006c006f005f006d006100670065002000000002cd000001070000001700ffffff000005890000039500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
-  Width: 1854
-  X: 66
-  Y: 32
+  QMainWindow State: 000000ff00000000fd0000000100000000000001af00000397fc0200000009fc0000003f00000397000000cc00fffffffa000000010100000002fb0000000c00430061006d0065007200610000000000ffffffff0000000000000000fb000000100044006900730070006c0061007900730100000000000001560000015600fffffffb0000001c00610071007500610062006f0074005f00630061006d006500720061000000015d0000004e0000001700fffffffb0000002400640072006f006e00650033005f00430061006d006500720061005f006c0065006600740000000169000000400000001700fffffffb0000002c006300720061007a00790066006c00690065005f00430061006d006500720061005f0072006900670068007401000001e0000000700000000000000000fb0000002200640072006f006e00650031005f0079006f006c006f005f006d006100670065002000000002970000013f0000001700fffffffb0000002400640072006f006e00650032005f00430061006d006500720061005f006c00650066007400000001cb000000480000001700fffffffb0000002400640072006f006e00650031005f00430061006d006500720061005f006c00650066007400000001c6000000700000001700fffffffb0000002200640072006f006e00650032005f0079006f006c006f005f006d00610067006500200000000252000000750000001700fffffffb0000002200640072006f006e00650033005f0079006f006c006f005f006d006100670065002000000002cd000001070000001700ffffff000004db0000039700000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Width: 1680
+  X: 0
+  Y: 213
   aquabot_camera:
     collapsed: false
   drone1_Camera_left:

@@ -1,8 +1,0 @@
-prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;/home/user/data/drones_ship_ws/install/vrx_gz/share/
-prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;/home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds
-prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;/home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/worlds/2023_practice
-prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;/home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models
-prepend-non-duplicate;GZ_SIM_RESOURCE_PATH;/home/user/data/drones_ship_ws/install/vrx_gz/share/vrx_gz/models/tmp
-prepend-non-duplicate;GZ_SIM_SYSTEM_PLUGIN_PATH;/home/user/data/drones_ship_ws/install/vrx_gz/lib
-
-prepend-non-duplicate;LD_LIBRARY_PATH;/home/user/data/drones_ship_ws/install/vrx_gz/lib

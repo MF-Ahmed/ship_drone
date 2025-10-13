@@ -1,6 +1,0 @@
-[01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/multi_obstacle_tracker_EKF.cpp:[m[K In member function ‘[01m[Kvoid MultiObstacleTrackerEKF::[01;32m[KcreateTrack[m[K(const Eigen::Vector3d&, const rclcpp::Time&)[m[K’:
-[01m[K/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/multi_obstacle_tracker_EKF.cpp:223:72:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kstamp[m[K’ [[01;35m[K-Wunused-parameter[m[K]
-  223 |   void createTrack(const Eigen::Vector3d &z_world, [01;35m[Kconst rclcpp::Time &stamp[m[K)
-      |                                                    [01;35m[K~~~~~~~~~~~~~~~~~~~~^~~~~[m[K
-/usr/bin/ld: warning: libopencv_imgproc.so.406, needed by /opt/ros/jazzy/lib/libcv_bridge.so, may conflict with libopencv_imgproc.so.408
-/usr/bin/ld: warning: libopencv_core.so.406, needed by /opt/ros/jazzy/lib/libcv_bridge.so, may conflict with libopencv_core.so.408

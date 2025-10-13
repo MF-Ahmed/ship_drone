@@ -4,11 +4,11 @@ import xacro
 from ament_index_python.packages import get_package_share_directory
 
 # Create launcher
-sl = SimpleLauncher(use_sim_time=False)
+sl = SimpleLauncher(use_sim_time=True)
 
 # Declare arguments
 sl.declare_arg('world', 'medium_new')
-sl.declare_arg('gui', True)
+sl.declare_arg('gui', False)
 sl.declare_arg('rviz_config', 'system_rviz.rviz')  # default file
 
 # Packages
@@ -51,14 +51,31 @@ def launch_setup():
     sl.gz_launch(sl.find('aquabot_gz', world+'.sdf'), gz_args=gz_args)
 
     # Basic clock bridge
-    bridges = [GazeboBridge.clock()]
-    sl.create_gz_bridge(bridges)
 
-    # AIS bridge example
-    bridges.append(('/aquabot/ais_sensor/windturbines_positions',
-                    '/aquabot/ais_sensor/windturbines_positions',
-                    'geometry_msgs/msg/Pose', GazeboBridge.gz2ros))
-    sl.create_gz_bridge(bridges)
+    sl.node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        name='gz_clock_bridge',   # unique name
+        arguments=[
+            f'/world/{world}/clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock',
+            '--ros-args', '-r', f'/world/{world}/clock:=/clock'
+        ],  
+        output='screen'
+    )
+
+    # ------------------------------------------------------------------
+    # AIS bridge (separate, no /clock)
+    # ------------------------------------------------------------------
+    sl.node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        name='gz_bridge_ais',     # unique name
+        arguments=[
+            '/aquabot/ais_sensor/windturbines_positions@geometry_msgs/msg/Pose@gz.msgs.Pose'
+        ],
+        output='screen'
+    )
+
 
     # Aquabot setup
     with sl.group(ns='aquabot'):
@@ -130,8 +147,8 @@ def launch_setup():
                 executable='create',
                 name=f'spawn_{drone_name}',
                 arguments=[                    
-                    '-x', '1',# + i * 1.1),  # Offset drones along X
-                    '-y', str(-0.35 + i *0.3),
+                    '-x', str(1),# + i * 1.1),  # Offset drones along X
+                    '-y', str(-0.60 + i *0.6),
                     '-z', '1.7',
                     '-file', this_sdf_file
                 ],
@@ -153,10 +170,15 @@ def launch_setup():
 
             # Bridges
             drone_bridges = []
-            drone_bridges.append((f'/world/{world}/model/{drone_name}/link/{drone_name}/body/sensor/navsat/navsat',
-                                  f'{ns}/gps',
-                                  'sensor_msgs/msg/NavSatFix',
-                                  GazeboBridge.gz2ros))
+
+
+            drone_bridges.append((
+                f'/world/{world}/model/{drone_name}/link/{drone_name}/body/sensor/navsat/navsat',
+                f'{ns}/gps',
+                'sensor_msgs/msg/NavSatFix',
+                GazeboBridge.gz2ros
+            ))            
+
             drone_bridges.append((f'/world/{world}/model/{drone_name}/link/{drone_name}/body/sensor/imu_sensor/imu',
                                   f'{ns}/imu',
                                   'sensor_msgs/Imu',
@@ -181,6 +203,7 @@ def launch_setup():
             sl.node(
                 package='ros_gz_bridge',
                 executable='parameter_bridge',
+                name=f'gz_bridge_{drone_name}',
                 parameters=[{
                     'config_file': sl.find('aquabot_gz', f'ros_gz_{drone_name}_bridge.yaml'),
                 }],
@@ -191,71 +214,94 @@ def launch_setup():
     sl.node(
         package='ros_gz_sim',
         executable='create',
-        name='spawn_container4',
+        name='spawn_container1',
         arguments=[
-            '-name', 'container4',
-            '-x', '20', '-y', '-2', '-z', '0.2',
-            '-file', os.path.expanduser('~/.gz/models/newnames/container4/model.sdf')
+            '-name', 'container1',
+            '-x', '40', '-y', '-5', '-z', '1.0',
+            '-file', os.path.expanduser('~/.gz/models/newnames/container1/model.sdf')
         ],
         output='screen'
     )      
-     
     
-    sl.node(
-        package='ros_gz_sim',
-        executable='create',
-        name='spawn_container5',
-        arguments=[
-            '-name', 'container5',
-            '-x', '20', '-y', '3', '-z', '1.0',
-            #'-R', '0', '-P', '0', '-Y', '1.57', 
-            '-file', os.path.expanduser('~/.gz/models/newnames/container5/model.sdf')
-        ],
-        output='screen'
-    )  
-    
-    '''  
-
+              
     sl.node(
         package='ros_gz_sim',
         executable='create',
         name='spawn_container2',
         arguments=[
             '-name', 'container2',
-            '-x', '10', '-y', '10', '-z', '1.0',
-            '-file', os.path.expanduser('~/.gz/models/container2/model.sdf')
+            '-x', '60', '-y', '3', '-z', '1.0',
+            #'-R', '0', '-P', '0', '-Y', '1.57', 
+            '-file', os.path.expanduser('~/.gz/models/newnames/container2/model.sdf')
         ],
         output='screen'
     )     
-         
-   
+     
     sl.node(
         package='ros_gz_sim',
         executable='create',
         name='spawn_container3',
         arguments=[
             '-name', 'container3',
-            '-x', '10', '-y', '-20', '-z', '1.0',
-            '-file', os.path.expanduser('~/.gz/models/container3/model.sdf')
+            '-x', '40', '-y', '10', '-z', '1.0',
+            '-file', os.path.expanduser('~/.gz/models/newnames/container3/model.sdf')
         ],
         output='screen'
-    )    
-    '''
-
-    '''
-        
+    )     
+            
     sl.node(
         package='ros_gz_sim',
         executable='create',
         name='spawn_container4',
         arguments=[
             '-name', 'container4',
-            '-x', '10', '-y', '-30', '-z', '1.0',
-            '-file', os.path.expanduser('~/.gz/models/container4/model.sdf')
+            '-x', '60', '-y', '15', '-z', '1.0',
+            '-file', os.path.expanduser('~/.gz/models/newnames/container4/model.sdf')
+        ],
+        output='screen'
+    )    
+       
+        
+    sl.node(
+        package='ros_gz_sim',
+        executable='create',
+        name='spawn_container5',
+        arguments=[
+            '-name', 'container5',
+            '-x', '80', '-y', '-15', '-z', '1.0',
+            '-file', os.path.expanduser('~/.gz/models/newnames/container5/model.sdf')
         ],
         output='screen'
     )                    
+    
     '''
+    sl.node(
+        package='ros_gz_sim',
+        executable='create',
+        name='spawn_barrel1',
+        arguments=[
+            '-name', 'barrel1',
+            '-x', '10', '-y', '-20', '-z', '1.0',
+            '-file', os.path.expanduser('~/.gz/models/newnames/barrel1/model.sdf')
+        ],
+        output='screen'
+    )                    
+
+    '''
+
+
+    for name in ('container1','container2','container3','container4','container5', 'barrel1'):#, 'barrel2', 'log1', 'log2'):
+        sl.node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name=f'gz_bridge_{name}_odom',
+            arguments=[f'/model/{name}/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry'],
+            remappings=[(f'/model/{name}/odometry', f'/{name}/odometry')],
+            output='screen'
+        )
+
+
+
     # RViz
     sl.node(
         package='rviz2',

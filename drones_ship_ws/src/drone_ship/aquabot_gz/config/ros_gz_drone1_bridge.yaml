@@ -48,11 +48,13 @@
   ros_type_name: "sensor_msgs/msg/CameraInfo"
   gz_type_name: "ignition.msgs.CameraInfo"
   direction: GZ_TO_ROS    
-- ros_topic_name: "/drone1/gps"
-  gz_topic_name: "/gps"
-  ros_type_name: "sensor_msgs/msg/NavSatFix"
-  gz_type_name: "ignition.msgs.NavSat"
-  direction: GZ_TO_ROS  
+  
+  
+#- ros_topic_name: "/drone1/gps"
+  #gz_topic_name: "/gps"
+  #ros_type_name: "sensor_msgs/msg/NavSatFix"
+  #gz_type_name: "ignition.msgs.NavSat"
+  #direction: GZ_TO_ROS  
 #- ros_topic_name: "/drone1/imu"
   #gz_topic_name: "/world/aquabot_windturbines_medium_new/model/drone1/link/drone1/body/sensor/imu_sensor/imu"
   #ros_type_name: "sensor_msgs/msg/Imu"

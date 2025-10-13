@@ -1,9 +1,0 @@
-setup.py
-crazyflie_yolo/__init__.py
-crazyflie_yolo.egg-info/PKG-INFO
-crazyflie_yolo.egg-info/SOURCES.txt
-crazyflie_yolo.egg-info/dependency_links.txt
-crazyflie_yolo.egg-info/top_level.txt
-crazyflie_yolo/msg/__init__.py
-crazyflie_yolo/msg/_tracked_obstacle.py
-crazyflie_yolo/msg/_tracked_obstacle_array.py

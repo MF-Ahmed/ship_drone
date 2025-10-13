@@ -1,0 +1,10 @@
+float64 ascend_altitude
+float64 leg_distance
+float64 forward_speed
+float64 yaw
+---
+bool success
+string message
+---
+float64 remaining_in_leg
+

@@ -1,3 +1,11 @@
+// Crazyflie "ascend + smooth forward" controller — revised with anti‑windup
+// Changes marked with:  // CHANGED: ...  (and // NEW: ... where applicable)
+// Key fixes:
+//  1) Z controller anti‑windup (no integrator growth while saturated)
+//  2) Removed velocity‑domain tilt compensation (was amplifying Z bumps)
+//  3) Gentler forward transient: P‑only forward, slower ramp, proactive braking
+//  4) Corrected log message to use actual target_distance_
+
 #include "rclcpp/rclcpp.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 #include "nav_msgs/msg/odometry.hpp"
@@ -6,20 +14,26 @@
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
 #include "tf2/utils.h"
 
+#include <algorithm>   // NEW: clamp, min, max
+#include <cmath>       // NEW: fabs, cos, sin
+
 using namespace std::chrono_literals;
 
 class CrazyflieForwardNode : public rclcpp::Node {
 public:
   CrazyflieForwardNode()
   : Node("crazyflie_forward_node"),
-    target_z_(8.0),
-    target_distance_(18.0),
+    target_z_(10.0),
+    target_distance_(15.0),
     stage_(ASCEND),
+    // CHANGED: keep Z gains but we'll add anti-windup
     pid_z_(0.4, 0.01, 0.1),
-    pid_forward_(0.15, 0.0, 0.03),  // slightly reduced gains for smoother motion
+    // CHANGED: forward P-only, gentler
+    pid_forward_(0.12, 0.0, 0.0),
     pid_yaw_(1.0, 0.0, 0.1),
-    forward_speed_limit_(0.25),     // higher speed limit for forward
-    forward_ramp_rate_(0.02),       // gradual ramp up (m/s per iteration)
+    // CHANGED: gentler forward limits
+    forward_speed_limit_(0.20),      // was 0.25
+    forward_ramp_rate_(0.01),        // was 0.02 (per loop @100ms → 0.1 m/s^2)
     smoothed_cmd_x_(0.0),
     forward_initialized_(false)
   {
@@ -30,7 +44,7 @@ public:
       std::bind(&CrazyflieForwardNode::odom_callback, this, std::placeholders::_1));
 
     timer_ = this->create_wall_timer(100ms, std::bind(&CrazyflieForwardNode::control_loop, this));
-    RCLCPP_INFO(this->get_logger(), "Crazyflie ascend + smooth forward node started.");
+    RCLCPP_INFO(this->get_logger(), "Crazyflie ascend + smooth forward node started (revised).");
   }
 
 private:
@@ -41,11 +55,21 @@ private:
     double kp, ki, kd;
     double integral = 0.0;
     double previous_error = 0.0;
+    double i_limit = 1e9; // NEW: integral clamp
 
     PID(double p, double i, double d) : kp(p), ki(i), kd(d) {}
 
-    double compute(double error, double dt) {
+    // NEW: PD part only (we'll handle integral + anti-windup outside)
+    double compute_no_integral(double error, double dt) {
+      double derivative = (error - previous_error) / dt;
+      previous_error = error;
+      return kp * error + kd * derivative;
+    }
+
+    // (kept for non-anti-windup uses if needed)
+    double compute_simple(double error, double dt) {
       integral += error * dt;
+      integral = std::clamp(integral, -i_limit, i_limit);
       double derivative = (error - previous_error) / dt;
       previous_error = error;
       return kp * error + ki * integral + kd * derivative;
@@ -80,26 +104,53 @@ private:
     path_pub_->publish(path_);
   }
 
+  // NEW: helper to compute vz with anti-windup and saturation
+  double compute_vz_aw(double z_error, double dt, double vz_min, double vz_max) {
+    // PD part
+    double vz_pd = pid_z_.compute_no_integral(z_error, dt);
+
+    // Candidate integral update (clamped)
+    double i_cand = pid_z_.integral + z_error * dt;
+    i_cand = std::clamp(i_cand, -pid_z_.i_limit, pid_z_.i_limit);
+
+    // Unsaturated output
+    double vz_unsat = vz_pd + pid_z_.ki * i_cand;
+
+    // Saturate
+    double vz_sat = std::clamp(vz_unsat, vz_min, vz_max);
+
+    // Anti-windup: block integration if saturating *against* error sign
+    bool sat_up   = (vz_unsat > vz_sat) && (z_error > 0.0);
+    bool sat_down = (vz_unsat < vz_sat) && (z_error < 0.0);
+    if (!(sat_up || sat_down)) {
+      pid_z_.integral = i_cand; // accept integral only if helpful
+    }
+
+    return vz_sat;
+  }
+
   void control_loop() {
     geometry_msgs::msg::Twist cmd;
-    double dt = 0.1;
+    double dt = 0.1; // 100 ms timer
 
     switch (stage_) {
       case ASCEND: {
         double error_z = target_z_ - current_z_;
-        if (std::abs(error_z) < 0.05) {
+        if (std::fabs(error_z) < 0.05) {
           hover_start_time_ = this->get_clock()->now();
           stage_ = HOVER;
           RCLCPP_INFO(this->get_logger(), "Reached target altitude. Hovering briefly...");
           break;
         }
-        double vz = pid_z_.compute(error_z, dt);
-        cmd.linear.z = std::clamp(vz, -0.3, 0.3);
+        // CHANGED: use anti-windup vz
+        cmd.linear.z = compute_vz_aw(error_z, dt, -0.3, 0.3);
         break;
       }
 
       case HOVER: {
-        cmd.linear.z = 0.0;
+        // CHANGED: hold Z with controller (prevents drift) instead of 0.0
+        double error_z = target_z_ - current_z_;
+        cmd.linear.z = compute_vz_aw(error_z, dt, -0.2, 0.2);
         if ((this->get_clock()->now() - hover_start_time_).seconds() > 2.0) {
           stage_ = FORWARD;
           smoothed_cmd_x_ = 0.0;  // reset smoothed speed
@@ -107,8 +158,7 @@ private:
         }
         break;
       }
-           
-      
+
       case FORWARD: {
         double dx = current_x_ - start_x_;
         double dy = current_y_ - start_y_;
@@ -117,7 +167,8 @@ private:
 
         if (error_forward < 0.05) {
           stage_ = STOP;
-          RCLCPP_INFO(this->get_logger(), "Reached 30m forward. Stopping.");
+          // CHANGED: reflect actual target_distance_
+          RCLCPP_INFO(this->get_logger(), "Reached %.0fm forward. Stopping.", target_distance_);
           break;
         }
 
@@ -126,35 +177,39 @@ private:
         if (yaw_error > M_PI) yaw_error -= 2 * M_PI;
         if (yaw_error < -M_PI) yaw_error += 2 * M_PI;
 
-        double wz = pid_yaw_.compute(yaw_error, dt);
+        double wz = pid_yaw_.compute_simple(yaw_error, dt);
         wz = std::clamp(wz, -0.3, 0.3);
 
-        // Smooth forward velocity ramp-up
+        // CHANGED: forward desired_vx from P-only and limited by distance/time
         double desired_vx = 0.0;
-        if (std::abs(yaw_error) < 0.1) {
-          desired_vx = pid_forward_.compute(error_forward, dt);
+        if (std::fabs(yaw_error) < 0.1) {
+          desired_vx = pid_forward_.compute_simple(error_forward, dt);
           desired_vx = std::clamp(desired_vx, -forward_speed_limit_, forward_speed_limit_);
+
+          // NEW: proactive braking based on stopping distance using our ramp accel
+          double a = std::max(1e-3, forward_ramp_rate_ / dt);     // m/s^2 approx
+          double d_stop = (smoothed_cmd_x_ * smoothed_cmd_x_) / (2.0 * a);
+          if (error_forward <= d_stop) {
+            desired_vx = std::min(desired_vx, 0.0); // begin braking
+          }
+
+          // Also ensure we don't command more than remaining distance over dt
+          desired_vx = std::min(desired_vx, error_forward / dt);
         } else {
           RCLCPP_INFO_THROTTLE(this->get_logger(), *this->get_clock(), 1000,
                                "Aligning yaw before moving forward...");
         }
 
-        // Smooth velocity using ramping
+        // CHANGED: smooth ramp toward desired_vx
         if (smoothed_cmd_x_ < desired_vx) {
-          smoothed_cmd_x_ += forward_ramp_rate_;
-          if (smoothed_cmd_x_ > desired_vx) smoothed_cmd_x_ = desired_vx;
+          smoothed_cmd_x_ = std::min(smoothed_cmd_x_ + forward_ramp_rate_, desired_vx);
         } else {
-          smoothed_cmd_x_ -= forward_ramp_rate_;
-          if (smoothed_cmd_x_ < desired_vx) smoothed_cmd_x_ = desired_vx;
+          smoothed_cmd_x_ = std::max(smoothed_cmd_x_ - forward_ramp_rate_, desired_vx);
         }
 
-        // Tilt compensation
-        double pitch_angle = std::atan2(smoothed_cmd_x_, 9.81); // approximate pitch
-        double compensation_factor = 1.0 / std::cos(pitch_angle);
-
+        // CHANGED: remove velocity-domain tilt compensation entirely
         double error_z = target_z_ - current_z_;
-        double vz = pid_z_.compute(error_z, dt);
-        vz = std::clamp(vz * compensation_factor, -0.3, 0.3);
+        double vz = compute_vz_aw(error_z, dt, -0.3, 0.3);
 
         cmd.linear.x = smoothed_cmd_x_ * std::cos(initial_yaw_);
         cmd.linear.y = smoothed_cmd_x_ * std::sin(initial_yaw_);
@@ -162,7 +217,7 @@ private:
         cmd.angular.z = wz;
         break;
       }
-      
+
       case STOP:
         cmd.linear.x = 0.0;
         cmd.linear.y = 0.0;
@@ -197,16 +252,16 @@ private:
   double target_distance_;
   double forward_speed_limit_;
   double forward_ramp_rate_;
-  double current_z_;
-  double current_x_;
-  double current_y_;
-  double start_x_;
-  double start_y_;
+  double current_z_ = 0.0;
+  double current_x_ = 0.0;
+  double current_y_ = 0.0;
+  double start_x_ = 0.0;
+  double start_y_ = 0.0;
   double smoothed_cmd_x_;
   bool forward_initialized_;
   rclcpp::Time hover_start_time_;
-  double initial_yaw_;
-  geometry_msgs::msg::Quaternion current_orientation_;
+  double initial_yaw_ = 0.0;
+  geometry_msgs::msg::Quaternion current_orientation_{};
 
   nav_msgs::msg::Path path_;
 };

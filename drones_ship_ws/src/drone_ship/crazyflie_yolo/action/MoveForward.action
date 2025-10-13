@@ -1,0 +1,16 @@
+# Distances are in the yaw-aligned local frame captured at goal acceptance:
+#  +X = forward along initial yaw
+#  +Y = left (CCW) perpendicular to initial yaw
+float64 distance_x
+float64 distance_y
+float64 speed          # nominal cruise speed (m/s)
+
+---
+bool success
+string message
+
+---
+float64 remaining_x
+float64 remaining_y
+float64 remaining_total
+

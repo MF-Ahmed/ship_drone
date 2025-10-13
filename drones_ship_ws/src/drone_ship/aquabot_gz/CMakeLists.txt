@@ -182,6 +182,7 @@ install(PROGRAMS
   scripts/aquabot_odom_tf.py
   scripts/fake_odom.py
   scripts/geodesic_center_publisher.py
+   scripts/aquabot_GT_Pub.py
   DESTINATION lib/${PROJECT_NAME}
 )  
   

@@ -144,7 +144,7 @@ class Command(Node):
         self.timer = self.create_timer(dt, self.cmd)
 
     def odom_cb(self, msg: Odometry):
-        self.get_logger().info(f"[odom_cb] Odom received: vx={msg.twist.twist.linear.x}")
+        #self.get_logger().info(f"[odom_cb] Odom received: vx={msg.twist.twist.linear.x}")
         self.imc['x'].v = msg.twist.twist.linear.x
         self.imc['y'].v = msg.twist.twist.linear.y
         self.imc['w'].v = msg.twist.twist.angular.z
@@ -155,7 +155,7 @@ class Command(Node):
         return s + ns*1e-9
 
     def cmd_cb(self, msg):
-        self.get_logger().info(f"[cmd_cb] Received cmd_vel: linear={msg.linear.x}, angular={msg.angular.z}")
+        #self.get_logger().info(f"[cmd_cb] Received cmd_vel: linear={msg.linear.x}, angular={msg.angular.z}")
 
         self.cmd_t = self.get_time()
         self.imc['x'].set_sp(msg.linear.x)

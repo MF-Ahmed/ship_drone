@@ -1,0 +1,14 @@
+# Goal
+geometry_msgs/Pose target_pose
+float64 yaw
+builtin_interfaces/Duration hover_time
+---
+# Result
+bool success
+string message
+geometry_msgs/Pose final_pose
+---
+# Feedback
+float64 distance_to_target
+float64 remaining_hover_s
+

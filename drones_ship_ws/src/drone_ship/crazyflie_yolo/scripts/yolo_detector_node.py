@@ -14,7 +14,15 @@ class YOLODetector(Node):
         super().__init__('yolo_detector_node')
 
         self.declare_parameter("model_path", "yolov8n.pt")
+        self.declare_parameter("min_confidence", 0.90)  
+
+
         model_path = self.get_parameter("model_path").get_parameter_value().string_value
+
+        try:
+            self.min_conf = float(self.get_parameter("min_confidence").value)   # FIX: always set self.min_conf
+        except Exception:
+            self.min_conf = 0.90   
 
         self.model = YOLO(model_path)#.to('cpu')
         self.bridge = CvBridge()
@@ -50,6 +58,9 @@ class YOLODetector(Node):
 
         YOLO_CLASSES = self.model.names  # Get class names from the model
         annotated_image = cv_image.copy()
+        kept = 0
+        dropped = 0
+
 
         for det in results.boxes:
           detection = Detection2D()
@@ -64,8 +75,16 @@ class YOLODetector(Node):
           # Print detection details
           class_id = int(det.cls[0])
           score = float(det.conf[0])
+
           class_name = YOLO_CLASSES[class_id]
           #self.get_logger().info(f"Detected: ID={class_id} ({class_name}), score={score:.2f}, bbox=[{x_center:.1f}, {y_center:.1f}, {width:.1f}, {height:.1f}]")
+
+
+          # NEW: filter by confidence
+          if score < self.min_conf:
+             dropped += 1
+             continue
+
 
           bbox = BoundingBox2D()
           #bbox.center = Pose2D(x=x_center, y=y_center, theta=0.0)
@@ -96,6 +115,11 @@ class YOLODetector(Node):
         annotated_msg.header.frame_id = f"{self.get_namespace()}/downward_left_camera_link"
         self.annotated_image_pub.publish(annotated_msg)
         #self.get_logger().info("Published annotated image")
+        if (kept + dropped) > 0:
+            pass
+            #self.get_logger().info(
+                #f"Detections: kept={kept}, dropped<{self.min_conf:.2f}={dropped}"
+            #)
 
 def main(args=None):
     rclpy.init(args=args)

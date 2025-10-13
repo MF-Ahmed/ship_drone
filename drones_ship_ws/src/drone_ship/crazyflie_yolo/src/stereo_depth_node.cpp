@@ -1,413 +1,566 @@
+// StereoObstacleLocalizer.cpp
+// Build in your crazyflie_yolo (or target) package
+//
+// World-frame output, z=0 plane, no stereo.  Key features:
+//  - Correct optical->camera_link rotation (REP 103)                      // [ADDED]
+//  - TF fallback when extrapolation occurs                                // [ADDED]
+//  - Use bbox bottom-center; optional multi-sample averaging along bottom  // [ADDED]
+//  - Print YOLO class + GT/DET positions and error in logs                // [ADDED]
+//  - CSV includes GT xyz + error components + norm + Aquabot pose         // [ADDED]
+//  - Fixed ROS 2 message init style (no brace-init for Vector3)           // [ADDED]
+
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/image.hpp>
 #include <sensor_msgs/msg/camera_info.hpp>
 #include <vision_msgs/msg/detection2_d_array.hpp>
-#include <geometry_msgs/msg/point_stamped.hpp>
 #include <visualization_msgs/msg/marker_array.hpp>
+#include <geometry_msgs/msg/point_stamped.hpp>
+#include <geometry_msgs/msg/vector3.hpp>
+#include "nav_msgs/msg/odometry.hpp"
+#include "std_msgs/msg/float32_multi_array.hpp"
+#include "std_msgs/msg/string.hpp"
 
 #include <cv_bridge/cv_bridge.hpp>
 #include <opencv2/opencv.hpp>
 
 #include <message_filters/subscriber.h>
-#include <message_filters/time_synchronizer.h>
 #include <message_filters/sync_policies/approximate_time.h>
+#include <message_filters/synchronizer.h>
 
 #include <tf2_ros/transform_listener.h>
 #include <tf2_ros/buffer.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
-#include <filesystem> 
+#include <tf2/LinearMath/Quaternion.h>               // [ADDED]
+#include <tf2/LinearMath/Matrix3x3.h>                // [ADDED]
 
+#include <filesystem>
+#include <fstream>
+#include <string>
+#include <array>
+#include <iomanip>
+#include <sstream>
+#include <limits>
+#include <unordered_map>
+#include <cmath>
 
-using std::placeholders::_1;
-using std::placeholders::_2;
-using std::placeholders::_3;
+#include "crazyflie_yolo/msg/detection3_d_stamped.hpp"
 
+using crazyflie_yolo::msg::Detection3DStamped;
+using std::placeholders::_1; using std::placeholders::_2;
 
-
-
-
-class StereoObstacleLocalizer : public rclcpp::Node
-{
+class StereoObstacleLocalizer : public rclcpp::Node {
 public:
-    StereoObstacleLocalizer()
-    : Node("stereo_obstacle_localizer"),
-      tf_buffer_(this->get_clock()),
-      tf_listener_(tf_buffer_)
-    {
-        using namespace message_filters;
-         // Setup save directory under current working directory        
-        save_dir_ = "/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/src/images";
-        std::filesystem::create_directories(save_dir_ + "/rgb");
-        std::filesystem::create_directories(save_dir_ + "/disparity");
+  StereoObstacleLocalizer()
+  : Node("stereo_obstacle_localizer"),
+    tf_buffer_(this->get_clock()),
+    tf_listener_(tf_buffer_) {
 
-        // Initialize image saving timer variables
-        last_saved_time_ = this->now();
-      
+    using namespace message_filters;
 
+    namespace_ = this->get_namespace(); // e.g. "/drone1"
+    RCLCPP_INFO(this->get_logger(), "Node NS: %s", namespace_.c_str());
 
-        bool use_sim_time = this->get_parameter("use_sim_time").as_bool();
-        
-        // Log it for confirmation
-        if (use_sim_time) {
-            RCLCPP_INFO(this->get_logger(), "✅ use_sim_time is ENABLED.");
-        } else {
-            RCLCPP_WARN(this->get_logger(), "⚠️ use_sim_time is DISABLED.");
-        }
+    // Parameters
+    gate_m_   = this->declare_parameter<double>("gate_m", 100.0); // max distance for valid match
+    ground_z_ = this->declare_parameter<double>("ground_z", 0.0); // projection plane
+    log_dir_  = this->declare_parameter<std::string>(               // [ADDED]
+                    "log_dir",
+                    "/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/logs");
+    multi_sample_bottom_ = this->declare_parameter<bool>("multi_sample_bottom", true); // [ADDED]
+    min_score_           = this->declare_parameter<double>("min_score", 0.50);        // [ADDED]
+    gate_frac_           = this->declare_parameter<double>("gate_frac", 0.04);        // [ADDED]
+    gate_min_            = this->declare_parameter<double>("gate_min", 6.0);          // [ADDED]
 
+    // Subscribers (sync left image + YOLO dets)
+    left_sub_.subscribe(this, "downward_left_camera/image_raw");
+    yolo_sub_.subscribe(this, "yolo_detections");
+    sync_ = std::make_shared<Synchronizer<Sync2>>(Sync2(20)); // [CHANGED] smaller queue
+    sync_->connectInput(left_sub_, yolo_sub_);
+    sync_->setMaxIntervalDuration(rclcpp::Duration::from_seconds(0.15)); // [ADDED]
+    sync_->registerCallback(std::bind(&StereoObstacleLocalizer::callback, this, _1, _2));
 
-        namespace_ = this->get_namespace();
-        if (namespace_ == "/drone1") {
-            marker_color_r_ = 1.0; marker_color_g_ = 0.0; marker_color_b_ = 0.0; // Red
-        } else if (namespace_ == "/drone2") {
-            marker_color_r_ = 0.0; marker_color_g_ = 0.0; marker_color_b_ = 1.0; // Blue
-        } else if (namespace_ == "/drone3") {
-            marker_color_r_ = 0.0; marker_color_g_ = 1.0; marker_color_b_ = 0.0; // Green
-        } else {
-            marker_color_r_ = 1.0; marker_color_g_ = 1.0; marker_color_b_ = 1.0; // White fallback
-        }
+    // Camera info (left)
+    left_info_sub_ = this->create_subscription<sensor_msgs::msg::CameraInfo>(
+      "downward_left_camera/camera_info", rclcpp::SensorDataQoS(),
+      std::bind(&StereoObstacleLocalizer::leftInfoCallback, this, _1));
 
-
-        left_sub_.subscribe(this, "downward_left_camera/image_raw");
-        right_sub_.subscribe(this, "downward_right_camera/image_raw");
-        yolo_sub_.subscribe(this, "yolo_detections");
-
-        sync_ = std::make_shared<Synchronizer<SyncPolicy>>(SyncPolicy(100), left_sub_, right_sub_, yolo_sub_);
-        sync_->setMaxIntervalDuration(rclcpp::Duration::from_seconds(1.0));
-        sync_->registerCallback(std::bind(&StereoObstacleLocalizer::callback, this, _1, _2, _3));
-
-        left_info_sub_ = this->create_subscription<sensor_msgs::msg::CameraInfo>(
-            "downward_left_camera/camera_info", 10,
-            std::bind(&StereoObstacleLocalizer::leftInfoCallback, this, _1));
-        right_info_sub_ = this->create_subscription<sensor_msgs::msg::CameraInfo>(
-            "downward_right_camera/camera_info", 10,
-            std::bind(&StereoObstacleLocalizer::rightInfoCallback, this, _1));
-
-        point_pub_ = this->create_publisher<geometry_msgs::msg::PointStamped>("obstacle_points", 10);
-        marker_pub_ = this->create_publisher<visualization_msgs::msg::MarkerArray>("obstacle_markers", 10);
-
-        RCLCPP_INFO(this->get_logger(), "Stereo Obstacle Localizer Node Initialized");
+    // Ground-truth odometry subscriptions (world frame)
+    auto qos_sensor = rclcpp::SensorDataQoS();
+    gt_subs_.push_back(
+      this->create_subscription<nav_msgs::msg::Odometry>(
+        "/aquabot/odometry", qos_sensor,
+        [this](nav_msgs::msg::Odometry::ConstSharedPtr msg) { this->gtOdomCb(msg, "aquabot"); }
+      )
+    );
+    for (int i = 1; i <= 5; ++i) {
+      std::string name = "container" + std::to_string(i);
+      gt_subs_.push_back(
+        this->create_subscription<nav_msgs::msg::Odometry>(
+          "/" + name + "/odometry", qos_sensor,
+          [this, name](nav_msgs::msg::Odometry::ConstSharedPtr msg) { this->gtOdomCb(msg, name); }
+        )
+      );
     }
+
+    // Publishers
+    detection_pub_ = this->create_publisher<Detection3DStamped>("detections_3d", 20);
+    marker_pub_    = this->create_publisher<visualization_msgs::msg::MarkerArray>("obstacle_markers", 10);
+    errors_pub_    = this->create_publisher<std_msgs::msg::Float32MultiArray>("/gt_eval/errors", 10);
+    report_pub_    = this->create_publisher<std_msgs::msg::String>("/gt_eval/report", 10);
+
+    openCsvLogger(); // [CHANGED]: richer header and path checks inside
+
+    RCLCPP_INFO(this->get_logger(),
+      "z-plane=%.2f, gate_m=%.1f, gate_frac=%.3f min=%.1f, multi_bottom=%s, min_score=%.2f",
+      ground_z_, gate_m_, gate_frac_, gate_min_, multi_sample_bottom_?"true":"false", min_score_);
+  }
+
+  ~StereoObstacleLocalizer() override {
+    if (csv_.is_open()) csv_.close();
+  }
 
 private:
-    typedef message_filters::sync_policies::ApproximateTime<
-        sensor_msgs::msg::Image,
-        sensor_msgs::msg::Image,
-        vision_msgs::msg::Detection2DArray> SyncPolicy;
+  // message_filters policy (2 inputs)
+  using Sync2 = message_filters::sync_policies::ApproximateTime<
+      sensor_msgs::msg::Image, vision_msgs::msg::Detection2DArray>;
 
-    message_filters::Subscriber<sensor_msgs::msg::Image> left_sub_, right_sub_;
-    message_filters::Subscriber<vision_msgs::msg::Detection2DArray> yolo_sub_;
-    std::shared_ptr<message_filters::Synchronizer<SyncPolicy>> sync_;
+  message_filters::Subscriber<sensor_msgs::msg::Image> left_sub_;
+  message_filters::Subscriber<vision_msgs::msg::Detection2DArray> yolo_sub_;
+  std::shared_ptr<message_filters::Synchronizer<Sync2>> sync_;
 
-    rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr left_info_sub_, right_info_sub_;
-    rclcpp::Publisher<geometry_msgs::msg::PointStamped>::SharedPtr point_pub_;
-    rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr marker_pub_;
+  rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr left_info_sub_;
+  rclcpp::Publisher<Detection3DStamped>::SharedPtr              detection_pub_;
+  rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr marker_pub_;
+  rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr     errors_pub_;
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr                report_pub_;
 
-    tf2_ros::Buffer tf_buffer_;
-    tf2_ros::TransformListener tf_listener_;
-    std::string save_dir_;
-    rclcpp::Time last_saved_time_; // Time of last saved frame
-    rclcpp::Duration save_interval_{rclcpp::Duration::from_seconds(2.5)}; // save images at 5 Sec interval  
+  std::vector<rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr> gt_subs_;
+
+  tf2_ros::Buffer tf_buffer_;
+  tf2_ros::TransformListener tf_listener_;
+
+  // Intrinsics (left)
+  cv::Mat K_, D_;
+  bool have_cam_ = false;
+  int img_w_ = 0, img_h_ = 0;
+
+  // Ground truth store: name -> (x,y,z)
+  std::unordered_map<std::string, std::array<double,3>> gt_;
+  double gate_m_{100.0};
+  double ground_z_{0.0};
+
+  // params
+  std::string log_dir_;                 // [ADDED]
+  bool   multi_sample_bottom_{true};    // [ADDED]
+  double min_score_{0.5};               // [ADDED]
+  double gate_frac_{0.04};              // [ADDED]
+  double gate_min_{6.0};                // [ADDED]
+
+  // Markers
+  visualization_msgs::msg::MarkerArray marker_array_;
+  int next_marker_id_ = 0;
+
+  // CSV
+  std::ofstream csv_;
+  std::string namespace_;
+
+  struct RGB { double r,g,b; };
+  static inline const std::array<RGB,5> kClassPalette {{
+    {1.0, 0.0, 0.0},  // c1: bright red
+    {0.0, 0.8, 0.8},  // c2: cyan
+    {0.8, 0.0, 0.8},  // c3: magenta
+    {1.0, 1.0, 0.0},  // c4: yellow
+    {0.0, 1.0, 0.0}   // c5: bright green
+  }};
 
 
-   
 
-    int frame_counter_ = 0;
+  static inline RGB colorForClass(int cls){
+    if (cls>=0 && cls<(int)kClassPalette.size()) return kClassPalette[cls];
+    return {0.6,0.6,0.6};
+  }
 
-    cv::Mat K1_, D1_, K2_, D2_;
-    cv::Mat R_, T_, R1_, R2_, P1_, P2_, Q_;
-    cv::Mat map1x_, map1y_, map2x_, map2y_;
-    bool info_ready_ = false;
+  static bool startsWith(const std::string& s, const char* p) { return s.rfind(p, 0) == 0; }
+  static int containerIndex0(const std::string& cls_str) {   // [ADDED]
+    if (startsWith(cls_str, "container") && cls_str.size() > 9) {
+      try { int n = std::stoi(cls_str.substr(9)); return n - 1; } catch (...) {}
+    }
+    return -1;
+  }
+  static std::string shortenClass(const std::string& cls_str) { // [ADDED]
+    if (startsWith(cls_str, "container") && cls_str.size() > 9) return "c" + cls_str.substr(9);
+    return cls_str;
+  }
 
-    visualization_msgs::msg::MarkerArray marker_array_; // Persistent marker array
+  // CameraInfo
+  void leftInfoCallback(const sensor_msgs::msg::CameraInfo::SharedPtr msg) {
+    K_ = cv::Mat(3,3,CV_64F,(void*)msg->k.data()).clone();
+    D_ = cv::Mat(1,(int)msg->d.size(),CV_64F,(void*)msg->d.data()).clone();
+    img_w_ = (int)msg->width; img_h_ = (int)msg->height;
+    have_cam_ = true;
+    RCLCPP_INFO_ONCE(this->get_logger(), "Left CameraInfo received (%dx%d).", img_w_, img_h_);
+  }
 
-    std::string namespace_;
-    double marker_color_r_, marker_color_g_, marker_color_b_;
+  // CSV path + header
+  void openCsvLogger() {
+    std::filesystem::path base{log_dir_};                               // [ADDED]
+    std::error_code ec;
+    std::filesystem::create_directories(base, ec);                       // [ADDED]
+    if (ec) {
+      RCLCPP_ERROR(this->get_logger(), "create_directories('%s') failed: %s",
+                   base.string().c_str(), ec.message().c_str());
+      return;
+    }
+    std::string ns = namespace_;
+    if (!ns.empty() && ns.front()=='/') ns.erase(0,1);
+    if (ns.empty()) ns = "root";
 
+    std::time_t t = std::time(nullptr);
+    std::tm tm{}; localtime_r(&t,&tm);
+    std::ostringstream fname;
+    fname << "detections_" << ns << "_" << std::put_time(&tm, "%Y%m%d_%H%M%S") << ".csv";
+    const std::filesystem::path path = base / fname.str();
 
-    void leftInfoCallback(const sensor_msgs::msg::CameraInfo::SharedPtr msg)
-    {
-        K1_ = cv::Mat(3, 3, CV_64F, (void *)msg->k.data()).clone();
-        D1_ = cv::Mat(1, 5, CV_64F, (void *)msg->d.data()).clone();
-        R_ = cv::Mat(3, 3, CV_64F, (void *)msg->r.data()).clone();
-        RCLCPP_INFO_ONCE(this->get_logger(), "Left camera info received");
-        checkCalibrationReady();
+    csv_.open(path, std::ios::out);
+    if (!csv_) {
+      RCLCPP_ERROR(this->get_logger(), "Could not open CSV at %s", path.string().c_str());
+    } else {
+      RCLCPP_INFO(this->get_logger(), "Logging CSV to: %s", path.string().c_str());
+      csv_ << "stamp,ns,class,score,u,v,"
+           << "world_x,world_y,world_z,"
+           << "gt_name,gt_x,gt_y,gt_z,"
+           << "err_x,err_y,err_z,err_norm,"
+           << "aquabot_x,aquabot_y,aquabot_z\n";                        // [ADDED]
+      csv_.flush();
+    }
+  }
+
+  // Pixel -> normalized ray in camera *optical* frame (undistort single point)
+  bool pixelToRayCam(double u, double v, cv::Vec3d& dir_cam) {
+    if (!have_cam_) return false;
+    std::vector<cv::Point2f> src(1), dst(1);
+    src[0] = cv::Point2f((float)u,(float)v);
+    cv::Mat K32; K_.convertTo(K32, CV_32F);
+    cv::Mat D32; D_.convertTo(D32, CV_32F);
+    cv::undistortPoints(src, dst, K32, D32);  // normalized optical coords
+    dir_cam = cv::Vec3d(dst[0].x, dst[0].y, 1.0);
+    double n = std::sqrt(dir_cam[0]*dir_cam[0]+dir_cam[1]*dir_cam[1]+dir_cam[2]*dir_cam[2]);
+    if (n <= 1e-9) return false;
+    dir_cam /= n;
+    return true;
+  }
+
+  // Intersect ray with z = ground_z_
+  bool intersectRayWithZPlane(const geometry_msgs::msg::Point& Cw,
+                              const geometry_msgs::msg::Vector3& Dw,
+                              geometry_msgs::msg::Point& Pw) {
+    const double eps = 1e-9;
+    if (std::abs(Dw.z) < eps) return false;
+    double t = (ground_z_ - Cw.z) / Dw.z;
+    if (t <= 0.0) return false; // forward only
+    Pw.x = Cw.x + t*Dw.x;
+    Pw.y = Cw.y + t*Dw.y;
+    Pw.z = ground_z_;
+    return true;
+  }
+
+  // Ground-truth odom callback
+  void gtOdomCb(const nav_msgs::msg::Odometry::ConstSharedPtr msg, const std::string& name) {
+    const auto& p = msg->pose.pose.position;
+    gt_[name] = {p.x, p.y, p.z};
+  }
+
+  void callback(const sensor_msgs::msg::Image::ConstSharedPtr& img_msg,
+                const vision_msgs::msg::Detection2DArray::ConstSharedPtr& dets_msg) {
+
+    if (!have_cam_) return;
+
+    // Frames and time
+    std::string ns = namespace_;
+    if (!ns.empty() && ns.front()=='/') ns.erase(0,1);
+    const std::string cam_frame = ns + "/downward_left_camera_link";
+    const rclcpp::Time stamp = img_msg->header.stamp;
+
+    // Camera pose in world with fallback                                  // [ADDED]
+    geometry_msgs::msg::TransformStamped Twc;
+    try {
+      Twc = tf_buffer_.lookupTransform("world", cam_frame, stamp, tf2::durationFromSec(0.2));
+    } catch (const tf2::ExtrapolationException& ex) {
+      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
+                           "TF world <- %s at stamp %.3f failed (%s). Using latest TF.",
+                           cam_frame.c_str(), stamp.seconds(), ex.what());
+      Twc = tf_buffer_.lookupTransform("world", cam_frame, rclcpp::Time(0));
+    } catch (const tf2::TransformException& ex) {
+      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
+                           "TF world <- %s failed: %s", cam_frame.c_str(), ex.what());
+      return;
     }
 
-    void rightInfoCallback(const sensor_msgs::msg::CameraInfo::SharedPtr msg)
-    {
-        K2_ = cv::Mat(3, 3, CV_64F, (void *)msg->k.data()).clone();
-        D2_ = cv::Mat(1, 5, CV_64F, (void *)msg->d.data()).clone();
-        T_ = (cv::Mat_<double>(3, 1) << -0.10, 0, 0);  // baseline 10cm
-        RCLCPP_INFO_ONCE(this->get_logger(), "Right camera info received");
-        checkCalibrationReady();
+    geometry_msgs::msg::Point Cw;
+    Cw.x = Twc.transform.translation.x;
+    Cw.y = Twc.transform.translation.y;
+    Cw.z = Twc.transform.translation.z;
+
+    tf2::Quaternion q(Twc.transform.rotation.x, Twc.transform.rotation.y,
+                      Twc.transform.rotation.z, Twc.transform.rotation.w);
+    tf2::Matrix3x3 R(q); // camera_link -> world
+
+    // Also fetch Aquabot position in world at this stamp (for CSV)         // [ADDED]
+    double aq_x = std::numeric_limits<double>::quiet_NaN();
+    double aq_y = std::numeric_limits<double>::quiet_NaN();
+    double aq_z = std::numeric_limits<double>::quiet_NaN();
+    try {
+      auto Twa = tf_buffer_.lookupTransform("world", "aquabot/base_link",
+                                            stamp, tf2::durationFromSec(0.2));
+      aq_x = Twa.transform.translation.x;
+      aq_y = Twa.transform.translation.y;
+      aq_z = Twa.transform.translation.z;
+    } catch (const tf2::TransformException& ex) {
+      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
+        "TF world <- aquabot/base_link at %.3f failed (%s).", stamp.seconds(), ex.what());
+      try {
+        auto Twa = tf_buffer_.lookupTransform("world", "aquabot/base_link", rclcpp::Time(0));
+        aq_x = Twa.transform.translation.x;
+        aq_y = Twa.transform.translation.y;
+        aq_z = Twa.transform.translation.z;
+      } catch (...) {}
     }
 
-    void checkCalibrationReady()
-    {
-        if (!K1_.empty() && !K2_.empty() && !D1_.empty() && !D2_.empty() && !R_.empty())
-        {
-            cv::Size img_size(640, 480);  // assumed image size
-            cv::stereoRectify(K1_, D1_, K2_, D2_, img_size, R_, T_, R1_, R2_, P1_, P2_, Q_);
-            cv::initUndistortRectifyMap(K1_, D1_, R1_, P1_, img_size, CV_32FC1, map1x_, map1y_);
-            cv::initUndistortRectifyMap(K2_, D2_, R2_, P2_, img_size, CV_32FC1, map2x_, map2y_);
-            info_ready_ = true;
+    visualization_msgs::msg::MarkerArray new_markers;
+    std_msgs::msg::Float32MultiArray errors;
+    std_msgs::msg::String report;
+    std::ostringstream rep;
+
+    if (gt_.empty()) {
+      RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
+                           "No ground-truth odometry yet; computing 3D points but not errors.");
+    }
+
+    for (const auto& det : dets_msg->detections) {
+      // Use bottom-center of bbox (better for ground contact)              // [ADDED]
+      double u = det.bbox.center.position.x;
+      double v = det.bbox.center.position.y + 0.5 * det.bbox.size_y;
+
+      // Optional multi-sample along bottom edge                             // [ADDED]
+      geometry_msgs::msg::Point Pw; bool have_pw=false;
+      if (multi_sample_bottom_) {
+        std::array<std::pair<double,double>,5> edge {{
+          {u - 0.4*det.bbox.size_x, v},
+          {u - 0.2*det.bbox.size_x, v},
+          {u,                        v},
+          {u + 0.2*det.bbox.size_x, v},
+          {u + 0.4*det.bbox.size_x, v},
+        }};
+        int ok=0; double sx=0, sy=0;
+        for (auto [uu, vv] : edge) {
+          cv::Vec3d dir_cam;
+          if (!pixelToRayCam(uu, vv, dir_cam)) continue;
+          // optical -> camera_link rotation
+          tf2::Matrix3x3 R_opt_to_cam(0,0,1, -1,0,0, 0,-1,0);
+          tf2::Vector3 d_opt(dir_cam[0], dir_cam[1], dir_cam[2]);
+          tf2::Vector3 d_cam = R_opt_to_cam * d_opt;
+          tf2::Vector3 d_world = R * d_cam;
+
+          geometry_msgs::msg::Vector3 Dw;           // [CHANGED] explicit member assign
+          Dw.x = d_world.x(); Dw.y = d_world.y(); Dw.z = d_world.z();
+          geometry_msgs::msg::Point   Pwi;
+          if (!intersectRayWithZPlane(Cw, Dw, Pwi)) continue;
+          sx += Pwi.x; sy += Pwi.y; ok++;
         }
-    }
+        if (ok > 0) {
+          Pw.x = sx/ok; Pw.y = sy/ok; Pw.z = ground_z_;
+          have_pw = true;
+        }
+      }
+      if (!have_pw) { // fallback: single sample
+        cv::Vec3d dir_cam;
+        if (!pixelToRayCam(u, v, dir_cam)) continue;
+        tf2::Matrix3x3 R_opt_to_cam(0,0,1, -1,0,0, 0,-1,0);
+        tf2::Vector3 d_opt(dir_cam[0], dir_cam[1], dir_cam[2]);
+        tf2::Vector3 d_cam = R_opt_to_cam * d_opt;
+        tf2::Vector3 d_world = R * d_cam;
+        geometry_msgs::msg::Vector3 Dw;             // [CHANGED]
+        Dw.x = d_world.x(); Dw.y = d_world.y(); Dw.z = d_world.z();
+        if (!intersectRayWithZPlane(Cw, Dw, Pw)) continue;
+      }
 
-    void callback(
-        const sensor_msgs::msg::Image::ConstSharedPtr &left_msg,
-        const sensor_msgs::msg::Image::ConstSharedPtr &right_msg,
-        const vision_msgs::msg::Detection2DArray::ConstSharedPtr &dets_msg)
-    {
-        if (!info_ready_) return;
+      // Class/score (keep class_id as zero-based for containers)           
+      int cls_color_id = -1;
+      float score = 0.0f;
+      std::string cls_str = "?";
+      if (!det.results.empty()) {
+        cls_str = det.results[0].hypothesis.class_id;
+        score   = det.results[0].hypothesis.score;
+        cls_color_id = containerIndex0(cls_str);
+      }
+      if (score < (float)min_score_) continue;                            
 
-        cv::Mat left = cv_bridge::toCvCopy(left_msg, "bgr8")->image;
-        cv::Mat right = cv_bridge::toCvCopy(right_msg, "bgr8")->image;
+      // YOLO log
+     /*                                                             
+      RCLCPP_INFO(this->get_logger(),
+                  "YOLO DET: class=%s score=%.2f u=%.1f v=%.1f",
+                  cls_str.c_str(), score, u, v);
+      */
+      // Nearest GT match
+      std::string best_name = "unmatched";
+      double best_dx=0, best_dy=0, best_dz=0, best_dist=std::numeric_limits<double>::infinity();
+      double gt_x=std::numeric_limits<double>::quiet_NaN();
+      double gt_y=std::numeric_limits<double>::quiet_NaN();
+      double gt_z=std::numeric_limits<double>::quiet_NaN();
+
+      if (!gt_.empty()) {
+        for (const auto& kv : gt_) {
+          const auto& gp = kv.second; // {x,y,z}
+          double dx = Pw.x - gp[0];
+          double dy = Pw.y - gp[1];
+          double dz = Pw.z - gp[2];
+          double dd = std::sqrt(dx*dx + dy*dy + dz*dz);
+          if (dd < best_dist) {
+            best_dist = dd; best_dx = dx; best_dy = dy; best_dz = dz;
+            best_name = kv.first; gt_x = gp[0]; gt_y = gp[1]; gt_z = gp[2];
+          }
+        }
+        // Range-dependent gate                                              // [ADDED]
+        if (gate_frac_ > 0.0) {
+          double range = std::hypot(Pw.x, Pw.y);
+          double gate = std::max(gate_min_, gate_frac_ * range);
+          if (best_dist > gate) best_name = "unmatched";
+        } else if (best_dist > gate_m_) {
+          best_name = "unmatched";
+        }
+      }
+
+      // Print GT + DET positions and distances                              // [ADDED]
+      if (best_name != "unmatched") {
+        double gt_norm  = std::sqrt(gt_x*gt_x + gt_y*gt_y + gt_z*gt_z);
+        double det_norm = std::sqrt(Pw.x*Pw.x + Pw.y*Pw.y + Pw.z*Pw.z);
+
+        /*      
         
-
-        // Rectify images
-        cv::Mat left_rect, right_rect;
-        cv::remap(left, left_rect, map1x_, map1y_, cv::INTER_LINEAR);
-        cv::remap(right, right_rect, map2x_, map2y_, cv::INTER_LINEAR);
-
-
-        // === NEW: Visualize rectified images (optional) ===
-        cv::imshow("Left Rectified", left_rect);
-        cv::imshow("Right Rectified", right_rect);
-        cv::waitKey(1);
-         // Convert to grayscale
-
-        cv::Mat left_gray, right_gray;
-        cv::cvtColor(left_rect, left_gray, cv::COLOR_BGR2GRAY);
-        cv::cvtColor(right_rect, right_gray, cv::COLOR_BGR2GRAY);
-
-        int min_disp = -64;              // Allow negative disparities for left coverage
-        int num_disp = 128;              // Range of disparities (must be multiple of 16)
-        int block_size = 5;              // Block matching size
-
-        cv::Ptr<cv::StereoSGBM> sgbm = cv::StereoSGBM::create(
-        min_disp, num_disp, block_size);
-
-        sgbm->setP1(8 * left_gray.channels() * block_size * block_size);
-        sgbm->setP2(32 * left_gray.channels() * block_size * block_size);
-        sgbm->setMode(cv::StereoSGBM::MODE_SGBM_3WAY);  // Better accuracy
-        sgbm->setSpeckleWindowSize(100);                // Suppress noise
-        sgbm->setSpeckleRange(32);
-        sgbm->setDisp12MaxDiff(1);                     // Allow small differences
-
-
-
-        cv::Mat disparity_raw, disparity;
-        sgbm->compute(left_gray, right_gray, disparity_raw);
-        disparity_raw.convertTo(disparity, CV_32F, 1.0 / 16.0);
-
-
-    // 💡 In the callback, insert this around the saving block:
-     if ((this->now() - last_saved_time_) >= save_interval_) {
-         // === SAVE ===
-        std::string rgb_filename = save_dir_ + "/rgb/frame_" + std::to_string(frame_counter_) + ".jpg";
-        std::string disp_filename = save_dir_ + "/disparity/frame_" + std::to_string(frame_counter_) + ".png";
-
-        cv::imwrite(rgb_filename, left_rect);
-
-        cv::Mat disp_norm;
-        cv::normalize(disparity, disp_norm, 0, 255, cv::NORM_MINMAX);
-        disp_norm.convertTo(disp_norm, CV_8U);
-        cv::imwrite(disp_filename, disp_norm);
-
         RCLCPP_INFO(this->get_logger(),
-            "💾 Saved RGB: %s\n💾 Saved Disparity: %s",
-            rgb_filename.c_str(),
-            disp_filename.c_str());
+          "GT[%s]=(%.2f,%.2f,%.2f)|‖GT‖=%.2f  DET=(%.2f,%.2f,%.2f)|‖DET‖=%.2f  Δ=(%.2f,%.2f,%.2f)|‖Δ‖=%.2f",
+          best_name.c_str(),
+          gt_x, gt_y, gt_z, gt_norm,
+          Pw.x, Pw.y, Pw.z, det_norm,
+          best_dx, best_dy, best_dz, best_dist);
+        */
+      } 
+      
+      else {
+        double det_norm = std::sqrt(Pw.x*Pw.x + Pw.y*Pw.y + Pw.z*Pw.z);
+        /*      
         
-        frame_counter_++;      
-        ///////////
-        last_saved_time_ = this->now();
-     }
+        RCLCPP_INFO(this->get_logger(),
+          "GT[unmatched]  DET=(%.2f,%.2f,%.2f)|‖DET‖=%.2f  Δ=(%.2f,%.2f,%.2f)|‖Δ‖=%.2f (gate_m=%.1f, frac=%.3f)",
+          Pw.x, Pw.y, Pw.z, det_norm,
+          best_dx, best_dy, best_dz, best_dist, gate_m_, gate_frac_);
 
-     else {
-        RCLCPP_DEBUG(this->get_logger(), "⏱ Skipping frame — saving interval not yet passed");
+        */  
+      }
+        
+      // Publish Detection3DStamped (world frame)
+      Detection3DStamped msg;
+      msg.header.stamp = stamp;
+      msg.header.frame_id = "world";
+      msg.position.x = Pw.x; msg.position.y = Pw.y; msg.position.z = Pw.z;
+      msg.class_id = cls_color_id; // 0..4 for containerN, -1 otherwise
+      msg.score = score;
+      std::string ns_clean = namespace_; if (!ns_clean.empty() && ns_clean.front()=='/') ns_clean.erase(0,1);
+      msg.drone_ns = ns_clean;
+      detection_pub_->publish(msg);
+
+      // CSV (now includes GT + error + Aquabot pose)                        // [ADDED]
+      if (csv_) {
+        csv_ << std::fixed << std::setprecision(6)
+             << stamp.seconds() << "," << ns_clean << ","
+             << cls_color_id << "," << score << ","
+             << u << "," << v << ","
+             << Pw.x << "," << Pw.y << "," << Pw.z << ","
+             << best_name << ","
+             << gt_x << "," << gt_y << "," << gt_z << ","
+             << best_dx << "," << best_dy << "," << best_dz << "," << best_dist << ","
+             << aq_x << "," << aq_y << "," << aq_z
+             << "\n";
+      }
+
+      // Markers (sphere + text)                                             // [CHANGED] short labels c1,c2,...
+      RGB col = colorForClass(cls_color_id);
+      int id_base = next_marker_id_; next_marker_id_ += 2;
+
+      visualization_msgs::msg::Marker sph;
+      sph.header.frame_id = "world"; sph.header.stamp = stamp;
+      sph.ns = ns_clean + "_obstacles"; sph.id = id_base;
+      sph.type = visualization_msgs::msg::Marker::SPHERE;
+      sph.action = visualization_msgs::msg::Marker::ADD;
+      sph.pose.position = Pw; sph.pose.orientation.w = 1.0;
+      sph.scale.x = sph.scale.y = sph.scale.z = 0.45;
+      sph.color.a = 1.0; sph.color.r = col.r; sph.color.g = col.g; sph.color.b = col.b;
+      sph.lifetime = rclcpp::Duration::from_seconds(2.0);
+      new_markers.markers.push_back(sph);
+
+      visualization_msgs::msg::Marker txt = sph;
+      txt.id = id_base+1; txt.type = visualization_msgs::msg::Marker::TEXT_VIEW_FACING;
+      std::ostringstream label;
+      std::string pred_short = shortenClass(cls_str);
+      label << pred_short << " (" << std::fixed << std::setprecision(2) << score << ")";
+      if (best_name != "unmatched") {
+        std::string gt_short = shortenClass(best_name);
+        label << "\nGT=" << gt_short
+              << " d=" << std::fixed << std::setprecision(2) << best_dist << "m";
+      } else {
+        label << "\n(no match)";
+      }
+      label << "\n(" << std::fixed << std::setprecision(2) << Pw.x << "," << Pw.y << "," << Pw.z << ")";
+      txt.text = label.str();
+      txt.pose.position.z += 0.6;
+      txt.scale.z = 0.35; txt.color.r = txt.color.g = txt.color.b = 1.0;
+      new_markers.markers.push_back(txt);
+
+      //RCLCPP_DEBUG(this->get_logger(), "Marker color for cls_color_id=%d -> rgb=(%.2f,%.2f,%.2f)",
+             //cls_color_id, sph.color.r, sph.color.g, sph.color.b);
+
+      // Errors table row for /gt_eval/errors (dx,dy,dz,dist)                // [UNCHANGED]
+      errors.data.insert(errors.data.end(), {
+        (float)best_dx, (float)best_dy, (float)best_dz, (float)best_dist
+      });
+      std::ostringstream line;
+      line << "det: cls=" << cls_str << " score=" << std::fixed << std::setprecision(2) << score
+           << " world=(" << std::setprecision(2) << Pw.x << "," << Pw.y << "," << Pw.z << ") "
+           << "match=" << best_name << " dist=" << std::setprecision(3) << best_dist << " m";
+      rep << line.str() << "\n";
     }
 
-              
+    // Publish markers for this batch
+    for (auto& m : new_markers.markers) marker_array_.markers.push_back(m);
+    marker_pub_->publish(new_markers);
 
-        cv::Mat points3D;
-        cv::reprojectImageTo3D(disparity, points3D, Q_);
-
-
-        // Draw YOLO bounding boxes on disparity map
-        for (const auto &det : dets_msg->detections) {
-            int cx = static_cast<int>(det.bbox.center.position.x);
-            int cy = static_cast<int>(det.bbox.center.position.y);
-            int w = static_cast<int>(det.bbox.size_x);
-            int h = static_cast<int>(det.bbox.size_y);
-
-            cv::rectangle(disparity, cv::Rect(cx - w/2, cy - h/2, w, h), cv::Scalar(255), 2);
-        }
-
-        // Normalize and show disparity
-        cv::Mat disp_vis;
-        cv::normalize(disparity, disp_vis, 0, 255, cv::NORM_MINMAX, CV_8U);
-        cv::imshow("Disparity with YOLO detections", disp_vis);
-        cv::waitKey(1);
-
-        int id_offset = marker_array_.markers.size(); // Offset IDs
-        int id = 0;
-        
-
-        for (const auto &det : dets_msg->detections)
-        {
-            int cx = static_cast<int>(det.bbox.center.position.x);
-            int cy = static_cast<int>(det.bbox.center.position.y);
-            //RCLCPP_INFO(this->get_logger(), "Detection bbox center: x=%.2f, y=%.2f", (float)cx, (float)cy);
-
-            if (cx >= 0 && cx < disparity.cols && cy >= 0 && cy < disparity.rows)
-            {
-                int cx = static_cast<int>(det.bbox.center.position.x);
-                int cy = static_cast<int>(det.bbox.center.position.y);
-                               
-
-                // Sample 7x7 window
-                cv::Rect roi(
-                    std::max(0, cx - 3), std::max(0, cy - 3),
-                    std::min(5, disparity.cols - cx + 3), std::min(5, disparity.rows - cy + 3)
-                );
-
-                cv::Mat disparity_roi = disparity(roi);
-                int valid_count = cv::countNonZero(disparity_roi > 0);
-
-                if (valid_count < (roi.area() * 0.1))
-                {
-                    //RCLCPP_WARN(this->get_logger(), "Too few valid disparities in ROI at (%d, %d)", cx, cy);
-                    continue;
-                }
-
-                cv::Scalar mean_disp = cv::mean(disparity_roi, disparity_roi > 0);
-                float disp = static_cast<float>(mean_disp[0]);
-
-                if (disp <= 1.0f)
-                {
-                    //RCLCPP_WARN(this->get_logger(), "Invalid disparity after ROI filtering at (%d, %d): %.2f", cx, cy, disp);
-                    continue;
-                }
-
-                cv::Vec3f point = points3D.at<cv::Vec3f>(cy, cx);
-
-                if (!std::isfinite(point[2]))
-                {
-                    //RCLCPP_WARN(this->get_logger(), "Point at (%d, %d): NaN or Inf -> x=%.2f y=%.2f z=%.2f",
-                                //cx, cy, point[0], point[1], point[2]);
-                    continue;
-                }
-
-                if (point[2] < 0.1)
-                {
-                    //RCLCPP_WARN(this->get_logger(), "Point at (%d, %d): Too close -> x=%.2f y=%.2f z=%.2f",
-                                //cx, cy, point[0], point[1], point[2]);
-                    continue;
-                }
-
-                if (point[2] > 15.0)
-                {
-                    //RCLCPP_WARN(this->get_logger(), "Point at (%d, %d): Too far -> x=%.2f y=%.2f z=%.2f",
-                                //cx, cy, point[0], point[1], point[2]);
-                    continue;
-                } 
-
-
-                if (disp > 0.01)
-                {
-                    cv::Vec3f point = points3D.at<cv::Vec3f>(cy, cx);
-                    RCLCPP_INFO(this->get_logger(), "Reprojected 3D point: x=%.2f y=%.2f z=%.2f", point[0], point[1], point[2]);
-
-                    if (std::isfinite(point[2]) && point[2] > 0.1 && point[2] < 20.0)
-
-                    {
-                        std::string ns = this->get_namespace();
-                        if (!ns.empty() && ns.front() == '/') {
-                            ns.erase(0, 1);  // remove leading slash
-                        }                          
-
-                        geometry_msgs::msg::PointStamped p_cam;
-                        p_cam.header = det.header;
-                        p_cam.header.frame_id = ns + "/downward_left_camera_link";
-                        p_cam.header.stamp = this->get_clock()->now(); 
-                        p_cam.point.x = point[0];
-                        p_cam.point.y = point[1];
-                        p_cam.point.z = point[2];
-
-                        try
-                        {
-                            geometry_msgs::msg::PointStamped p_world;
-                            tf_buffer_.transform(p_cam, p_world, "world", tf2::durationFromSec(0.5));
-
-                            RCLCPP_INFO(this->get_logger(), "Transformed point to world: x=%.2f y=%.2f z=%.2f",
-                                        p_world.point.x, p_world.point.y, p_world.point.z);
-
-                            point_pub_->publish(p_world);
-
-                            // === SPHERE MARKER ===
-                            visualization_msgs::msg::Marker marker;
-                            marker.header = p_world.header;
-                            marker.header.frame_id = "world";
-                            marker.ns = ns +"_obstacles";
-                            marker.id = id_offset+id*2;
-                            marker.type = visualization_msgs::msg::Marker::SPHERE;
-                            marker.action = visualization_msgs::msg::Marker::ADD;
-                            marker.pose.position.x = p_world.point.x;
-                            marker.pose.position.y = p_world.point.y;
-                            marker.pose.position.z = 0; // clamp z
-                            marker.pose.orientation.w = 1.0;
-                            marker.scale.x = 0.25;
-                            marker.scale.y = 0.25;
-                            marker.scale.z = 0.25;
-                            marker.color.a = 1.0;
-                            marker.color.r = marker_color_r_;
-                            marker.color.g = marker_color_g_;
-                            marker.color.b = marker_color_b_;                            
-
-                            marker.lifetime = rclcpp::Duration::from_seconds(0.0);
-                            
-                            marker_array_.markers.push_back(marker);
-
-                            // === TEXT LABEL MARKER ===
-                            visualization_msgs::msg::Marker text_marker = marker;
-                            text_marker.id = id_offset+id * 2 + 1;
-                            text_marker.type = visualization_msgs::msg::Marker::TEXT_VIEW_FACING;
-                            text_marker.text = "ID: " + det.results[0].hypothesis.class_id;
-                            text_marker.pose.position.z += 1.0; // offset text
-                            text_marker.scale.z = 0.4;
-                            text_marker.color.r = 1.0;
-                            text_marker.color.g = 1.0;
-                            text_marker.color.b = 1.0;
-                            marker_array_.markers.push_back(text_marker);
-                            id++;
-                        }
-                        catch (const tf2::TransformException &ex)
-                        {
-                            RCLCPP_WARN(this->get_logger(), "Could not transform point to world frame: %s", ex.what());
-                        }
-                    }
-                    else
-                    {
-                        RCLCPP_WARN(this->get_logger(), "Invalid point: z=%.2f", point[2]);
-                    }
-                }
-                else
-                {
-                    RCLCPP_WARN(this->get_logger(), "Low or invalid disparity at (%d, %d): %.2f", cx, cy, disp);
-                }
-            }
-        }
-
-        marker_pub_->publish(marker_array_);
+    // Publish errors array with layout
+    if (!errors.data.empty()) {
+      std_msgs::msg::Float32MultiArray out = errors;
+      const size_t n = out.data.size()/4;
+      out.layout.dim.resize(2);
+      out.layout.dim[0].label = "detections";
+      out.layout.dim[0].size  = (uint32_t)n;
+      out.layout.dim[0].stride= (uint32_t)(4*n);
+      out.layout.dim[1].label = "metrics";
+      out.layout.dim[1].size  = 4;
+      out.layout.dim[1].stride= 4;
+      errors_pub_->publish(out);
     }
+
+    // Publish report
+    if (!rep.str().empty()) {
+      std_msgs::msg::String s; s.data = rep.str();
+      report_pub_->publish(s);
+    }
+
+    if (csv_) csv_.flush();
+  }
 };
 
-int main(int argc, char **argv)
-{
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared<StereoObstacleLocalizer>());
-    rclcpp::shutdown();
-    return 0;
+int main(int argc, char** argv) {
+  rclcpp::init(argc, argv);
+  rclcpp::spin(std::make_shared<StereoObstacleLocalizer>());
+  rclcpp::shutdown();
+  return 0;
 }

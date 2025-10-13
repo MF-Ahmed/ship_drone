@@ -1,46 +1,34 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node, PushRosNamespace
 from launch.actions import GroupAction
+from ament_index_python.packages import get_package_share_directory
 import os
 
+
 def generate_launch_description():
-    pkg_share = os.path.join(os.path.dirname(__file__), '..')
-    config_file = os.path.join(pkg_share, 'config', 'drone_ekf.yaml')
+    config_path = os.path.join(
+        get_package_share_directory('crazyflie_ekf'),
+        'config',
+        'drone_ekf.yaml'
+    )
 
-    return LaunchDescription([
-        # Drone 1 EKF node
-        GroupAction([
-            PushRosNamespace('drone1'),
-            Node(
-                package='crazyflie_ekf',
-                executable='crazyflie_ekf_node',
-                name='ekf',
-                output='screen',
-                parameters=[config_file, {'use_sim_time': True}]
-            )
-        ]),
+    # You can extend this list to ['drone1', 'drone2', 'drone3']
+    drones = ['drone1', 'drone2', 'drone3']
 
-        # Drone 2 EKF node
-        GroupAction([
-            PushRosNamespace('drone2'),
-            Node(
-                package='crazyflie_ekf',
-                executable='crazyflie_ekf_node',
-                name='ekf',
-                output='screen',
-                parameters=[config_file, {'use_sim_time': True}]
-            )
-        ]),
+    actions = []
 
-        # Drone 3 EKF node
-        GroupAction([
-            PushRosNamespace('drone3'),
-            Node(
-                package='crazyflie_ekf',
-                executable='crazyflie_ekf_node',
-                name='ekf',
-                output='screen',
-                parameters=[config_file, {'use_sim_time': True}]
-            )
-        ]),
-    ])
+    for drone in drones:
+        actions.append(
+            GroupAction([
+                PushRosNamespace(drone),
+                Node(
+                    package='crazyflie_ekf',
+                    executable='crazyflie_ekf_node',
+                    name='ekf',
+                    parameters=[config_path, {'use_sim_time': True}],
+                    output='screen'
+                )
+            ])
+        )
+
+    return LaunchDescription(actions)

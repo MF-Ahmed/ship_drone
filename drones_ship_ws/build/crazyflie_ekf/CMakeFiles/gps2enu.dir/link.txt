@@ -1,2 +1,0 @@
-/usr/bin/ar qc libgps2enu.a CMakeFiles/gps2enu.dir/src/gps2enu.cpp.o
-/usr/bin/ranlib libgps2enu.a
