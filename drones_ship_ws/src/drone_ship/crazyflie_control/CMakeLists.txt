@@ -42,38 +42,5 @@ install(DIRECTORY config launch
   DESTINATION share/${PROJECT_NAME})
   
   
-  
-# Add library for shared code
-add_library(crazyflie_6dof_controller_lib
-  src/crazyflie_6dof_controller.cpp
-)
-ament_target_dependencies(crazyflie_6dof_controller_lib
-  rclcpp
-  geometry_msgs
-  nav_msgs
-  tf2
-  tf2_geometry_msgs
-)
-
-# Create executable
-add_executable(crazyflie_6dof_controller_node
-  src/crazyflie_6dof_controller.cpp
-)
-target_link_libraries(crazyflie_6dof_controller_node
-  crazyflie_6dof_controller_lib
-)
-ament_target_dependencies(crazyflie_6dof_controller_node
-  rclcpp
-  geometry_msgs
-  nav_msgs
-  tf2
-  tf2_geometry_msgs
-)  
-
-install(TARGETS
-  crazyflie_6dof_controller_node
-  DESTINATION lib/${PROJECT_NAME})
-
-
 
 ament_package()

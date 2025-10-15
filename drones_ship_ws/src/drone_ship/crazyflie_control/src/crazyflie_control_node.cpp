@@ -24,10 +24,10 @@ public:
   CrazyflieForwardNode()
   : Node("crazyflie_forward_node"),
     target_z_(10.0),
-    target_distance_(15.0),
+    target_distance_(25.0),
     stage_(ASCEND),
     // CHANGED: keep Z gains but we'll add anti-windup
-    pid_z_(0.4, 0.01, 0.1),
+    pid_z_(0.55, 0.015, 0.10),
     // CHANGED: forward P-only, gentler
     pid_forward_(0.12, 0.0, 0.0),
     pid_yaw_(1.0, 0.0, 0.1),
@@ -143,7 +143,7 @@ private:
           break;
         }
         // CHANGED: use anti-windup vz
-        cmd.linear.z = compute_vz_aw(error_z, dt, -0.3, 0.3);
+        cmd.linear.z = compute_vz_aw(error_z, dt, -0.6, 0.6);
         break;
       }
 

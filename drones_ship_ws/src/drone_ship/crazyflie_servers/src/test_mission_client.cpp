@@ -1,14 +1,14 @@
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp_action/rclcpp_action.hpp>
-#include "crazyflie_yolo/action/navigate_to_hover.hpp"
-#include "crazyflie_yolo/action/move_forward.hpp"
+#include "crazyflie_servers/action/navigate_to_hover.hpp"
+#include "crazyflie_servers/action/move_forward.hpp"
 
 using namespace std::chrono_literals;
 
 class MissionClient : public rclcpp::Node {
 public:
-  using NavigateToHover = crazyflie_yolo::action::NavigateToHover;
-  using MoveForward = crazyflie_yolo::action::MoveForward;
+  using NavigateToHover = crazyflie_servers::action::NavigateToHover;
+  using MoveForward = crazyflie_servers::action::MoveForward;
 
   using HoverGoalHandle = rclcpp_action::ClientGoalHandle<NavigateToHover>;
   using MoveGoalHandle  = rclcpp_action::ClientGoalHandle<MoveForward>;

@@ -210,14 +210,14 @@ def launch_setup():
                 output='screen'
             )
       
-           
+     #######################   Containers  #########################      
     sl.node(
         package='ros_gz_sim',
         executable='create',
         name='spawn_container1',
         arguments=[
             '-name', 'container1',
-            '-x', '40', '-y', '-5', '-z', '1.0',
+            '-x', '10', '-y', '-5', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/container1/model.sdf')
         ],
         output='screen'
@@ -230,7 +230,7 @@ def launch_setup():
         name='spawn_container2',
         arguments=[
             '-name', 'container2',
-            '-x', '60', '-y', '3', '-z', '1.0',
+            '-x', '20', '-y', '3', '-z', '1.0',
             #'-R', '0', '-P', '0', '-Y', '1.57', 
             '-file', os.path.expanduser('~/.gz/models/newnames/container2/model.sdf')
         ],
@@ -243,7 +243,7 @@ def launch_setup():
         name='spawn_container3',
         arguments=[
             '-name', 'container3',
-            '-x', '40', '-y', '10', '-z', '1.0',
+            '-x', '10', '-y', '10', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/container3/model.sdf')
         ],
         output='screen'
@@ -255,7 +255,7 @@ def launch_setup():
         name='spawn_container4',
         arguments=[
             '-name', 'container4',
-            '-x', '60', '-y', '15', '-z', '1.0',
+            '-x', '20', '-y', '15', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/container4/model.sdf')
         ],
         output='screen'
@@ -268,7 +268,7 @@ def launch_setup():
         name='spawn_container5',
         arguments=[
             '-name', 'container5',
-            '-x', '80', '-y', '-15', '-z', '1.0',
+            '-x', '20', '-y', '-15', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/container5/model.sdf')
         ],
         output='screen'

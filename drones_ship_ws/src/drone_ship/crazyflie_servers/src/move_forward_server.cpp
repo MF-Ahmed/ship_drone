@@ -1,5 +1,5 @@
 // move_forward_server.cpp — ROS 2 Jazzy
-// Action: crazyflie_yolo/MoveForward (extended)
+// Action: crazyflie_servers/MoveForward (extended)
 // Goal fields: distance_x, distance_y, speed
 // Features: XY motion in yaw-aligned frame, world/body cmd frames, yaw hold with gating,
 //           smooth ramp, proactive braking, slow zone taper, time-in-tolerance hysteresis.
@@ -17,9 +17,9 @@
 #include <atomic>
 #include <string>
 
-#include "crazyflie_yolo/action/move_forward.hpp"
+#include "crazyflie_servers/action/move_forward.hpp"
 
-using MoveForward   = crazyflie_yolo::action::MoveForward;
+using MoveForward   = crazyflie_servers::action::MoveForward;
 using GoalHandleMF  = rclcpp_action::ServerGoalHandle<MoveForward>;
 
 static inline double wrapToPi(double a) {
@@ -51,6 +51,14 @@ public:
     yaw_gate_rad_   = declare_parameter<double>("yaw_gate_radius",  0.6);     // m
     yaw_min_speed_  = declare_parameter<double>("yaw_min_speed",    0.05);    // m/s
 
+
+
+    // New params
+    hold_altitude_ = declare_parameter<bool>("hold_altitude", true);          
+    z_kp_          = declare_parameter<double>("z_hold_kp", 1.0);             
+    z_vmax_        = declare_parameter<double>("z_hold_vmax", 0.5);           
+    z_deadband_    = declare_parameter<double>("z_hold_deadband", 0.02);     
+
     // Hysteresis at goal
     stop_hold_time_ = declare_parameter<double>("stop_hold_time",   0.2);     // s
 
@@ -66,9 +74,9 @@ public:
       std::bind(&MoveForwardServer::handle_accepted, this, std::placeholders::_1));
 
     RCLCPP_INFO(get_logger(),
-      "MoveForward (XY) server on '%s'  odom='%s' cmd='%s' frame=%s hold_yaw=%s",
-      "move_forward", odom_topic_.c_str(), cmd_vel_topic_.c_str(),
-      cmd_frame_.c_str(), hold_yaw_ ? "true" : "false");
+        "MoveForward (XY) server on '%s'  odom='%s' cmd='%s' frame=%s hold_yaw=%s hold_alt=%s", 
+        "move_forward", odom_topic_.c_str(), cmd_vel_topic_.c_str(),
+        cmd_frame_.c_str(), hold_yaw_ ? "true" : "false", hold_altitude_ ? "true" : "false");   
   }
 
 private:
@@ -84,8 +92,13 @@ private:
   double yaw_kp_{0.6}, yaw_rate_max_{0.3}, yaw_gate_rad_{0.6}, yaw_min_speed_{0.05};
   double stop_hold_time_{0.2};
 
+
+  bool   hold_altitude_{true};                                             
+  double z_kp_{1.0}, z_vmax_{0.5}, z_deadband_{0.02};                     
+  double z_ref_{0.0};                                                     
+
   // Odom state
-  std::atomic<double> x_{0.0}, y_{0.0}, yaw_{0.0};
+  std::atomic<double> x_{0.0}, y_{0.0}, z_{0.0}, yaw_{0.0};               
 
   // Exec state
   double smoothed_v_{0.0};
@@ -96,6 +109,7 @@ private:
   void onOdom(const nav_msgs::msg::Odometry::SharedPtr msg) {
     x_ = msg->pose.pose.position.x;
     y_ = msg->pose.pose.position.y;
+    z_ = msg->pose.pose.position.z;
     tf2::Quaternion q;
     tf2::fromMsg(msg->pose.pose.orientation, q);
     double roll, pitch, yaw;
@@ -138,6 +152,7 @@ private:
     // Capture start pose + yaw (defines yaw-aligned frame)
     const double x0   = x_.load();
     const double y0   = y_.load();
+    z_ref_            = z_.load();  
     const double yaw0 = yaw_.load();
 
     const double target_x = goal->distance_x;
@@ -201,6 +216,16 @@ private:
       // Also avoid single-step overshoot
       v_des = std::min(v_des, rem_tot / dt);
 
+      if (rem_tot < 0.5) {
+        v_des = std::min(v_des, 0.6 * rem_tot);   // e.g., 0.3 m left → ≤0.18 m/s
+      }
+      if (rem_tot < 0.2) {
+        v_des = std::min(v_des, 0.3 * rem_tot);   // e.g., 0.1 m left → ≤0.03 m/s
+      }      
+
+
+
+
       // Ramp smoothed_v_ toward v_des
       if (smoothed_v_ < v_des) smoothed_v_ = std::min(smoothed_v_ + ramp_rate_, v_des);
       else                     smoothed_v_ = std::max(smoothed_v_ - ramp_rate_, v_des);
@@ -236,11 +261,24 @@ private:
         wz_cmd = std::clamp(yaw_kp_ * yaw_err, -yaw_rate_max_, yaw_rate_max_);
       }
 
+
+
+
+      // Altitude hold                                                       
+      const double z_now  = z_.load();                                      // 
+      const double z_err  = z_ref_ - z_now;                                 // 
+      double vz_cmd = 0.0;                                                  // 
+      if (hold_altitude_) {                                                 // 
+        if (std::abs(z_err) > z_deadband_) {                                // 
+          vz_cmd = std::clamp(z_kp_ * z_err, -z_vmax_, z_vmax_);            // 
+        }                                                                   // 
+      }                      
+
       // Publish
       geometry_msgs::msg::Twist cmd;
       cmd.linear.x  = vx_cmd;
       cmd.linear.y  = vy_cmd;
-      cmd.linear.z  = 0.0;
+      cmd.linear.z  = vz_cmd;
       cmd.angular.z = wz_cmd;
       cmd_pub_->publish(cmd);
 

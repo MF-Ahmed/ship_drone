@@ -15,24 +15,24 @@
 #include <future>
 #include <chrono>
 
-#include "crazyflie_yolo/action/explore.hpp"
-#include "crazyflie_yolo/action/track.hpp"
-#include "crazyflie_yolo/action/navigate_to_hover.hpp"
-#include "crazyflie_yolo/action/move_forward.hpp"
+#include "crazyflie_servers/action/explore.hpp"
+#include "crazyflie_servers/action/track.hpp"
+#include "crazyflie_servers/action/navigate_to_hover.hpp"
+#include "crazyflie_servers/action/move_forward.hpp"
 
 #ifdef HAVE_TRACK_TARGET
-  #include "crazyflie_yolo/action/track_target.hpp"
+  #include "crazyflie_servers/action/track_target.hpp"
 #endif
 
 using namespace std::chrono_literals;
 
-using Explore          = crazyflie_yolo::action::Explore;
-using Track            = crazyflie_yolo::action::Track;
-using NavigateToHover  = crazyflie_yolo::action::NavigateToHover;
-using MoveForward      = crazyflie_yolo::action::MoveForward;
+using Explore          = crazyflie_servers::action::Explore;
+using Track            = crazyflie_servers::action::Track;
+using NavigateToHover  = crazyflie_servers::action::NavigateToHover;
+using MoveForward      = crazyflie_servers::action::MoveForward;
 
 #ifdef HAVE_TRACK_TARGET
-  using TrackTargetLow   = crazyflie_yolo::action::TrackTarget;
+  using TrackTargetLow   = crazyflie_servers::action::TrackTarget;
 #endif
 
 class ExploreAndTrackController : public rclcpp::Node {

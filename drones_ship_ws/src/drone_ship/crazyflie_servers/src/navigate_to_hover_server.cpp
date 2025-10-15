@@ -1,5 +1,6 @@
 // navigate_to_hover_server.cpp — ROS 2 Jazzy
-// Action: crazyflie_yolo/NavigateToHover
+// Action: crazyflie_servers
+// NavigateToHover
 // Publishes cmd_vel.linear.z to reach a target altitude from /<ns>/ekf/odom,
 // then hovers for goal.hover_time seconds. Supports cancel.
 
@@ -10,10 +11,12 @@
 #include <chrono>
 #include <cmath>
 #include <algorithm>
+#include <thread>
+#include <atomic>
 
-#include "crazyflie_yolo/action/navigate_to_hover.hpp"
+#include "crazyflie_servers/action/navigate_to_hover.hpp"
 
-using NavigateToHover = crazyflie_yolo::action::NavigateToHover;
+using NavigateToHover = crazyflie_servers::action::NavigateToHover;
 using GoalHandleHover = rclcpp_action::ServerGoalHandle<NavigateToHover>;
 using namespace std::chrono_literals;
 

@@ -7,7 +7,7 @@ from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     # Hard-coded drone namespaces
-    drones = ['drone1', 'drone2', 'drone3']
+    drones = ['drone1' 'drone2', 'drone3']
 
     actions = []
 
@@ -28,6 +28,7 @@ def generate_launch_description():
                         {"annotated_image_topic": "yolo/image_annotated"},
                         {"use_sim_time": True},
                     ],
+                    respawn=True,
                     output='screen'
                 ),
 
@@ -36,7 +37,8 @@ def generate_launch_description():
                     package='crazyflie_yolo',
                     executable='stereo_depth_node',
                     name='stereo_depth_node',
-                    parameters=[{"use_sim_time": True}, {"min_confidence": 0.92}],
+                    parameters=[{"use_sim_time": True}, {"min_confidence": 0.90}],
+                    respawn=True,
                     output='screen'
                 ),
 
@@ -48,14 +50,15 @@ def generate_launch_description():
                     parameters=[
                         {"detection_topic": "detections_3d"},
                         {"group_mode": "class_and_drone"},
-                        {"association_threshold": 40.0},
+                        {"association_threshold": 10.0}, #was 40
                         {"track_prune_time": 10.0},
-                        {"r_x": 0.5}, {"r_y": 0.5}, {"r_z": 2.0},
+                        {"r_x": 1.0}, {"r_y": 1.0}, {"r_z": 3.0}, # was 0.5, 0.5. 2.0
                         {"q_process": 0.5},
                         {"init_var_pos": 2.0},
                         {"init_var_vel": 1.0},
                         {"use_sim_time": True},
                     ],
+                    respawn=True,
                     output='screen'
                 ),
             ])

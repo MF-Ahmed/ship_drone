@@ -45,7 +45,21 @@ class YOLODetector(Node):
             self.get_logger().error(f"CVBridge error: {e}")
             return
         #self.get_logger().info("Received image frame.")
-        results = self.model(cv_image, verbose=False)[0]
+        #results = self.model(cv_image, verbose=False)[0]
+
+        results = self.model(
+            cv_image,
+            verbose=False,
+            imgsz=832,         # try 640 → 832 → 960 depending on FPS budget
+            conf=self.min_conf,
+            iou=0.45,          # 0.45–0.6 usually good
+            max_det=50
+        )[0]
+
+
+
+
+
         #self.get_logger().info(f"Detections: {len(results.boxes) if results.boxes is not None else 0}")
         #self.get_logger().info(f"Incoming camera frame_id: {msg.header.frame_id}")
 

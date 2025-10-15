@@ -1,0 +1,5 @@
+λ › ros2 run crazyflie_servers dual_action_client --ros-args \
+  -p ns:=drone2 \
+  -p target_z:=10.0 -p hover_sec:=2 -p yaw:=0.0 \
+  -p distance_x:=40.0 -p speed:=10.25
+
