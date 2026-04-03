@@ -73,11 +73,16 @@ public:
       std::stringstream ss(allowed_classes_str);
       for (std::string tok; std::getline(ss, tok, ','); ) {
         tok.erase(std::remove_if(tok.begin(), tok.end(), ::isspace), tok.end());
-        if (!tok.empty()) { try { allowed_classes_.insert(std::stoi(tok)); } catch (...) {} }
+        if (!tok.empty()) {
+          try { allowed_classes_.insert(std::stoi(tok)); }
+          catch (...) {}
+        }
       }
-      if (allowed_classes_.empty()) RCLCPP_INFO(get_logger(), "allowed_classes: <all>");
-      else {
-        std::string dbg; for (auto c : allowed_classes_) dbg += (dbg.empty()?"":",")+std::to_string(c);
+      if (allowed_classes_.empty()) {
+        RCLCPP_INFO(get_logger(), "allowed_classes: <all>");
+      } else {
+        std::string dbg;
+        for (auto c : allowed_classes_) dbg += (dbg.empty() ? "" : ",") + std::to_string(c);
         RCLCPP_INFO(get_logger(), "allowed_classes: {%s}", dbg.c_str());
       }
     }
@@ -86,6 +91,7 @@ public:
     log_dir_ = declare_parameter<std::string>(
       "log_dir",
       "/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_yolo/logs");
+      
 
     // Aquabot GT
     gt_subs_.push_back(create_subscription<nav_msgs::msg::Odometry>(
@@ -154,15 +160,35 @@ private:
     return tintByDrone(colorForClass(cls), ns);
   }
 
+  // Small helper to shorten class names like "container3" -> "c3"
+  static bool startsWith(const std::string& s, const char* p) {
+    return s.rfind(p, 0) == 0;
+  }
+  static std::string shortenClass(const std::string& cls_str) {
+    if (startsWith(cls_str, "container") && cls_str.size() > 9)
+      return "c" + cls_str.substr(9);
+    return cls_str;
+  }
+
   // ---------- Track ----------
   struct ObstacleTrack {
     int id;
     int class_id;
+    std::string class_name;
     std::string drone_ns;
     Eigen::Matrix<double,6,1> x; // [px,py,pz,vx,vy,vz]
     Eigen::Matrix<double,6,6> P;
     rclcpp::Time last_update;
     std::deque<Eigen::Vector3d> trail;
+
+    // --- Evaluation metrics (similar to StereoObstacleLocalizer) ---
+    std::string gt_name;     // nearest container name or "unmatched"
+    double gt_x, gt_y, gt_z; // GT container position
+    double err_x, err_y, err_z, err_norm; // tr.pos - GT
+    double aquabot_x, aquabot_y, aquabot_z; // Aquabot pose at last eval
+    double aq_range_est;   // |Aquabot - tracked|
+    double aq_range_gt;    // |Aquabot - GT container|
+    double aq_range_err;   // aq_range_est - aq_range_gt
   };
 
   // ---------- ROS ----------
@@ -255,12 +281,34 @@ private:
       RCLCPP_WARN(get_logger(), "Could not open CSV: %s", log_path_.c_str());
       return;
     }
-    // header (ADDED Aquabot ranges and range error columns)
-    csv_ << "stamp,track_id,class,ns,"
+    // header (EXTENDED: add Aquabot pose + range metrics)
+    csv_ << "stamp,track_id,class,class_name,ns,"
          << "est_x,est_y,est_z,"
          << "gt_name,gt_x,gt_y,gt_z,"
          << "err_x,err_y,err_z,err_norm,"
+         << "aquabot_x,aquabot_y,aquabot_z,"
          << "aq_range_est,aq_range_gt,aq_range_err\n";
+    csv_.flush();
+  }
+
+  // ---------- log PRUNED tracks ----------
+  void logPrunedTrack(const rclcpp::Time& stamp, const ObstacleTrack& tr)
+  {
+    if (!csv_) return;
+
+    double s = stamp.seconds();
+    double nan = std::numeric_limits<double>::quiet_NaN();
+
+    csv_ << std::fixed << std::setprecision(6)
+         << s << ","
+         << tr.id << "," << tr.class_id << "," << tr.class_name << "," << tr.drone_ns << ","
+         << tr.x(0) << "," << tr.x(1) << "," << tr.x(2) << ","
+         << "PRUNED" << ","  // gt_name
+         << nan << "," << nan << "," << nan << "," // gt_x,gt_y,gt_z
+         << nan << "," << nan << "," << nan << "," << nan << "," // err_x,err_y,err_z,err_norm
+         << nan << "," << nan << "," << nan << ","              // aquabot_x,y,z
+         << nan << "," << nan << "," << nan                     // aq_range_est, aq_range_gt, aq_range_err
+         << "\n";
     csv_.flush();
   }
 
@@ -305,7 +353,11 @@ private:
 
     // Nearest neighbor with gate
     int best_id = -1; double best_d2 = std::numeric_limits<double>::infinity();
-    for (const auto &c : cand) if (c.d2 < association_threshold_ && c.d2 < best_d2) { best_d2 = c.d2; best_id = c.id; }
+    for (const auto &c : cand) {
+      if (c.d2 < association_threshold_ && c.d2 < best_d2) {
+        best_d2 = c.d2; best_id = c.id;
+      }
+    }
 
     if (best_id >= 0) {
       // Update associated track
@@ -331,31 +383,42 @@ private:
       tr.P = (Eigen::Matrix<double,6,6>::Identity() - K*H) * P_pred;
       tr.last_update = stamp;
 
-      if (clamp_z_) { tr.x(2) = ground_z_; tr.P(2,2) = std::min(tr.P(2,2), init_var_pos_); }
+      if (!msg->class_name.empty()) tr.class_name = msg->class_name;
+
+      if (clamp_z_) {
+        tr.x(2) = ground_z_;
+        tr.P(2,2) = std::min(tr.P(2,2), init_var_pos_);
+      }
 
       if (draw_trail_) {
         tr.trail.push_back(tr.x.head<3>());
         while ((int)tr.trail.size() > trail_len_) tr.trail.pop_front();
       }
 
-      RCLCPP_INFO(get_logger(),
-        "[EKF] Updated Track %d | pos=(%.2f, %.2f, %.2f) vel=(%.2f, %.2f, %.2f) d2=%.4f",
-        tr.id, tr.x(0), tr.x(1), tr.x(2), tr.x(3), tr.x(4), tr.x(5), best_d2);
+      //RCLCPP_INFO(get_logger(),
+        //"[EKF] Updated Track %d | pos=(%.2f, %.2f, %.2f) vel=(%.2f, %.2f, %.2f) d2=%.4f (cls=%d '%s')",
+        //tr.id, tr.x(0), tr.x(1), tr.x(2), tr.x(3), tr.x(4), tr.x(5), best_d2,
+        //tr.class_id, tr.class_name.c_str());
 
       // Log errors vs nearest container GT + aquabot range & range error
       logErrors(stamp, tr);
 
     } else {
       // Create new track
-      createTrack(z, stamp, msg->class_id, msg->drone_ns);
+      createTrack(z, stamp, msg->class_id, msg->class_name, msg->drone_ns);
     }
   }
 
-  void createTrack(const Eigen::Vector3d &z_world, const rclcpp::Time &stamp, int class_id, const std::string &ns)
+  void createTrack(const Eigen::Vector3d &z_world,
+                   const rclcpp::Time &stamp,
+                   int class_id,
+                   const std::string &class_name,
+                   const std::string &ns)
   {
     ObstacleTrack tr;
     tr.id = next_track_id_++;
     tr.class_id = class_id;
+    tr.class_name = class_name;
     tr.drone_ns = ns;
     tr.x.setZero();
     tr.x.head<3>() = z_world;
@@ -364,10 +427,20 @@ private:
     tr.P.bottomRightCorner<3,3>() = init_var_vel_ * Eigen::Matrix3d::Identity();
     tr.last_update = stamp;
     if (draw_trail_) tr.trail.push_back(tr.x.head<3>());
+
+    // init evaluation metrics
+    double nan = std::numeric_limits<double>::quiet_NaN();
+    tr.gt_name = "unmatched";
+    tr.gt_x = tr.gt_y = tr.gt_z = nan;
+    tr.err_x = tr.err_y = tr.err_z = tr.err_norm = nan;
+    tr.aquabot_x = tr.aquabot_y = tr.aquabot_z = nan;
+    tr.aq_range_est = tr.aq_range_gt = tr.aq_range_err = nan;
+
     tracks_[tr.id] = tr;
 
-    RCLCPP_INFO(get_logger(), "[EKF] Created Track %d at (%.2f, %.2f, %.2f) cls=%d ns=%s",
-                tr.id, z_world(0), z_world(1), z_world(2), class_id, ns.c_str());
+    RCLCPP_INFO(get_logger(),
+      "[EKF] Created Track %d at (%.2f, %.2f, %.2f) cls=%d '%s' ns=%s",
+      tr.id, z_world(0), z_world(1), z_world(2), class_id, class_name.c_str(), ns.c_str());
   }
 
   // Compute nearest container GT, print & CSV:
@@ -375,14 +448,14 @@ private:
   //  - Aquabot↔Tracked range (estimate)
   //  - Aquabot↔GT-container range (truth)
   //  - Range error (estimate - truth)
-  void logErrors(const rclcpp::Time& stamp, const ObstacleTrack& tr)
+  void logErrors(const rclcpp::Time& stamp, ObstacleTrack& tr)
   {
+    double nan = std::numeric_limits<double>::quiet_NaN();
+
     // nearest containerN (for GT anchor)
     std::string best_name = "unmatched";
     double best_dx=0, best_dy=0, best_dz=0, best_dist=std::numeric_limits<double>::infinity();
-    double gt_x=std::numeric_limits<double>::quiet_NaN();
-    double gt_y=std::numeric_limits<double>::quiet_NaN();
-    double gt_z=std::numeric_limits<double>::quiet_NaN();
+    double gt_x=nan, gt_y=nan, gt_z=nan;
 
     for (const auto& kv : gt_) {
       if (kv.first.rfind("container", 0) != 0) continue; // only containers
@@ -391,13 +464,15 @@ private:
       double dy = tr.x(1) - gp[1];
       double dz = tr.x(2) - gp[2];
       double dd = std::sqrt(dx*dx + dy*dy + dz*dz);
-      if (dd < best_dist) { best_dist=dd; best_dx=dx; best_dy=dy; best_dz=dz;
-                            best_name=kv.first; gt_x=gp[0]; gt_y=gp[1]; gt_z=gp[2]; }
+      if (dd < best_dist) {
+        best_dist=dd; best_dx=dx; best_dy=dy; best_dz=dz;
+        best_name=kv.first; gt_x=gp[0]; gt_y=gp[1]; gt_z=gp[2];
+      }
     }
 
     // Aquabot pose
     bool have_aq = false;
-    double ax=0, ay=0, az=0;
+    double ax=nan, ay=nan, az=nan;
     auto itA = gt_.find("aquabot");
     if (itA != gt_.end()) {
       ax = itA->second[0]; ay = itA->second[1]; az = itA->second[2];
@@ -405,9 +480,9 @@ private:
     }
 
     // Ranges
-    double aq_range_est = std::numeric_limits<double>::quiet_NaN();
-    double aq_range_gt  = std::numeric_limits<double>::quiet_NaN();
-    double aq_range_err = std::numeric_limits<double>::quiet_NaN();
+    double aq_range_est = nan;
+    double aq_range_gt  = nan;
+    double aq_range_err = nan;
 
     if (have_aq) {
       // Aquabot ↔ Tracked (estimate)
@@ -422,45 +497,72 @@ private:
       }
     }
 
-    // Console logs – concise & readable
+    // Store in track struct (for markers & later CSV)
+    tr.gt_name   = best_name;
+    tr.gt_x      = gt_x;
+    tr.gt_y      = gt_y;
+    tr.gt_z      = gt_z;
+    tr.err_x     = (best_name != "unmatched") ? best_dx : nan;
+    tr.err_y     = (best_name != "unmatched") ? best_dy : nan;
+    tr.err_z     = (best_name != "unmatched") ? best_dz : nan;
+    tr.err_norm  = (best_name != "unmatched") ? best_dist : nan;
+    tr.aquabot_x = ax;
+    tr.aquabot_y = ay;
+    tr.aquabot_z = az;
+    tr.aq_range_est = aq_range_est;
+    tr.aq_range_gt  = aq_range_gt;
+    tr.aq_range_err = aq_range_err;
+
+    // Console logs – concise & readable (show class name)
+    
+    /*
     if (best_name != "unmatched") {
       RCLCPP_INFO(get_logger(),
-        "trk %d cls %d | GT=%s  err=(%.2f,%.2f,%.2f)|d|=%.2f  AqRange est=%.2f gt=%.2f err=%.2f",
-        tr.id, tr.class_id, best_name.c_str(),
+        "trk %d cls %d '%s' | GT=%s  err=(%.2f,%.2f,%.2f)|d|=%.2f  AqRange est=%.2f gt=%.2f err=%.2f",
+        tr.id, tr.class_id, tr.class_name.c_str(), best_name.c_str(),
         best_dx, best_dy, best_dz, best_dist,
         aq_range_est, aq_range_gt, aq_range_err);
     } else {
       RCLCPP_INFO(get_logger(),
-        "trk %d cls %d | GT=unmatched  AqRange est=%.2f",
-        tr.id, tr.class_id, aq_range_est);
+        "trk %d cls %d '%s' | GT=unmatched  AqRange est=%.2f",
+        tr.id, tr.class_id, tr.class_name.c_str(), aq_range_est);
     }
-
+    */
     // CSV
     if (csv_) {
       csv_ << std::fixed << std::setprecision(6)
            << stamp.seconds() << ","
-           << tr.id << "," << tr.class_id << "," << tr.drone_ns << ","
+           << tr.id << "," << tr.class_id << "," << tr.class_name << "," << tr.drone_ns << ","
            << tr.x(0) << "," << tr.x(1) << "," << tr.x(2) << ","
            << best_name << "," << gt_x << "," << gt_y << "," << gt_z << ","
-           << best_dx << "," << best_dy << "," << best_dz << "," << best_dist << ","
+           << tr.err_x << "," << tr.err_y << "," << tr.err_z << "," << tr.err_norm << ","
+           << ax << "," << ay << "," << az << ","
            << aq_range_est << "," << aq_range_gt << "," << aq_range_err
            << "\n";
       csv_.flush();
     }
 
-    // Publish compact errors array [dx,dy,dz,‖Δ‖]
+    // Publish compact errors array [dx,dy,dz,‖Δ‖] (unchanged size)
     std_msgs::msg::Float32MultiArray arr;
-    arr.data = { (float)best_dx, (float)best_dy, (float)best_dz, (float)best_dist };
+    arr.data = {
+      (float)((best_name != "unmatched") ? best_dx : 0.0),
+      (float)((best_name != "unmatched") ? best_dy : 0.0),
+      (float)((best_name != "unmatched") ? best_dz : 0.0),
+      (float)((best_name != "unmatched") ? best_dist : 0.0)
+    };
     errors_pub_->publish(arr);
 
     // Report line
     std_msgs::msg::String rep;
     std::ostringstream os;
-    os << "trk " << tr.id << " cls " << tr.class_id
-       << " GT=" << best_name << " err=("
-       << std::setprecision(3) << best_dx << "," << best_dy << "," << best_dz
-       << ") |d|=" << best_dist
-       << "  AqRange est=" << aq_range_est << " gt=" << aq_range_gt
+    os << "trk " << tr.id << " cls " << tr.class_id << " '" << tr.class_name << "'"
+       << " GT=" << best_name;
+    if (best_name != "unmatched") {
+      os << " err=("
+         << std::setprecision(3) << best_dx << "," << best_dy << "," << best_dz
+         << ") |d|=" << best_dist;
+    }
+    os << "  AqRange est=" << aq_range_est << " gt=" << aq_range_gt
        << " err=" << aq_range_err;
     rep.data = os.str();
     report_pub_->publish(rep);
@@ -476,12 +578,20 @@ private:
   {
     const rclcpp::Time t = now();
     std::vector<int> drop;
+    drop.reserve(tracks_.size());
+
     for (auto &kv : tracks_) {
-      if ((t - kv.second.last_update).seconds() > track_prune_time_) drop.push_back(kv.first);
+      const int id = kv.first;
+      auto &tr = kv.second;
+      if ((t - tr.last_update).seconds() > track_prune_time_) {
+        // log pruned track before erasing
+        logPrunedTrack(t, tr);
+        RCLCPP_INFO(get_logger(), "[EKF] Pruned Track %d", id);
+        drop.push_back(id);
+      }
     }
     for (int id : drop) {
       tracks_.erase(id);
-      RCLCPP_INFO(get_logger(), "[EKF] Pruned Track %d", id);
     }
   }
 
@@ -521,10 +631,13 @@ private:
       tobs.header = out.header;
       tobs.id = tr.id;
       tobs.class_id = tr.class_id;
+      tobs.class_name = tr.class_name;
       tobs.drone_ns = tr.drone_ns;
       tobs.position.x = tr.x(0); tobs.position.y = tr.x(1); tobs.position.z = tr.x(2);
       Eigen::Matrix3d Ppos = tr.P.topLeftCorner<3,3>();
-      for (int r=0;r<3;++r) for (int c=0;c<3;++c) tobs.covariance[r*3+c] = Ppos(r,c);
+      for (int r=0;r<3;++r)
+        for (int c=0;c<3;++c)
+          tobs.covariance[r*3+c] = Ppos(r,c);
       out.obstacles.push_back(tobs);
 
       // Color
@@ -623,7 +736,7 @@ private:
         mks.markers.push_back(el);
       }
 
-      // Text label
+      // Text label: class, GT error d, Aquabot range + range error
       {
         visualization_msgs::msg::Marker lab;
         lab.header = out.header;
@@ -637,9 +750,25 @@ private:
         lab.color.a = 1.0;
         lab.color.r = 0.0; lab.color.g = 0.0; lab.color.b = 0.0;
         lab.lifetime = rclcpp::Duration::from_seconds(marker_life_s_);
-        char buf[160];
-        std::snprintf(buf, sizeof(buf), "trk:%d cls:%d", tr.id, tr.class_id);
+
+        // Clean namespace (remove leading '/')
+        std::string ns_clean = tr.drone_ns;
+        if (!ns_clean.empty() && ns_clean.front() == '/') {
+          ns_clean.erase(0, 1);
+        }
+
+        char buf[256];
+
+        std::snprintf(
+          buf, sizeof(buf),
+          "%s\ntrk:%d cls:%d", //(%s)",
+          ns_clean.c_str(),
+          tr.id,
+          tr.class_id
+          //tr.class_name.c_str()
+        );
         lab.text = buf;
+
         mks.markers.push_back(lab);
       }
     }

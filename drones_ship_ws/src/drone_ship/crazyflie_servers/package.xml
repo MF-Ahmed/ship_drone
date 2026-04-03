@@ -27,6 +27,8 @@
   <depend>action_msgs</depend>
   <depend>std_srvs</depend>
   <depend>builtin_interfaces</depend>
+  <depend>crazyflie_yolo</depend>
+  <depend>visualization_msgs</depend>
 
   <!-- Add this copy at top-level -->
   <member_of_group>rosidl_interface_packages</member_of_group>

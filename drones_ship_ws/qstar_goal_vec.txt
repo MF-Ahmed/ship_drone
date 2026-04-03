@@ -1,0 +1,95 @@
+vector:
+  x: 1.8593022369781604
+  y: 1.897897764538747
+  z: 10.000000000000004
+---
+λ › ros2 topic echo /drone2/qstar_goal_vec --once
+
+header:
+  stamp:
+    sec: 243
+    nanosec: 760000000
+  frame_id: drone2/base_footprint
+vector:
+  x: 2.7414209673586587
+  y: 2.1685290710723337
+  z: 10.000000000000004
+---
+λ › ros2 topic echo /drone3/qstar_goal_vec --once
+
+header:
+  stamp:
+    sec: 268
+    nanosec: 820000000
+  frame_id: drone3/base_footprint
+vector:
+  x: 1.2343705613606966
+  y: 0.7946865816901127
+  z: 10.000000000000004
+---
+λ › ros2 topic echo /drone1/qstar_goal_vec --once
+
+header:
+  stamp:
+    sec: 165
+    nanosec: 368000000
+  frame_id: drone1/base_footprint
+vector:
+  x: 1.9280010167120796
+  y: 1.9501223569211847
+  z: 10.000000000000004
+---
+λ › ros2 topic echo /drone2/qstar_goal_vec --once
+
+header:
+  stamp:
+    sec: 206
+    nanosec: 384000000
+  frame_id: drone2/base_footprint
+vector:
+  x: 2.8825393187842594
+  y: 2.371946136069284
+  z: 10.000000000000004
+---
+λ › ros2 topic echo /drone3/qstar_goal_vec --once
+
+A message was lost!!!
+	total count change:1
+	total count: 1---
+header:
+  stamp:
+    sec: 241
+    nanosec: 88000000
+  frame_id: drone3/base_footprint
+vector:
+  x: 1.03774080841861
+  y: 1.220678458449534
+  z: 10.000000000000004
+---
+λ › ros2 topic echo /drone1/qstar_goal_vec --once
+
+header:
+  stamp:
+    sec: 556
+    nanosec: 268000000
+  frame_id: drone1/base_footprint
+vector:
+  x: 0.9727394099856052
+  y: 1.9826500850128002
+  z: 10.000000000002322
+---
+λ › ros2 topic echo /drone2/qstar_goal_vec --once
+
+header:
+  stamp:
+    sec: 619
+    nanosec: 300000000
+  frame_id: drone2/base_footprint
+vector:
+  x: -1.533775647890583
+  y: 0.8701576814962693
+  z: 10.000000000000004
+---
+λ ›                                              data/drones_ship_ws
+
+

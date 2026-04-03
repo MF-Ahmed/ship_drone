@@ -56,6 +56,30 @@ install(
 
 
 
+# --- Drone odom logger node ---
+add_executable(drone_odom_logger
+  src/drone_odom_logger.cpp
+)
+
+ament_target_dependencies(drone_odom_logger
+  rclcpp
+  nav_msgs       # for nav_msgs/msg/Odometry
+  geometry_msgs  # if you used any geometry msgs
+  tf2 
+  
+)
+
+install(
+  TARGETS drone_odom_logger
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+
+
+
+
+
+
 add_library(gps2enu src/gps2enu.cpp)
 target_include_directories(gps2enu PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

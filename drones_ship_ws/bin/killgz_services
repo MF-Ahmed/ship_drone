@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+echo "Requesting clean shutdown…"
+gz service -s /server_control \
+  --reptype gz.msgs.Boolean \
+  --reqtype gz.msgs.ServerControl \
+  --req 'shutdown: true' 2>/dev/null || true
+
+sleep 1
+echo "Force-killing leftovers (if any)…"
+pkill -f 'gz( |- )sim|gz-sim|gz-gui|ros_gz_bridge|parameter_bridge' 2>/dev/null || true
+echo "Gazebo processes killed 🚀"

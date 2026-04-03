@@ -1,0 +1,10 @@
+λ › ros2 run crazyflie_servers dual_action_client --ros-args \
+  -p ns:=drone2 -p target_z:=10.0 -p hover_sec:=2 -p yaw:=0.0 \
+  -p distance_x:=-1.53 -p distance_y:=0.88 -p speed:=0.20
+[INFO] [1772118554.724054312] [dual_action_client]: DualActionClient ns='drone2'
+  navigate_action=/drone2/navigate_to_hover
+  forward_action=/drone2/move_forward
+  target_z=10.00 yaw=0.00 hover=2s
+  distance_x=-1.53 speed=0.88
+[INFO] [1772118554.995472465] [dual_action_client]: Waiting for action servers...
+[INFO] [1772118557.169776134] [dual_action_client]:

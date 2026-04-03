@@ -28,6 +28,11 @@
   <depend>message_filters</depend>
   <depend>image_transport</depend>
   <depend>vision_msgs</depend>
+  <depend>stereo_msgs</depend>
+  <build_depend>eigen3_cmake_module</build_depend>
+  <build_depend>eigen3</build_depend>
+  <exec_depend>eigen3</exec_depend>
+
 
 
 

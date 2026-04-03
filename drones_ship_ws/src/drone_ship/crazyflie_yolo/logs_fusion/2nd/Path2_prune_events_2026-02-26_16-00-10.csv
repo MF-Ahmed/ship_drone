@@ -1,0 +1,1 @@
+stamp_ns,node_ns,track_id,class_id,class_name,drones_seen,age_supported_s,mahal_misses,best_d2,reason_time,reason_mahal,prune_time_s,mahal_prune_threshold,mahal_max_misses,age_update_s,reason_stale,reason_cov,reason_done,logdet_pos,max_std_pos,prune_cov_logdet_max,prune_cov_max_std_m,prune_done_enabled,prune_done_logdet

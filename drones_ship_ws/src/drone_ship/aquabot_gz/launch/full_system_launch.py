@@ -8,8 +8,13 @@ sl = SimpleLauncher(use_sim_time=True)
 
 # Declare arguments
 sl.declare_arg('world', 'medium_new')
-sl.declare_arg('gui', False)
+sl.declare_arg('gui', True)
 sl.declare_arg('rviz_config', 'system_rviz.rviz')  # default file
+
+sl.declare_arg(
+    'odom_log_dir',
+    '/home/user/data/drones_ship_ws/src/drone_ship/crazyflie_ekf/logs'
+)
 
 # Packages
 pkg_bringup = get_package_share_directory('ros_gz_crazyflie_bringup')
@@ -209,6 +214,23 @@ def launch_setup():
                 }],
                 output='screen'
             )
+
+            # ---------------------------------------------------------
+            # Drone odom logger node (raw + EKF -> CSV)
+            # ---------------------------------------------------------
+            sl.node(
+                package='crazyflie_ekf',
+                executable='drone_odom_logger',
+                name=f'{drone_name}_odom_logger',
+                parameters=[{
+                    'raw_odom_topic': 'odom/raw',
+                    'ekf_odom_topic': 'odom/ekf',
+                    'log_dir': sl.arg('odom_log_dir'),
+                }],
+                output='screen'
+            )
+
+
       
      #######################   Containers  #########################      
     sl.node(
@@ -217,7 +239,7 @@ def launch_setup():
         name='spawn_container1',
         arguments=[
             '-name', 'container1',
-            '-x', '10', '-y', '-5', '-z', '1.0',
+            '-x', '15', '-y', '-5', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/container1/model.sdf')
         ],
         output='screen'
@@ -230,7 +252,7 @@ def launch_setup():
         name='spawn_container2',
         arguments=[
             '-name', 'container2',
-            '-x', '20', '-y', '3', '-z', '1.0',
+            '-x', '15', '-y', '3', '-z', '1.0',
             #'-R', '0', '-P', '0', '-Y', '1.57', 
             '-file', os.path.expanduser('~/.gz/models/newnames/container2/model.sdf')
         ],
@@ -243,19 +265,21 @@ def launch_setup():
         name='spawn_container3',
         arguments=[
             '-name', 'container3',
-            '-x', '10', '-y', '10', '-z', '1.0',
+            '-x', '15', '-y', '10', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/container3/model.sdf')
         ],
         output='screen'
     )     
-            
+
+     
+     
     sl.node(
         package='ros_gz_sim',
         executable='create',
         name='spawn_container4',
         arguments=[
             '-name', 'container4',
-            '-x', '20', '-y', '15', '-z', '1.0',
+            '-x', '35', '-y', '5', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/container4/model.sdf')
         ],
         output='screen'
@@ -268,26 +292,29 @@ def launch_setup():
         name='spawn_container5',
         arguments=[
             '-name', 'container5',
-            '-x', '20', '-y', '-15', '-z', '1.0',
+            '-x', '35', '-y', '-3', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/container5/model.sdf')
         ],
         output='screen'
     )                    
-    
     '''
+    
+    
+    
+    
     sl.node(
         package='ros_gz_sim',
         executable='create',
         name='spawn_barrel1',
         arguments=[
             '-name', 'barrel1',
-            '-x', '10', '-y', '-20', '-z', '1.0',
+            '-x', '25', '-y', '10', '-z', '1.0',
             '-file', os.path.expanduser('~/.gz/models/newnames/barrel1/model.sdf')
         ],
         output='screen'
     )                    
-
     '''
+    
 
 
     for name in ('container1','container2','container3','container4','container5', 'barrel1'):#, 'barrel2', 'log1', 'log2'):

@@ -14,6 +14,7 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(Eigen3 REQUIRED)
 
+
 include_directories(/usr/include)
 link_directories(/usr/lib /usr/lib/x86_64-linux-gnu)
 
@@ -37,6 +38,11 @@ target_link_libraries(ekf_node
 install(TARGETS ekf_node
   DESTINATION lib/${PROJECT_NAME}
 )
+
+
+
+
+
 
 install(DIRECTORY launch config
   DESTINATION share/${PROJECT_NAME}

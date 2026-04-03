@@ -4,11 +4,13 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /TF1
         - /TF1/Tree1
         - /Aquabot1/Description Topic1
         - /fused_obsticals_final1/Topic1
-      Splitter Ratio: 0.5874125957489014
-    Tree Height: 855
+        - /Drone1_assigned_Pose1/Topic1
+      Splitter Ratio: 0.7052023410797119
+    Tree Height: 439
 Visualization Manager:
   Class: ""
   Displays:
@@ -111,7 +113,7 @@ Visualization Manager:
           Value: false
         world:
           Value: true
-      Marker Scale: 2
+      Marker Scale: 5
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -142,11 +144,56 @@ Visualization Manager:
                 aquabot/right_propeller_link:
                   {}
           drone1/odom:
-            {}
+            drone1/base_footprint:
+              drone1/body:
+                drone1/downward_left_camera_link:
+                  {}
+                drone1/downward_right_camera_link:
+                  {}
+                drone1/imu_link:
+                  {}
+                drone1/m1_prop:
+                  {}
+                drone1/m2_prop:
+                  {}
+                drone1/m3_prop:
+                  {}
+                drone1/m4_prop:
+                  {}
           drone2/odom:
-            {}
+            drone2/base_footprint:
+              drone2/body:
+                drone2/downward_left_camera_link:
+                  {}
+                drone2/downward_right_camera_link:
+                  {}
+                drone2/imu_link:
+                  {}
+                drone2/m1_prop:
+                  {}
+                drone2/m2_prop:
+                  {}
+                drone2/m3_prop:
+                  {}
+                drone2/m4_prop:
+                  {}
           drone3/odom:
-            {}
+            drone3/base_footprint:
+              drone3/body:
+                drone3/downward_left_camera_link:
+                  {}
+                drone3/downward_right_camera_link:
+                  {}
+                drone3/imu_link:
+                  {}
+                drone3/m1_prop:
+                  {}
+                drone3/m2_prop:
+                  {}
+                drone3/m3_prop:
+                  {}
+                drone3/m4_prop:
+                  {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -597,7 +644,7 @@ Visualization Manager:
         Value: /drone3/downward_left_camera/image_raw
       Value: false
     - Class: rviz_default_plugins/Image
-      Enabled: false
+      Enabled: true
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -609,9 +656,9 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone1/yolo/image_annotated
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/Image
-      Enabled: false
+      Enabled: true
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -623,9 +670,9 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone2/yolo/image_annotated
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/Image
-      Enabled: false
+      Enabled: true
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -637,7 +684,7 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone3/yolo/image_annotated
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/MarkerArray
       Enabled: true
       Name: drone1_obs_markers
@@ -651,19 +698,19 @@ Visualization Manager:
         Value: /drone1/obstacle_markers
       Value: true
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: false
+      Enabled: true
       Name: drone2_obs_markers
       Namespaces:
-        {}
+        drone2_obstacles: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone2/obstacle_markers
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: false
+      Enabled: true
       Name: drone3_obs_markers
       Namespaces:
         {}
@@ -673,9 +720,9 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone3/obstacle_markers
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: false
+      Enabled: true
       Name: drone1_tackedOBS
       Namespaces:
         {}
@@ -685,21 +732,25 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone1/tracked_obstacle_markers
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: false
+      Enabled: true
       Name: drone2_tackedOBS
       Namespaces:
-        {}
+        trk_cov_axes: true
+        trk_cov_xy: true
+        trk_sphere: true
+        trk_text: true
+        trk_trail: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone2/tracked_obstacle_markers
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/MarkerArray
-      Enabled: false
+      Enabled: true
       Name: drone3_tackedOBS
       Namespaces:
         {}
@@ -709,12 +760,13 @@ Visualization Manager:
         History Policy: Keep Last
         Reliability Policy: Reliable
         Value: /drone3/tracked_obstacle_markers
-      Value: false
+      Value: true
     - Class: rviz_default_plugins/MarkerArray
       Enabled: true
       Name: fused_obsticals_final
       Namespaces:
-        {}
+        fused_obstacles_sphere: true
+        fused_obstacles_text: true
       Topic:
         Depth: 5
         Durability Policy: Volatile
@@ -790,6 +842,122 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /obstacles
       Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: Assignment_Markers
+      Namespaces:
+        assign_line: true
+        qstar_point: true
+        qstar_ring: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /assignment_markers
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Drone1_assigned_Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /drone1/assigned_pose
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 28; 113; 216
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Drone2_assigned_Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /drone2/assigned_pose
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 38; 162; 105
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Drone3_assigned_Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /drone3/assigned_pose
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Drone1_disp
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /drone1/stereo/disparity_viz
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Drone2_disp
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /drone2/stereo/disparity_viz
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Drone3_disp
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /drone3/stereo/disparity_viz
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -811,36 +979,42 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 200.8587188720703
+      Distance: 205.80784606933594
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 148.20953369140625
-        Y: 57.196632385253906
-        Z: -6.7160868644714355
+        X: 147.77499389648438
+        Y: 56.35396194458008
+        Z: -10.121041297912598
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.07979759573936462
+      Pitch: 0.12479770183563232
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz_default_plugins)
-      Yaw: 3.4753835201263428
+      Yaw: 3.4403817653656006
     Saved: ~
 Window Geometry:
   Displays:
+    collapsed: true
+  Drone1_disp:
+    collapsed: false
+  Drone2_disp:
+    collapsed: false
+  Drone3_disp:
     collapsed: false
   Height: 1013
-  Hide Left Dock: false
+  Hide Left Dock: true
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000001af00000397fc0200000009fc0000003f00000397000000cc00fffffffa000000010100000002fb0000000c00430061006d0065007200610000000000ffffffff0000000000000000fb000000100044006900730070006c0061007900730100000000000001560000015600fffffffb0000001c00610071007500610062006f0074005f00630061006d006500720061000000015d0000004e0000001700fffffffb0000002400640072006f006e00650033005f00430061006d006500720061005f006c0065006600740000000169000000400000001700fffffffb0000002c006300720061007a00790066006c00690065005f00430061006d006500720061005f0072006900670068007401000001e0000000700000000000000000fb0000002200640072006f006e00650031005f0079006f006c006f005f006d006100670065002000000002970000013f0000001700fffffffb0000002400640072006f006e00650032005f00430061006d006500720061005f006c00650066007400000001cb000000480000001700fffffffb0000002400640072006f006e00650031005f00430061006d006500720061005f006c00650066007400000001c6000000700000001700fffffffb0000002200640072006f006e00650032005f0079006f006c006f005f006d00610067006500200000000252000000750000001700fffffffb0000002200640072006f006e00650033005f0079006f006c006f005f006d006100670065002000000002cd000001070000001700ffffff000004db0000039700000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000200000000000001c900000397fc020000000bfc0000003f000003970000000000fffffffa000000000100000002fb0000000c00430061006d0065007200610000000000ffffffff0000000000000000fb000000100044006900730070006c0061007900730000000000000001560000015600fffffffb0000001c00610071007500610062006f0074005f00630061006d006500720061000000015d0000004e0000001700fffffffb0000002400640072006f006e00650033005f00430061006d006500720061005f006c0065006600740000000169000000400000001700fffffffb0000002c006300720061007a00790066006c00690065005f00430061006d006500720061005f0072006900670068007401000001e0000000700000000000000000fb0000002400640072006f006e00650032005f00430061006d006500720061005f006c00650066007400000001cb000000480000001700fffffffb0000002400640072006f006e00650031005f00430061006d006500720061005f006c0065006600740000000373000000630000001700fffffffb0000002200640072006f006e00650032005f0079006f006c006f005f006d0061006700650020030000001f000003940000010a000000defb0000002200640072006f006e00650033005f0079006f006c006f005f006d006100670065002003000000280000047e00000100000000d8fb0000001600440072006f006e00650031005f0064006900730070030000013400000280000001040000010bfb0000001600440072006f006e00650032005f006400690073007003000001330000039300000107000000dbfb0000001600440072006f006e00650033005f00640069007300700300000135000004780000010a000000e0000000020000069000000107fc0100000001fb0000002200640072006f006e00650031005f0079006f006c006f005f006d0061006700650020030000001a00000281000001100000010b000006900000039700000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Width: 1680
   X: 0
-  Y: 213
+  Y: 390
   aquabot_camera:
     collapsed: false
   drone1_Camera_left:
