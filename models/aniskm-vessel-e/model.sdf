@@ -1,0 +1,85 @@
+<?xml version='1.0' ?>
+<sdf version="1.6">
+  <model name="vessel_a">
+    <static>false</static>
+    <link name="link">
+      <enable_wind>true</enable_wind>
+      <inertial>
+        <mass>1500.0</mass>
+        <inertia>
+          <ixx>3625</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>25000</iyy>
+          <iyz>0.0</iyz>
+          <izz>27625</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <pose>0 0 0 0 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>meshes/Boat05.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/Boat05_Albedo.jpg</albedo_map>
+              <normal_map>materials/textures/Boat05_Normal.png</normal_map>
+              <roughness_map>materials/textures/Boat05_Roughness.jpg</roughness_map>
+              <metalness_map>materials/textures/Boat05_Metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+      <collision name="collision">
+        <pose>0 0 0 0 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>meshes/Boat05.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+
+    <!-- Buoyancy plugin (Surface) -->
+    <plugin name="vrx::Surface" filename="libSurface.so">
+      <link_name>link</link_name>
+      <hull_length>5.0</hull_length> <!-- approximate -->
+      <hull_radius>0.5</hull_radius> <!-- approximate -->
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>2.5 0.5 0</point>
+        <point>-2.5 0.5 0</point>
+        <point>2.5 -0.5 0</point>
+        <point>-2.5 -0.5 0</point>
+      </points>
+      <wavefield>
+        <topic>/vrx/wavefield/parameters</topic>
+      </wavefield>
+    </plugin>
+
+    <!-- Hydrodynamics plugin -->
+    <plugin name="vrx::SimpleHydrodynamics" filename="libSimpleHydrodynamics.so">
+      <link_name>link</link_name>
+      <xDotU>0.0</xDotU>
+      <yDotV>0.0</yDotV>
+      <nDotR>0.0</nDotR>
+      <xU>300.0</xU>
+      <xUU>500.0</xUU>
+      <yV>300.0</yV>
+      <yVV>400.0</yVV>
+      <zW>2000.0</zW>
+      <kP>1000.0</kP>
+      <kPP>1200.0</kPP>
+      <mQ>1000.0</mQ>
+      <mQQ>1200.0</mQQ>
+      <nR>1000.0</nR>
+      <nRR>1200.0</nRR>
+    </plugin>
+  </model>
+</sdf>

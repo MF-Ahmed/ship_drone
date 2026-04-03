@@ -1,0 +1,78 @@
+<sdf version='1.11'>
+  <model name='floating_container'>
+    <static>false</static>
+    <link name='base_link'>
+      <pose>0 0 0.5 0 0 0</pose>
+      <inertial>
+        <mass>200</mass>
+        <inertia>
+          <ixx>50</ixx>
+          <iyy>50</iyy>
+          <izz>50</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>2 1 1</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <collide_without_contact>true</collide_without_contact>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name='visual'>
+        <geometry>
+          <box>
+            <size>2 1 1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.4 0.4 0.8 1</ambient>
+          <diffuse>0.4 0.4 0.8 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <plugin name='vrx::Surface' filename='libSurface.so'>
+      <link_name>base_link</link_name>
+      <hull_length>2.0</hull_length>
+      <hull_radius>0.3</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>0.9 0.4 0</point>
+        <point>-0.9 0.4 0</point>
+        <point>0.9 -0.4 0</point>
+        <point>-0.9 -0.4 0</point>
+      </points>
+      <wavefield>
+        <topic>/vrx/wavefield/parameters</topic>
+      </wavefield>
+    </plugin>
+
+    <plugin name='vrx::SimpleHydrodynamics' filename='libSimpleHydrodynamics.so'>
+      <link_name>base_link</link_name>
+      <xDotU>0.0</xDotU>
+      <yDotV>0.0</yDotV>
+      <nDotR>0.0</nDotR>
+      <xU>100.0</xU>
+      <xUU>200.0</xUU>
+      <yV>100.0</yV>
+      <yVV>100.0</yVV>
+      <zW>500.0</zW>
+      <kP>300.0</kP>
+      <kPP>400.0</kPP>
+      <mQ>300.0</mQ>
+      <mQQ>400.0</mQQ>
+      <nR>300.0</nR>
+      <nRR>400.0</nRR>
+    </plugin>
+  </model>
+</sdf>

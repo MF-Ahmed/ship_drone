@@ -1,0 +1,14 @@
+material Container/Texture
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture shipping_container.jpg
+      }
+    }
+  }
+}
+

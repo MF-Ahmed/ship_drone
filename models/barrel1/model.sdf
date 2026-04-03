@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<sdf version="1.11">
+  <model name="barrel1">
+    <static>false</static>
+
+    <link name="base_link">
+      <pose>0 0 0.45 0 0 0</pose> <!-- Half the barrel height above water -->
+
+      <inertial>
+        <mass>25</mass> <!-- lighter than a container -->
+        <inertia>
+          <ixx>1.0</ixx>
+          <iyy>1.0</iyy>
+          <izz>1.0</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://newnames/barrel1/meshes/model.dae</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <collide_without_contact>true</collide_without_contact>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://newnames/barrel1/meshes/model.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <pbr>
+            <metal>
+              <albedo_map>model://newnames/barrel1/materials/textures/barrel_Base_Color.png</albedo_map>
+              <normal_map>model://newnames/barrel1/materials/textures/barrel_Normal.png</normal_map>
+              <roughness_map>model://newnames/barrel1/materials/textures/barrel_Roughness.png</roughness_map>
+              <metalness_map>model://newnames/barrel1/materials/textures/barrel_Metallic.png</metalness_map>
+              <ambient_occlusion_map>model://newnames/barrel1/materials/textures/barrel_Mixed_AO.png</ambient_occlusion_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+    </link>
+
+    <!-- Surface plugin for wave interaction -->
+    <plugin name="vrx::Surface" filename="libSurface.so">
+      <link_name>base_link</link_name>
+      <hull_length>0.9</hull_length>
+      <hull_radius>0.29</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>0.25 0.25 0</point>
+        <point>-0.25 0.25 0</point>
+        <point>0.25 -0.25 0</point>
+        <point>-0.25 -0.25 0</point>
+      </points>
+      <wavefield>
+        <topic>/vrx/wavefield/parameters</topic>
+      </wavefield>
+    </plugin>
+
+    <!-- Hydrodynamics plugin -->
+    <plugin name="vrx::SimpleHydrodynamics" filename="libSimpleHydrodynamics.so">
+      <link_name>base_link</link_name>
+      <xDotU>0.0</xDotU>
+      <yDotV>0.0</yDotV>
+      <nDotR>0.0</nDotR>
+      <xU>150.0</xU>
+      <xUU>300.0</xUU>
+      <yV>150.0</yV>
+      <yVV>300.0</yVV>
+      <zW>1500.0</zW> <!-- vertical damping for buoyancy -->
+      <kP>300.0</kP>
+      <kPP>500.0</kPP>
+      <mQ>300.0</mQ>
+      <mQQ>500.0</mQQ>
+      <nR>200.0</nR>
+      <nRR>400.0</nRR>
+    </plugin>
+
+    <!-- Odometry publisher -->
+    <plugin filename="gz-sim-odometry-publisher-system"
+            name="gz::sim::systems::OdometryPublisher">
+      <odom_frame>world</odom_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_topic>/model/barrel1/odometry</odom_topic>
+      <odom_covariance_topic>/model/barrel1/odometry_with_covariance</odom_covariance_topic>
+      <tf_topic>/model/barrel1/pose</tf_topic>
+      <odom_publish_frequency>30</odom_publish_frequency>
+      <dimensions>3</dimensions>
+      <gaussian_noise>0.0</gaussian_noise>
+    </plugin>
+  </model>
+</sdf>

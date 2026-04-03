@@ -1,0 +1,105 @@
+<?xml version='1.0' ?>
+<sdf version="1.6">
+  <model name="large_grey_box">
+    <static>false</static>
+    <link name="link">
+      <inertial>
+        <pose>0 0 0.11505 0 0 0</pose>
+        <mass>8</mass>
+        <inertia>
+          <ixx>0.04668213</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.09028832</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.06538194</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>meshes/greyboxlarge.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <albedo_map>materials/textures/GreyBoxLarge_Albedo.jpg</albedo_map>
+              <normal_map>materials/textures/GreyBoxLarge_Normal.jpg</normal_map>
+              <roughness_map>materials/textures/GreyBoxLarge_Roughness.png</roughness_map>
+              <metalness_map>materials/textures/GreyBoxLarge_Metalness.png</metalness_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
+
+      <collision name="Cylinder001">
+        <pose>0.137797 0.0 0.148378 1.5708 0.0 0.0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.11</length>
+            <radius>0.004925</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <collision name="Box007">
+        <pose>-0.129971 0.000537722 0.127395 1.5708 0.0 -1.5708</pose>
+        <geometry>
+          <box>
+            <size>0.0517868 0.0520903 0.0287742</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="Box006">
+        <pose>-0.129971 0.000537721 0.144393 1.5708 0.0 -1.5708</pose>
+        <geometry>
+          <box>
+            <size>0.0699822 0.0520903 0.0287742</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="Box005">
+        <pose>0.054 0.0 0.193553 0.0 0.0 0.0</pose>
+        <geometry>
+          <box>
+            <size>0.0156478 0.0150169 0.0474481</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="Box004">
+        <pose>-0.0536493 0.0 0.193553 0.0 0.0 0.0</pose>
+        <geometry>
+          <box>
+            <size>0.0156478 0.0150169 0.0474481</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="Box003">
+        <pose>0.0 0.0 0.223048 0.0 0.0 0.0</pose>
+        <geometry>
+          <box>
+            <size>0.123192 0.0150169 0.014206</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="Box002">
+        <pose>0.0 0.0 0.147692 0.0 0.0 0.0</pose>
+        <geometry>
+          <box>
+            <size>0.268411 0.128372 0.0266612</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="Box001">
+        <pose>0.0 0.0 0.0901828 0.0 0.0 0.0</pose>
+        <geometry>
+          <box>
+            <size>0.246019 0.108633 0.180366</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

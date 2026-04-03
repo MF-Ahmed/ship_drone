@@ -1,0 +1,95 @@
+<sdf version="1.11">
+  <model name="container5">
+    <static>false</static>
+
+    <link name="base_link">
+      <pose>0 0 1.295 0 0 0</pose> <!-- half of height to float above origin -->
+
+      <inertial>
+        <mass>2200</mass> <!-- realistic container weight when empty -->
+        <inertia>
+          <ixx>1000</ixx>
+          <iyy>1000</iyy>
+          <izz>1000</izz>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyz>0</iyz>
+        </inertia>
+      </inertial>
+
+      <collision name="collision">
+        <geometry>
+              <mesh>
+                <uri>model://newnames/container5/meshes/model.dae</uri>
+                 <scale>0.01 0.01 0.01</scale> 
+              </mesh>
+            </geometry>
+            <surface>
+              <contact>
+                <collide_without_contact>true</collide_without_contact>
+              </contact>
+            </surface>
+      </collision>
+        <visual name="visual">
+         <geometry>
+          <mesh>
+            <uri>model://newnames/container5/meshes/model.dae</uri>
+             <scale>0.01 0.01 0.01</scale> 
+          </mesh>
+        </geometry>
+          <!-- <material> 
+    		<ambient>1 0 0 1</ambient>  
+    	<diffuse>1 0 0 1</diffuse>
+  	</material> -->
+
+      </visual>
+    </link>
+
+    <plugin name="vrx::Surface" filename="libSurface.so">
+      <link_name>base_link</link_name>
+      <hull_length>6.06</hull_length>
+      <hull_radius>0.5</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>2.9 1.2 0</point>
+        <point>-2.9 1.2 0</point>
+        <point>2.9 -1.2 0</point>
+        <point>-2.9 -1.2 0</point>
+      </points>
+      <wavefield>
+        <topic>/vrx/wavefield/parameters</topic>
+      </wavefield>
+    </plugin>
+
+    <plugin name="vrx::SimpleHydrodynamics" filename="libSimpleHydrodynamics.so">
+      <link_name>base_link</link_name>
+      <xDotU>0.0</xDotU>
+      <yDotV>0.0</yDotV>
+      <nDotR>0.0</nDotR>
+      <xU>300.0</xU>
+      <xUU>500.0</xUU>
+      <yV>300.0</yV>
+      <yVV>400.0</yVV>
+      <zW>2000.0</zW> <!-- large value to simulate strong vertical resistance (buoyancy) -->
+      <kP>1000.0</kP>
+      <kPP>1200.0</kPP>
+      <mQ>1000.0</mQ>
+      <mQQ>1200.0</mQQ>
+      <nR>1000.0</nR>
+      <nRR>1200.0</nRR>
+    </plugin>
+        <plugin filename="gz-sim-odometry-publisher-system"
+            name="gz::sim::systems::OdometryPublisher">
+      <odom_frame>world</odom_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_topic>/model/container5/odometry</odom_topic>
+      <odom_covariance_topic>/model/container5/odometry_with_covariance</odom_covariance_topic>
+      <tf_topic>/model/container5/pose</tf_topic>
+      <odom_publish_frequency>30</odom_publish_frequency>
+      <dimensions>3</dimensions>
+      <gaussian_noise>0.0</gaussian_noise>
+    </plugin>
+
+
+  </model>
+</sdf>
