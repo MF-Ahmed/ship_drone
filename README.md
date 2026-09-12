@@ -12,9 +12,7 @@
 > safety constraints.
 
 This repository contains the ROS 2/Gazebo simulation that produces the paper's results (Section
-IV). For a deeper architectural breakdown (which packages are project-original vs. adapted from
-external simulators, message/action definitions, known dead code, etc.), see `CLAUDE.md` at the
-repo root.
+IV). 
 
 ## Repository layout
 
